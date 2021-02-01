@@ -19,6 +19,7 @@
               :span="24 / colCount"
             >
               <div>
+                <router-link tag='detail' :to="{name:'detail',params:{projectId:0}}">
                 <a-card hoverable style="width: 300px">
                   <img
                     slot="cover"
@@ -29,6 +30,7 @@
                     <template slot="description"> 花旗餐饮行业信用预测项目 </template>
                   </a-card-meta>
                 </a-card>
+                </router-link>
               </div>
             </a-col>
           </a-row>
