@@ -116,35 +116,31 @@ const routes = [
         name: 'lendingHandle',
         component: () => import('@/views/bank/lending')
       },
-      {
-        path: 'project/:projectId',
-        name: 'projectManage',
-        redirect: 'data/dataView',
-        component: () => import('@/views/bank/project'),
-        children: [
-          {
-            path: 'authority/manage',
-            name: 'authorityManage',
-            component: () => import('@/views/bank/authority/authority')
-          },
-          {
-            path: 'data/dataView',
-            name: 'dataView',
-            component: () => import('@/views/bank/data/data')
-          },
-          {
-            path: 'predict/predict',
-            name: 'predict',
-            component: () => import('@/views/bank/predict/predict')
-          },
-        ]
-      },
-      
-      
-
     ]
   },
-
+  {
+    path: '/project/:projectId',
+    name: 'projectManage',
+    redirect: '/project/:projectId/data/dataView',
+    component: () => import('@/views/bank/project'),
+    children: [
+      {
+        path: 'authority/manage',
+        name: 'authorityManage',
+        component: () => import('@/views/bank/authority/authority')
+      },
+      {
+        path: 'data/dataView',
+        name: 'dataView',
+        component: () => import('@/views/bank/data/data')
+      },
+      {
+        path: 'predict/predict',
+        name: 'predict',
+        component: () => import('@/views/bank/predict/predict')
+      },
+    ]
+  },
   // 借款方路由相关
   {
     path: '/loaner',
