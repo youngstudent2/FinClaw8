@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.project.ProjectMapper">
+
+    <insert id="createNewProject" parameterType="com.example.finclaw.po.Project" useGeneratedKeys="true" keyProperty="projectID">
+        insert into Project(projectName, description, startTime, endTime, status)
+        values(#{projectName},#{description},#{startTime},#{endTime},#{status})
+    </insert>
+
+    <delete id="deleteProject">
+        delete from Project where projectID=#{projectID}
+    </delete>
+
+    <update id="modifyProject">
+        update Project set
+           projectName=#{projectName},
+           description=#{description},
+           startTime=#{startTime},
+           endTime=#{endTime},
+           status=#{status},
+           fileID=#{fileID},
+           modelID=#{modelID},
+           modelVersion=#{modelVersion}
+        where projectID=#{projectID}
+    </update>
+
+    <select id="getAllProjects" resultType="com.example.finclaw.po.Project">
+        select * from project
+    </select>
+
+    <select id="getProjectByID" resultType="com.example.finclaw.po.Project">
+        select * from project where projectID=#{ProjectID}
+    </select>
+
+    <update id="updateProjectFile">
+        update Project set fileID=#{fileID} where projectID=#{projectID}
+    </update>
+
+    <resultMap id="Project" type="com.example.finclaw.po.Project">
+        <id column="projectID" property="projectID"/>
+        <result column="projectName" property="projectName"/>
+        <result column="description" property="description"/>
+        <result column="startTime" property="startTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="status" property="status"/>
+        <result column="fileID" property="fileID"/>
+        <result column="modelID" property="modelID"/>
+        <result column="modelVersion" property="modelVersion"/>
+    </resultMap>
+</mapper>
