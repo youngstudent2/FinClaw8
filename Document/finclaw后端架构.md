@@ -16,6 +16,7 @@
 
 ```
 public class ProjectForm{
+	private Integer userID;//创建者的ID
     private String projectName;
     private String description;
     private Timestamp startTime;
@@ -28,6 +29,7 @@ public class ProjectForm{
 ```
 public class ProjectVO{
 	private Integer projectID;
+	private Integer userID;//创建者的ID
     private String projectName;
     private String description;
     private ProjectStatus status;
@@ -41,6 +43,7 @@ public class ProjectVO{
 ```
 public class Project{
 	private Integer projectID;
+	private Integer userID;//创建者的ID
 	private Integer modelID;//一个项目对应一个模型
     private String projectName;
     private String description;
@@ -338,6 +341,7 @@ public class UserForm {
 | field       | type         | description                            |
 | ----------- | ------------ | -------------------------------------- |
 | projectID   | INT          | 项目编号                               |
+| userID      | INT          | 创建项目的用户                         |
 | projectName | varchar(255) | 项目名称                               |
 | description | varchar(255) | 项目描述                               |
 | startTime   | timestamp    | 项目的开始时间                         |
