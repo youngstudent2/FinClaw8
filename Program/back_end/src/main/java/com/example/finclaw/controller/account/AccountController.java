@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @author hwb
+ * @author CGC
  *
  */
 
@@ -29,7 +29,12 @@ public class AccountController {
         
     }
 
-    @GetMapping("/{userID}/getUserInfo")
+    @PostMapping("/register")
+    public ResponseVO register(@RequestBody UserRegisterForm userRegisterForm) {
+
+    }
+
+    @GetMapping("/getUserInfo/{userID}")
     public ResponseVO getUserInfo(@PathVariable int userID) {
         UserVO userVO = accountService.getUserInfo(userID);
         if(userVO==null){
@@ -38,37 +43,19 @@ public class AccountController {
         return ResponseVO.buildSuccess(userVO);
     }
 
-    @PostMapping("/{userID}/updateUserInfo")
+    @PostMapping("/updateUserInfo/{userID}")
     public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm userForm){
         return accountService.updateUserInfo(userID, userForm);
     }
 
-    @PostMapping("/{userID}/updatePassword")
+    @PostMapping("/updatePassword/{userID}")
     public ResponseVO updatePassword(@PathVariable int userID,@RequestParam String oldPassword,@RequestParam String newPassword){
         return accountService.updatePassword(userID,oldPassword,newPassword);
     }
 
-    @PostMapping("/registerDataManager")
-    public ResponseVO registerDataManager(@RequestBody UserForm userForm) {
-        accountService.registerDataManager(userForm);
-        return ResponseVO.buildSuccess();
+    @PostMapping("/registerIdentity/{userID}")
+    public ResponseVO updatePassword(@PathVariable int userID,@RequestParam int role){
+
     }
 
-    @PostMapping("/registerCooperation")
-    public ResponseVO registerCooperation(@RequestBody CooperationForm cooperationForm) {
-        accountService.registerCooperation(cooperationForm);
-        return ResponseVO.buildSuccess();
-        // ToDo 检测一下注册的email是否重复，不然重复注册数据库会出问题的
-    }
-
-    @PostMapping("/{userID}/deleteUser")
-    public ResponseVO deleteUser(@PathVariable int userID){
-        return accountService.deleteUser(userID);
-    }
-
-    @GetMapping("/getAllDataManagers")
-    public ResponseVO getAllDataManagers() {
-        List<UserVO> userVOList = accountService.getAllDataManagers();
-        return ResponseVO.buildSuccess(userVOList);
-    }
 }

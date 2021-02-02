@@ -406,6 +406,12 @@ public class UserForm {
 
 ## 3. Controller包设计
 
+### 统一说明
+
+- 建议键值放在路径中传参，且放在路径最后；
+  - 示例：**url:** /api/account/getUserInfo/{userID}
+- 其余信息通过RequestParam和RequestBody等传递
+
 ### 3.1 AccountController
 
 #### 3.1.1 登陆(改动)
@@ -426,11 +432,9 @@ public ResponseVO login(@RequestBody UserLoginForm userLoginForm);
 public ResponseVO login(@RequestBody UserRegisterForm userRegisterForm);
 ```
 
-#### 3.1.3 获取个人信息(不变)
+#### 3.1.3 获取个人信息
 
-#### 3.1.3 获取个人信息(不变)
-
-**url:** /api/account/{userID}/getUserInfo
+**url:** /api/account/getUserInfo/{userID}
 
 ```
 public ResponseVO getUserInfo(@PathVariable int userID);
@@ -438,7 +442,7 @@ public ResponseVO getUserInfo(@PathVariable int userID);
 
 #### 3.1.4 修改个人信息(不变)
 
-**url:** /api/account/{usreID}/updateUserInfo
+**url:** /api/account/updateUserInfo/{usreID}
 
 ```
 public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm userForm);
@@ -446,7 +450,7 @@ public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm 
 
 #### 3.1.5 修改个人密码(不变)
 
-**url:** /api/account/{userID}/udpatePassword
+**url:** /api/account/udpatePassword/{userID}
 
 ```
 public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String oldPassword, @RequestParam String newPassword);
@@ -456,7 +460,7 @@ public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String 
 
 用户注册后是非认证状态，只能使用最基本功能，上传资料管理员认证通过后授予身份认证
 
-**url:** /api/account/{userID}/registerIdentity
+**url:** /api/account/registerIdentity/{userID}
 
 ```
 public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role);
@@ -499,7 +503,7 @@ public ResponseVO deleteProject(@RequestParam Integer projectID);
 
 将参数ProjectVO改为ProjectForm
 
-**url:** /api/project/{projectID}/modifyProject
+**url:** /api/project/modifyProject/{projectID}
 
 ```java
 public ResponseVO modifyProject(@PathVariable int projectID, @RequestBody ProjectForm projectForm);
@@ -515,10 +519,10 @@ public ResponseVO getAllProject();
 
 #### 3.2.5 查看某个项目的信息 (不变)
 
-**url:** /api/project/getProjectInfo/
+**url:** /api/project/getProjectInfo/{projectID}
 
 ```java
-public ResponseVO getProjectInfo(@RequestParam int projectID);
+public ResponseVO getProjectInfo(@PathVariable Integer projectID);
 ```
 
 ### 3.3 CooperationController 
@@ -527,20 +531,20 @@ public ResponseVO getProjectInfo(@RequestParam int projectID);
 
 之前是合作方的功能，现在数据提供方沿用
 
-#### 3.3.1 加入项目 (不变)
+#### 3.3.1 加入项目 
 
-**url:** /api/cooperation/attendProject/{projectID}
+**url:** /api/cooperation/attendProject/{projectID}/{cooperationID}
 
 ```java
-public ResponseVO attendProject(@PathVariable Integer projectID, @RequestParam Integer cooperationID)
+public ResponseVO attendProject(@PathVariable Integer projectID, @PathVariable Integer cooperationID) 
 ```
 
-#### 3.3.2 退出项目 (不变)
+#### 3.3.2 退出项目 
 
-**url:** /api/cooperation/quitProject/{projectID}
+**url:** /api/cooperation/quitProject/{projectID}/{cooperationID}
 
 ```java
-public ResponseVO quitProject(@PathVariable Integer projectID, @RequestParam Integer cooperationID)
+public ResponseVO quitProject(@PathVariable Integer projectID, @PathVariable Integer cooperationID)
 ```
 
 #### 3.3.3 更改服务器信息 (改动)
@@ -557,10 +561,10 @@ public ResponseVO updateServerInfo(@RequestBody ServerInfoForm serverInfoForm )
 
 #### 3.3.4 数据提供方设置自己信息准备状态
 
-**url:** /api/cooperation/setReadyStatus
+**url:** /api/cooperation/setReadyStatus/{projectID}/{cooperationID}
 
 ```java
-public ResponseVO setReadyStatus(@RequestParam Integer cooperationID, @RequestParam Integer projectID，@RequestParam boolean isReady )
+public ResponseVO setReadyStatus(@PathVariable Integer projectID, @PathVariable Integer cooperationID，@RequestParam boolean isReady )
 ```
 
 数据提供方确认自己的数据已经准备好后就设置attendance中相关记录isReady为true
@@ -575,10 +579,10 @@ public ResponseVO getAllAttendedProjects(@PathVariable Integer cooperaitonID);
 
 #### 3.3.6 查看某个数据提供方参与某项目的服务器信息(新增)
 
-**url:** /api/cooperation/getServerInfo
+**url:** /api/cooperation/getServerInfo/{projectID}/{cooperationID}
 
 ```
-public ResponseVO getServerInfo(@RequestParam Integer cooperationID, @RequestParam Integer projectID);
+public ResponseVO getServerInfo(@PathVariable Integer projectID, @PathVariable Integer cooperationID);
 ```
 
 返回值包裹的是ServerInfoVo
@@ -597,10 +601,10 @@ public ResponseVO getProjectCooperation(@PathVariable Integer projectID);
 
 现在的处理方式是数据提供方申请加入项目时直接同意，然后用attendance表中的isChosen来标识项目是否采纳该数据提供方数据
 
-**url:** /api/cooperation/setChosenStatus
+**url:** /api/cooperation/setChosenStatus/{projectID}/{cooperationID}
 
 ```
-public ResponseVO setChosenStatus(@RequestParam Integer cooperationID, @RequestParam Integer projectID，@RequestParam boolean isChosen )
+public ResponseVO setChosenStatus(@PathVariable Integer projectID, @PathVariable Integer cooperationID，@RequestParam boolean isChosen )
 ```
 
 
@@ -619,39 +623,39 @@ public ResponseVO addLendingForm(@RequestBody LendingForm lendingForm);
 
 #### 3.4.2 查看某银行在平台的所有贷款记录
 
-**url:** /api/lending/getBankLendingHistory
+**url:** /api/lending/getBankLendingHistory/{bankID}
 
 ```
-public ResponseVO getBankLendingHistory(@RequestParam Integer bankID);
+public ResponseVO getBankLendingHistory(@PathVariable Integer bankID);
 //bankID就是银行的userID
 ```
 
 #### 3.4.3 查看某条贷款记录
 
-**url:** /api/lending/getLendingHistory
+**url:** /api/lending/getLendingHistory/{lendingHistoryID}
 
 ```
-public ResponseVO getLendingHistory(@RequestParam Integer lendingHistoryID);
+public ResponseVO getLendingHistory(@PathVariable Integer lendingHistoryID);
 ```
 
 #### 3.4.4 设置某贷款记录的处理情况为已处理
 
 银行发布的贷款意愿被用户采纳后置为将hasDealt置为true
 
-**url:** /api/lending/setDealt
+**url:** /api/lending/setDealt/{lendingHistoryID}
 
 ```
-public ResponseVO setDealt(@RequestParam Integer lendingHistoryID);
+public ResponseVO setDealt(@PathVariable Integer lendingHistoryID);
 ```
 
 #### 3.4.5 查看某小微企业获得的所有贷款记录
 
 只有hasDealt为true才是完成贷款的记录
 
-**url:** /api/lending/getUserLendingHistory
+**url:** /api/lending/getUserLendingHistory/{userID}
 
 ```
-public ResponseVO getUserLendingHistory(@RequestParam Integer userID);
+public ResponseVO getUserLendingHistory(@PathVariable Integer userID);
 ```
 
 ### 3.5 LoanController(新增)
@@ -666,34 +670,34 @@ public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplic
 
 #### 3.5.2 取消贷款申请
 
-**url:** /api/loan/deleteLoanApplication
+**url:** /api/loan/deleteLoanApplication/{loanApplicationID}
 
 ```
-public ResponseVO deleteLoanApplication(@RequestParam Integer loanApplicationID);
+public ResponseVO deleteLoanApplication(@PathVariable Integer loanApplicationID);
 ```
 
 #### 3.5.3 查看所有贷款申请记录
 
-**url:** /api/loan/getAllLoanApplication
+**url:** /api/loan/getAllLoanApplication/{userID}
 
 ```
-public ResponseVO getAllLoanApplication(@RequestParam Integer userID);
+public ResponseVO getAllLoanApplication(@PathVariable Integer userID);
 ```
 
 #### 3.5.4 查看某条贷款申请记录
 
-**url:** /api/loan/getLoanApplication
+**url:** /api/loan/getLoanApplication/{loanApplicationID}
 
 ```
-public ResponseVO getLoanApplication(@RequestParam Integer loanApplicationID);
+public ResponseVO getLoanApplication(@PathVariable Integer loanApplicationID);
 ```
 
 #### 3.5.5 设置某贷款申请为已处理
 
-**url:** /api/loan/setDealt
+**url:** /api/loan/setDealt/{loanApplicationID}
 
 ```
-public ResponseVO setDealt(@RequestParam Integer loanApplicationID);
+public ResponseVO setDealt(@PathVariable Integer loanApplicationID);
 ```
 
 ### 3.6 FileController
