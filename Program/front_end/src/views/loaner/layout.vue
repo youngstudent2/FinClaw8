@@ -3,7 +3,7 @@
     <a-layout>
       <Header></Header>
       <a-layout style="height: 100%">
-        <Sidebar></Sidebar>
+        <Sidebar v-bind:links="links"></Sidebar>
         <a-layout style="padding: 0 24px 24px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>主页</a-breadcrumb-item>
@@ -35,6 +35,15 @@ export default {
   components: {
     Header,Sidebar,Footer,
   },
+  data() {
+    return {
+      links:[
+        ['request','贷款申请','upload'],
+        ['requestManage','申请管理','audit'],
+        ['responseReview','贷款结果','money-collect']
+      ]
+    }
+  }
 };
 </script>
 
