@@ -648,16 +648,6 @@ public ResponseVO getLendingHistory(@PathVariable Integer lendingHistoryID);
 public ResponseVO setDealt(@PathVariable Integer lendingHistoryID);
 ```
 
-#### 3.4.5 查看某小微企业获得的所有贷款记录
-
-只有hasDealt为true才是完成贷款的记录
-
-**url:** /api/lending/getUserLendingHistory/{userID}
-
-```
-public ResponseVO getUserLendingHistory(@PathVariable Integer userID);
-```
-
 ### 3.5 LoanController(新增)
 
 #### 3.5.1 提交贷款申请
@@ -698,6 +688,16 @@ public ResponseVO getLoanApplication(@PathVariable Integer loanApplicationID);
 
 ```
 public ResponseVO setDealt(@PathVariable Integer loanApplicationID);
+```
+
+#### 3.5.6 查看某小微企业获得的所有贷款记录
+
+只有hasDealt为true才是完成贷款的记录
+
+**url:** /api/loan/getUserLoanHistory/{userID}
+
+```
+public ResponseVO getUserLoanHistory(@PathVariable Integer userID);
 ```
 
 ### 3.6 FileController
