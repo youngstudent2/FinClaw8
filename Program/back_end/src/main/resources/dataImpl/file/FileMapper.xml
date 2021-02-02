@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.finclaw.data.file.FileMapper">
+
+    <insert id="uploadFile" parameterType="com.example.finclaw.po.FileInfo" useGeneratedKeys="true"
+            keyProperty="fileID">
+        insert into File(fileName,operatorID,projectID,uploadTime,trainedTimes,filePath)
+        values (#{fileName},#{operatorID},#{projectID},#{uploadTime},#{trainedTimes},#{filePath})
+    </insert>
+
+    <select id="selectAllFilesInProject" resultMap="FileInfo">
+        select * from File where projectID=#{projectID}
+    </select>
+
+    <select id="getFileByFilePath" resultMap="FileInfo">
+        select * from File where filePath=#{filePath}
+    </select>
+
+    <select id="getFileByID" resultMap="FileInfo">
+        select * from File where fileID=#{fileID}
+    </select>
+
+
+    <resultMap id="FileInfo" type="com.example.finclaw.po.FileInfo">
+        <id column="fileID" property="fileID"/>
+        <result column="fileName" property="fileName"/>
+        <result column="operatorID" property="operatorID"/>
+        <result column="projectID" property="projectID"/>
+        <result column="uploadTime" property="uploadTime"/>
+        <result column="trainedTimes" property="trainedTimes"/>
+        <result column="filePath" property="filePath"/>
+    </resultMap>
+
+</mapper>

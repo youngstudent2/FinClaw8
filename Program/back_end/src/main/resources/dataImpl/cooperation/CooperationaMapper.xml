@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.cooperation.CooperationMapper">
+    <insert id="addCooperation" parameterType="com.example.finclaw.po.Cooperation" useGeneratedKeys="true" keyProperty="cooperationID">
+        insert into Cooperation(cooperationName, phoneNumber)
+        values(#{cooperationName}, #{phoneNumber})
+    </insert>
+
+    <update id="uploadServiceInfo">
+        update Cooperation set ipAddress=#{ipAddress},
+                                serviceName=#{serviceName},
+                                servicePassword=#{servicePassword}
+        where cooperationID=#{cooperationID}
+    </update>
+
+    <select id="getAllCooperation" resultMap="Cooperation">
+        select * from Cooperation
+    </select>
+
+    <select id="getCooperationByCooperationID" resultMap="Cooperation">
+        select * from Cooperation where CooperationID=#{CooperationID}
+    </select>
+
+    <select id="getCooperationIDByName" resultType="java.lang.Integer">
+        select cooperationID from Cooperation where cooperationName=#{cooperationName}
+    </select>
+
+
+    <resultMap id="Cooperation" type="com.example.finclaw.po.Cooperation">
+        <id column="cooperationID" property="cooperationID"/>
+        <result column="cooperationName" property="cooperationName"/>
+        <result column="phoneNumber" property="phoneNumber"/>
+        <result column="ipAddress" property="ipAddress"/>
+        <result column="serviceName" property="serviceName"/>
+        <result column="servicePassword" property="servicePassword"/>
+    </resultMap>
+</mapper>

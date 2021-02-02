@@ -1,0 +1,29 @@
+spring:
+  datasource:
+     url: jdbc:mysql://localhost:3306/finclaw?serverTimezone=CTT&characterEncoding=UTF-8
+     username: root
+     password: root
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     max-active: 200
+     max-idle: 20
+     min-idle: 10
+  thymeleaf:
+     cache: false
+  jackson:
+    time-zone: GMT+8
+
+  #文件上传下载相关配置
+  servlet:
+    multipart:
+      enabled: true
+    #最大支持文件大小
+      max-file-size: 100MB
+    #最大支持请求大小
+      max-request-size: 100MB
+
+#文件存储路径
+filepath: "F:/User"
+
+mybatis:
+  mapper-locations: classpath:dataImpl/*/*Mapper.xml
+

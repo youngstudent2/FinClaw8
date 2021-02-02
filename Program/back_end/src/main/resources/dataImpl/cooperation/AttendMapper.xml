@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.cooperation.AttendMapper">
+    <insert id="attendProject">
+        insert into Attend(cooperationID, projectID, ready,authority)
+        values(#{param1}, #{param2}, 0,1)
+    </insert>
+
+    <update id="setReadyForProject">
+        update Attend set ready=1 where cooperationID=#{param1} and projectID=#{param2}
+    </update>
+
+    <delete id="quitProject">
+        delete from Attend where cooperationID=#{param1} and projectID=#{param2}
+    </delete>
+
+    <select id="getAuthority" resultType="java.lang.Integer">
+        select authority from attend where cooperationID=#{cooperationID} and projectID=#{projectID}
+    </select>
+
+    <update id="openAuthority">
+        update Attend set authority=1 where cooperationID=#{param1} and projectID=#{param2}
+    </update>
+
+    <update id="closeAuthority">
+        update Attend set authority=0 where cooperationID=#{param1} and projectID=#{param2}
+    </update>
+
+    <select id="getCooperationProjectIDs" resultType="java.lang.Integer">
+        select projectID from Attend where cooperationID=#{cooperationID}
+    </select>
+
+    <select id="getProjectCooperationIDs" resultType="java.lang.Integer">
+        select cooperationID from Attend where projectID=#{projectID}
+    </select>
+
+    <update id="uploadProjectFilepath">
+        update Attend set filepath=#{filepath} where cooperationID=#{cooperationID} and projectID=#{projectID}
+    </update>
+</mapper>
