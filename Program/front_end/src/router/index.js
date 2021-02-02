@@ -115,7 +115,7 @@ const routes = [
         path: 'lending',
         name: 'lendingHandle',
         component: () => import('@/views/bank/lending')
-      },
+      }
     ]
   },
   {
@@ -139,6 +139,11 @@ const routes = [
         name: 'predict',
         component: () => import('@/views/bank/predict/predict')
       },
+      {
+        path: 'config/config',
+        name: 'projectConfig',
+        component: () => import('@/views/bank/config/config')
+      }
     ]
   },
   // 借款方路由相关
