@@ -3,10 +3,7 @@ package com.example.finclaw.controller.account;
 import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.po.User;
 import com.example.finclaw.vo.ResponseVO;
-import com.example.finclaw.vo.account.UserForm;
-import com.example.finclaw.vo.account.UserLoginForm;
-import com.example.finclaw.vo.account.UserVO;
-import com.example.finclaw.vo.cooperation.CooperationForm;
+import com.example.finclaw.vo.account.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +23,12 @@ public class AccountController {
 
     @PostMapping("/login")
     public ResponseVO login(@RequestBody UserLoginForm userLoginForm) {
-        
+        return accountService.login(userLoginForm);
     }
 
     @PostMapping("/register")
     public ResponseVO register(@RequestBody UserRegisterForm userRegisterForm) {
-
+        return accountService.register(userRegisterForm);
     }
 
     @GetMapping("/getUserInfo/{userID}")

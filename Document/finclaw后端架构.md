@@ -433,7 +433,7 @@ public ResponseVO login(@RequestBody UserLoginForm userLoginForm);
 **url:** /api/account/register
 
 ```
-public ResponseVO login(@RequestBody UserRegisterForm userRegisterForm);
+public ResponseVO register(@RequestBody UserRegisterForm userRegisterForm);
 ```
 
 #### 3.1.3 获取个人信息

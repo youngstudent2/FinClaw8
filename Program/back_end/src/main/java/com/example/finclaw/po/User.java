@@ -10,8 +10,6 @@ public class User {
     private String username;
     private String phoneNumber;
     private UserType role;
-    private String cooperation;
-    private Integer cooperationID;
 
     public Integer getUserID() {
         return userID;
@@ -61,19 +59,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getCooperation() {
-        return cooperation;
-    }
-
-    public void setCooperation(String cooperation) {
-        this.cooperation = cooperation;
-    }
-
-    public Integer getCooperationID() {
-        return cooperationID;
-    }
-
-    public void setCooperationID(Integer cooperationID) {
-        this.cooperationID = cooperationID;
-    }
 }
