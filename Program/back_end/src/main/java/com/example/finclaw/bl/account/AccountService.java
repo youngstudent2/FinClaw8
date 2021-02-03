@@ -8,6 +8,7 @@ import com.example.finclaw.vo.account.UserRegisterForm;
 import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.cooperation.CooperationForm;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ public interface AccountService {
      */
     ResponseVO login(UserLoginForm userLoginForm);
 
-
     /**
      * 注册账号
      *
@@ -37,14 +37,13 @@ public interface AccountService {
      * @param userID
      * @return
      */
-    UserVO getUserInfo(int userID);
+    User getUserInfo(int userID);
 
-    ResponseVO deleteUser(int userID);
+//    ResponseVO deleteUser(int userID);
 
     ResponseVO updateUserInfo(int userID,UserForm userForm);
 
     ResponseVO updatePassword(int userID,String oldPassword,String newPassword);
 
-    List<UserVO> getAllDataManagers();
-
+    ResponseVO registerIdentity(int userID,int role);
 }

@@ -3,6 +3,7 @@ package com.example.finclaw.blImpl.account;
 import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.data.account.AccountMapper;
 import com.example.finclaw.data.cooperation.CooperationMapper;
+import com.example.finclaw.enums.UserType;
 import com.example.finclaw.po.User;
 import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.ResponseVO;
@@ -57,22 +58,19 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public UserVO getUserInfo(int userID) {
+    public User getUserInfo(int userID) {
         User user = accountMapper.getAccountById(userID);
         if (user == null) {
             return null;
         }
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user, userVO);
-        return userVO;
+        return user;
     }
 
-
-    @Override
-    public ResponseVO deleteUser(int userID) {
-        accountMapper.deleteUser(userID);
-        return ResponseVO.buildSuccess(true);
-    }
+//    @Override
+//    public ResponseVO deleteUser(int userID) {
+//        accountMapper.deleteUser(userID);
+//        return ResponseVO.buildSuccess(true);
+//    }
 
     @Override
     public ResponseVO updateUserInfo(int userID,UserForm userForm) {
@@ -95,16 +93,33 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<UserVO> getAllDataManagers() {
-        List<User> users = accountMapper.getAllDataManagers();
-        ArrayList<UserVO> userVOS = new ArrayList<>();
-        for (User user : users) {
-            UserVO userVO = new UserVO();
-            BeanUtils.copyProperties(user, userVO);
-            userVOS.add(userVO);
+    public ResponseVO registerIdentity(int userID, int role) {
+        UserType roleType;
+        // 注意：表示该用户还没有经过认证
+        switch (role){
+            case 1:
+            case 5:
+                roleType=UserType.UnauthorizedBank;
+                break;
+            case 2:
+            case 6:
+                roleType=UserType.UnauthorizedCompany;
+                break;
+            case 3:
+            case 7:
+                roleType=UserType.UnauthorizedDataProvider;
+                break;
+            default:
+                return ResponseVO.buildFailure(OTHER_ERROR);
         }
-        return userVOS;
+
+        try {
+            accountMapper.setRole(userID,roleType);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
     }
-
-
 }

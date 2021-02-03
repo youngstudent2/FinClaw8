@@ -47,7 +47,7 @@ INSERT INTO `User` VALUES (4, 'jd@qq.com', '123456', 'JD', 12345678911, 'DataPro
 INSERT INTO `User` VALUES (5, 'mt@qq.com', '123456', 'MT', 12345678911, 'DataProvider');
 INSERT INTO `User` VALUES (6, 'bd@qq.com', '123456', 'BD', 12345678911, 'DataProvider');
 INSERT INTO `User` VALUES (7, 'a@qq.com', '123456', 'A', 12345678911, 'Company');
-INSERT INTO `User` VALUES (8, 'b@qq.com', '123456', 'B', 12345678911, 'Unauthorized');
+INSERT INTO `User` VALUES (8, 'b@qq.com', '123456', 'B', 12345678911, 'UnauthorizedCompany');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 COMMIT;
 

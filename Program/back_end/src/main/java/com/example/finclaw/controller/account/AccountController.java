@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api/account")
 public class AccountController {
     private final static String ACCOUNT_INFO_ERROR = "用户名或密码错误";
+
     @Autowired
     private AccountService accountService;
 
@@ -33,11 +34,11 @@ public class AccountController {
 
     @GetMapping("/getUserInfo/{userID}")
     public ResponseVO getUserInfo(@PathVariable int userID) {
-        UserVO userVO = accountService.getUserInfo(userID);
-        if(userVO==null){
+        User user = accountService.getUserInfo(userID);
+        if(user==null){
             return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
-        return ResponseVO.buildSuccess(userVO);
+        return ResponseVO.buildSuccess(user);
     }
 
     @PostMapping("/updateUserInfo/{userID}")
@@ -50,9 +51,10 @@ public class AccountController {
         return accountService.updatePassword(userID,oldPassword,newPassword);
     }
 
+    // 表示该用户还没有经过认证
     @PostMapping("/registerIdentity/{userID}")
-    public ResponseVO updatePassword(@PathVariable int userID,@RequestParam int role){
-
+    public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role){
+        return accountService.registerIdentity(userID,role);
     }
 
 }

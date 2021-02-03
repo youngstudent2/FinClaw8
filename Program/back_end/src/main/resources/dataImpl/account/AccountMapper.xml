@@ -11,9 +11,6 @@
     <select id="getAccountById" resultMap="User">
         select * from User where userID=#{userID}
     </select>
-    <select id="getAllDataManagers" resultType="com.example.finclaw.po.User">
-        select * from User where role='DataManager'
-    </select>
     <update id="updatePassword">
         update user set password=#{newPassword} where userID=#{userID}
     </update>
@@ -26,6 +23,9 @@
     <delete id="deleteUser">
         delete from USER where userID=#{userID}
     </delete>
+    <update id="setRole">
+        update user set role=#{role} where userID=#{userID}
+    </update>
 
     <resultMap id="User" type="com.example.finclaw.po.User">
         <id column="userID" property="userID"/>
