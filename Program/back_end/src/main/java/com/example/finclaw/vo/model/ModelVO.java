@@ -8,7 +8,7 @@ public class ModelVO {
 
     public ModelVO(Model model) {
         this.modelID = model.getModelID();
-        this.name = model.getName();
+        this.name = model.getModelName();
     }
 
     public Integer getModelID() {

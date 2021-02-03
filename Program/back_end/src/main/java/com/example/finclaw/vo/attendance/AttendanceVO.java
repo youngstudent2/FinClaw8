@@ -1,4 +1,4 @@
-package com.example.finclaw.vo.monitor;
+package com.example.finclaw.vo.attendance;
 
 public class AttendanceVO {              //记录一条项目参与记录
     private Integer userID;//因为现在默认一个银行/数据提供方只有一个账号，就直接用userID来标识一个数据提供方了

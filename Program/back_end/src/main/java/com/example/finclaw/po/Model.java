@@ -6,7 +6,9 @@ package com.example.finclaw.po;
  */
 public class Model {
     private Integer modelID;
-    private String name;
+    private String mid;
+    private String modelVerion;//和mid一起标识当前版本模型
+    private String modelName;//在load_bind时需要指明，predict时是使用mname来进行标识
 
     public Integer getModelID() {
         return modelID;
@@ -16,11 +18,28 @@ public class Model {
         this.modelID = modelID;
     }
 
-    public String getName() {
-        return name;
+
+    public String getMid() {
+        return mid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
+
+    public String getModelVerion() {
+        return modelVerion;
+    }
+
+    public void setModelVerion(String modelVerion) {
+        this.modelVerion = modelVerion;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 }
