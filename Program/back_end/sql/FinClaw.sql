@@ -144,6 +144,37 @@ COMMIT;
 
 
 --
+-- Table structure for table `Monitor`
+--
+
+DROP TABLE IF EXISTS `Monitor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Monitor` (
+                           `monitorID` int(11)NOT NULL AUTO_INCREMENT,
+                           `userID` int(11) NOT NULL,
+                           `projectID` int(11) NOT NULL,
+                           `operation` varchar(255) NOT NULL,
+                           `operateTime` timestamp,
+                           PRIMARY KEY (`monitorID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Monitor`
+--
+
+BEGIN;
+/*!40000 ALTER TABLE `Monitor` DISABLE KEYS */;
+INSERT INTO `Monitor` VALUES (1, 3, 1, 'Add', date_add(NOW(), interval 10 day));
+INSERT INTO `Monitor` VALUES (2, 3, 1, 'Add', date_add(NOW(), interval 1 month));
+INSERT INTO `Monitor` VALUES (3, 3, 2, 'Delete', date_add(NOW(), interval 2 month));
+/*!40000 ALTER TABLE `Monitor` ENABLE KEYS */;
+COMMIT;
+
+
+
+--
 -- Table structure for table `lendingHistory`
 --
 

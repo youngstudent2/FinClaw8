@@ -1,18 +1,17 @@
 package com.example.finclaw.po;
 
 import com.example.finclaw.enums.Operation;
-
-import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Objects;
 
-public class MonitorForm {
+public class Monitor {
 
-    public MonitorForm(){}
+    public Monitor(){}
 
-    public MonitorForm(int userID, int projectID,int operatorID){
+    public Monitor(int userID, int projectID, int operatorID){
         setUserID(userID);
         setProjectID(projectID);
-        String operation = Operation.toString(Operation.getOperation(operatorID));
+        String operation = Operation.toString(Objects.requireNonNull(Operation.getOperation(operatorID)));
         setOperation(operation);
         setOperateTime(operateTime);
     }
@@ -21,7 +20,7 @@ public class MonitorForm {
     private int userID;
     private int projectID;
     private String operation;
-    private Time operateTime;
+    private Timestamp operateTime;
 
     public int getUserID() {
         return userID;
@@ -55,11 +54,11 @@ public class MonitorForm {
         this.monitorID = monitorID;
     }
 
-    public Time getOperateTime() {
+    public Timestamp getOperateTime() {
         return operateTime;
     }
 
-    public void setOperateTime(Time operateTime) {
+    public void setOperateTime(Timestamp operateTime) {
         this.operateTime = operateTime;
     }
 

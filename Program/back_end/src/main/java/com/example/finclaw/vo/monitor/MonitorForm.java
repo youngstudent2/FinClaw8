@@ -1,30 +1,29 @@
 package com.example.finclaw.vo.monitor;
 
 import com.example.finclaw.bl.account.AccountService;
-import com.example.finclaw.po.MonitorForm;
+import com.example.finclaw.po.Monitor;
 import com.example.finclaw.vo.account.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.sql.Timestamp;
 
-import java.sql.Time;
 
-
-public class MonitorFormVO {
+public class MonitorForm {
     private int monitorID;
     private int userID;
     private int projectID;
     private String operation;
-    private Time operateTime;
+    private Timestamp operateTime;
     private String userName;
 
     @Autowired
     AccountService accountService;
 
-    public MonitorFormVO(MonitorForm monitorForm){
-        this.monitorID = monitorForm.getMonitorID();
-        this.userID = monitorForm.getUserID();
-        this.projectID = monitorForm.getProjectID();
-        this.operation = betterOperation(monitorForm.getOperation());
-        this.operateTime = monitorForm.getOperateTime();
+    public MonitorForm(Monitor monitor){
+        this.monitorID = monitor.getMonitorID();
+        this.userID = monitor.getUserID();
+        this.projectID = monitor.getProjectID();
+        this.operation = betterOperation(monitor.getOperation());
+        this.operateTime = monitor.getOperateTime();
         UserVO user = accountService.getUserInfo(userID);
         this.userName = user.getUsername();
     }
@@ -54,11 +53,11 @@ public class MonitorFormVO {
         this.operation = operation;
     }
 
-    public Time getOperateTime() {
+    public Timestamp getOperateTime() {
         return operateTime;
     }
 
-    public void setOperateTime(Time operateTime) {
+    public void setOperateTime(Timestamp operateTime) {
         this.operateTime = operateTime;
     }
 

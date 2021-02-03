@@ -2,22 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="com.example.finclaw.data.monitor.MonitorMapper">
 
-    <insert id="createNewRecord" parameterType="com.example.finclaw.po.MonitorForm" useGeneratedKeys="true"
-            keyProperty="monitorID">
+    <insert id="createNewRecord" parameterType="com.example.finclaw.po.Monitor" useGeneratedKeys="true" keyProperty="monitorID">
         insert into monitor(userID,projectID,operation)
         values (#{userID},#{projectID},#{operation})
     </insert>
 
-    <select id="getProjectMonitorForms" resultMap="MonitorForm">
+    <select id="getProjectMonitor" resultMap="Monitor">
         select * from monitor where projectID=#{projectID}
     </select>
 
-    <select id="getCooperationMonitorInfo" resultMap="MonitorForm">
-        select * from monitor
+    <select id="getUserMonitor" resultMap="Monitor">
+        select * from monitor where userID=#{userID}
     </select>
 
 
-    <resultMap id="MonitorForm" type="com.example.finclaw.po.MonitorForm">
+    <resultMap id="Monitor" type="com.example.finclaw.po.Monitor">
         <id column="monitorID" property="monitorID"/>
         <result column="userID" property="userID"/>
         <result column="projectID" property="projectID"/>
