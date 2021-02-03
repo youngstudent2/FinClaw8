@@ -173,7 +173,6 @@ INSERT INTO `Monitor` VALUES (3, 3, 2, 'Delete', date_add(NOW(), interval 2 mont
 COMMIT;
 
 
-
 --
 -- Table structure for table `lendingHistory`
 --
