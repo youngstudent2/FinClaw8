@@ -13,6 +13,7 @@ import java.sql.Timestamp;
  */
 public class ProjectVO {
     private Integer projectID;
+    private Integer userID;
     private String projectName;
     private String description;
     private ProjectStatus status;

@@ -2,7 +2,6 @@ package com.example.finclaw.blImpl.file;
 
 import com.example.finclaw.data.file.FileMapper;
 import com.example.finclaw.data.project.ProjectMapper;
-import com.example.finclaw.po.FileInfo;
 import com.example.finclaw.vo.file.FileInfoVO;
 import com.example.finclaw.vo.ResponseVO;
 import org.springframework.beans.BeanUtils;

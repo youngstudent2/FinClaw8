@@ -1,6 +1,5 @@
 package com.example.finclaw.data.cooperation;
 
-import com.example.finclaw.po.Cooperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

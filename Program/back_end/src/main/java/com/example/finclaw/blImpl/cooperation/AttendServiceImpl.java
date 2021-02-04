@@ -4,7 +4,6 @@ import com.example.finclaw.bl.cooperation.AttendService;
 import com.example.finclaw.data.cooperation.AttendMapper;
 import com.example.finclaw.data.cooperation.CooperationMapper;
 import com.example.finclaw.data.project.ProjectMapper;
-import com.example.finclaw.po.Cooperation;
 import com.example.finclaw.vo.cooperation.CooperationVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import org.springframework.beans.BeanUtils;

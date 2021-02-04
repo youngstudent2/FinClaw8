@@ -1,6 +1,5 @@
 package com.example.finclaw.data.file;
 
-import com.example.finclaw.po.FileInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

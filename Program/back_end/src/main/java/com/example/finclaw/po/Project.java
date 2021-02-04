@@ -10,14 +10,13 @@ import java.sql.Timestamp;
  */
 public class Project {
     private Integer projectID;
+    private Integer userID;
+    private Integer modelID;
     private String projectName;
     private String description;
     private Timestamp startTime;
     private Timestamp endTime;
     private ProjectStatus status;
-    private Integer fileID;
-    private String modelID;
-    private String modelVersion;
 
     public Integer getProjectID() {
         return projectID;
@@ -25,6 +24,22 @@ public class Project {
 
     public void setProjectID(Integer projectID) {
         this.projectID = projectID;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public Integer getModelID() {
+        return modelID;
+    }
+
+    public void setModelID(Integer modelID) {
+        this.modelID = modelID;
     }
 
     public String getProjectName() {
@@ -65,29 +80,5 @@ public class Project {
 
     public void setStatus(ProjectStatus status) {
         this.status = status;
-    }
-
-    public Integer getFileID() {
-        return fileID;
-    }
-
-    public void setFileID(Integer fileID) {
-        this.fileID = fileID;
-    }
-
-    public String getModelID() {
-        return modelID;
-    }
-
-    public void setModelID(String modelID) {
-        this.modelID = modelID;
-    }
-
-    public String getModelVersion() {
-        return modelVersion;
-    }
-
-    public void setModelVersion(String modelVersion) {
-        this.modelVersion = modelVersion;
     }
 }
