@@ -1,6 +1,7 @@
 package com.example.finclaw.vo.project;
 
 import com.example.finclaw.bl.project.ProjectService;
+import com.example.finclaw.enums.ProjectStatus;
 import com.example.finclaw.po.Project;
 import org.springframework.beans.BeanUtils;
 
@@ -14,16 +15,16 @@ public class ProjectVO {
     private Integer projectID;
     private String projectName;
     private String description;
+    private ProjectStatus status;
     private Timestamp startTime;
     private Timestamp endTime;
-    private ProjectService status;
-    private Integer fileID;
 
     public ProjectVO(Project project) {
         BeanUtils.copyProperties(project, this);
     }
 
     public ProjectVO(){}
+
 
     public Integer getProjectID() {
         return projectID;
@@ -49,6 +50,14 @@ public class ProjectVO {
         this.description = description;
     }
 
+    public ProjectStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProjectStatus status) {
+        this.status = status;
+    }
+
     public Timestamp getStartTime() {
         return startTime;
     }
@@ -63,21 +72,5 @@ public class ProjectVO {
 
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
-    }
-
-    public ProjectService getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProjectService status) {
-        this.status = status;
-    }
-
-    public Integer getFileID() {
-        return fileID;
-    }
-
-    public void setFileID(Integer fileID) {
-        this.fileID = fileID;
     }
 }

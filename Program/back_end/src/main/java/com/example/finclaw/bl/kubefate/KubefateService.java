@@ -1,4 +1,11 @@
 package com.example.finclaw.bl.kubefate;
 
-public class KubefateService {
+import com.example.finclaw.vo.ResponseVO;
+
+/**
+ * @Author: LLY
+ * @Date:   2021-2-3
+ */
+public interface KubefateService {
+    public ResponseVO deploy(Integer projectID);
 }

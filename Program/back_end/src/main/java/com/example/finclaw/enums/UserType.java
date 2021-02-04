@@ -6,12 +6,16 @@ public enum UserType {
     Company("2"),//小微企业
     DataProvider("3"),
     Admin("4"),//平台管理员
-    Unauthorized("5");//未认证用户
+    UnauthorizedBank("5"),//未认证
+    UnauthorizedCompany("6"),
+    UnauthorizedDataProvider("7");
+
     private final String value;
 
     UserType(String value) {
         this.value = value;
     }
+
     @Override
     public String toString() {
         return value;

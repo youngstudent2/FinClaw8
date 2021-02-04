@@ -1,5 +1,6 @@
 package com.example.finclaw.data.account;
 
+import com.example.finclaw.enums.UserType;
 import com.example.finclaw.po.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author hwb
+ * @author cgc
  */
 @Mapper
 @Repository
@@ -36,5 +37,5 @@ public interface AccountMapper {
 
      int updateUserInfo(User user);
 
-     List<User> getAllDataManagers();
+     int setRole(@Param("userID") int userID, @Param("role") UserType role);
 }

@@ -1,5 +1,9 @@
 package com.example.finclaw.controller.kubefate;
 
+import com.example.finclaw.bl.kubefate.KubefateService;
+import com.example.finclaw.vo.ResponseVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/kubefate")
 public class KubefateController {
-    private static String DEPLOY_ERROR = "部署失败";
-    private static String DEPLOY_SUCCESS = "部署成功";
-    private static String TRAIN_ERROR = "启动训练失败";
-    private static String TRAIN_SUCCESS = "成功开始训练";
-    @PostMapping("/deploy")
-    public
+
+    @Autowired
+    private KubefateService kubefateService;
+
+    @PostMapping("/deploy/{projectID}")
+    public ResponseVO deploy(@PathVariable Integer projectID){
+        return kubefateService.deploy(projectID);
+    }
+
+    @PostMapping
 }
