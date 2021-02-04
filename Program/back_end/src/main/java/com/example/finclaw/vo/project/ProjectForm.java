@@ -44,4 +44,12 @@ public class ProjectForm {
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
 }
