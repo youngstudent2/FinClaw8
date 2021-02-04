@@ -1,6 +1,5 @@
 package com.example.finclaw.bl.cooperation;
 
-import com.example.finclaw.vo.cooperation.CooperationServiceForm;
 import com.example.finclaw.vo.cooperation.CooperationVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import org.junit.Assert;
