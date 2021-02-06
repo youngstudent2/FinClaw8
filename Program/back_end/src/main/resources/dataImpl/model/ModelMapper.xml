@@ -2,14 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.finclaw.data.model.ModelMapper">
 
+    <insert id="createNewModel" parameterType="com.example.finclaw.po.Model" useGeneratedKeys="true" keyProperty="modelID">
+        insert into Model(mid, modelName, modelVersion)
+        values(#{mid},#{modelName},#{modelVersion})
+    </insert>
+
     <select id="getAllModels" resultMap="Model">
         select * from model
     </select>
 
-
     <resultMap id="Model" type="com.example.finclaw.po.Model">
         <id column="modelID" property="modelID"/>
-        <result column="name" property="name"/>
+        <result column="mid" property="mid"/>
+        <result column="modelName" property="modelName"/>
+        <result column="modelVersion" property="modelVersion"/>
     </resultMap>
 
 </mapper>

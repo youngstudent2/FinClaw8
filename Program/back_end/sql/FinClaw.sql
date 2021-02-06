@@ -212,13 +212,14 @@ DROP TABLE IF EXISTS `serverInfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `serverInfo` (
+                              `serverInfoID` int(11) NOT NULL AUTO_INCREMENT,
                               `userID` int(11) NOT NULL,
                               `projectID` int(11) NOT NULL,
                               `ipAddress` varchar(255) NOT NULL,
                               `serverName` varchar(255) NOT NULL,
                               `serverPassword` varchar(255) NOT NULL,
                               `filePath` varchar(255) NOT NULL,
-                              PRIMARY KEY (`userId`,`projectID`)
+                              PRIMARY KEY (`serverInfoID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -228,9 +229,9 @@ CREATE TABLE `serverInfo` (
 
 BEGIN;
 /*!40000 ALTER TABLE `serverInfo` DISABLE KEYS */;
-INSERT INTO `serverInfo` VALUES (4, 1, 'null', 'null', 'null', 'null');
-INSERT INTO `serverInfo` VALUES (5, 1, 'null', 'null', 'null', 'null');
-INSERT INTO `serverInfo` VALUES (6, 1, 'null', 'null', 'null', 'null');
+INSERT INTO `serverInfo` VALUES (1,4, 1, 'null', 'null', 'null', 'null');
+INSERT INTO `serverInfo` VALUES (2,5, 1, 'null', 'null', 'null', 'null');
+INSERT INTO `serverInfo` VALUES (3,6, 1, 'null', 'null', 'null', 'null');
 /*!40000 ALTER TABLE `serverInfo` ENABLE KEYS */;
 COMMIT;
 
