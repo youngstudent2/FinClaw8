@@ -1,6 +1,6 @@
 package com.example.finclaw.bl.project;
 
-import com.example.finclaw.vo.cooperation.CooperationVO;
+import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.project.ProjectForm;
 import com.example.finclaw.vo.project.ProjectVO;
 
@@ -12,15 +12,13 @@ import java.util.List;
  */
 public interface ProjectService {
 
-    Boolean addProject(ProjectForm projectForm);
+    ResponseVO addProject(ProjectForm projectForm);
 
-    Boolean deleteProject(Integer projectID);
+    ResponseVO deleteProject(Integer projectID);
 
-    Boolean modifyProject(ProjectVO projectVO);
+    ResponseVO modifyProject(int projectID, ProjectForm projectForm);
 
     List<ProjectVO> getAllProject();
 
     ProjectVO getProject(Integer projectID);
-
-    List<CooperationVO> getProjectCooperations(Integer projectID);
 }

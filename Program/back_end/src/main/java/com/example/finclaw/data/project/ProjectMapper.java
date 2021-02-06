@@ -45,11 +45,4 @@ public interface ProjectMapper {
      */
     Project getProjectByID(Integer projectID);
 
-    /**
-     * 更新项目对应的文件
-     * @param projectID 项目ID
-     * @param fileID 文件ID
-     */
-    void updateProjectFile(Integer projectID, Integer fileID);
-
 }

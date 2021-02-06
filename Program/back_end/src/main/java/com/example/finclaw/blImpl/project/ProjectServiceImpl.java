@@ -5,7 +5,7 @@ import com.example.finclaw.bl.project.ProjectService;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.enums.ProjectStatus;
 import com.example.finclaw.po.Project;
-import com.example.finclaw.vo.cooperation.CooperationVO;
+import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.project.ProjectForm;
 import com.example.finclaw.vo.project.ProjectVO;
 import org.springframework.beans.BeanUtils;
@@ -21,39 +21,61 @@ import java.util.List;
  */
 @Service
 public class ProjectServiceImpl implements ProjectService {
+    private final static String NO_PROJECT_ERROR = "指定项目不存在";
+    private final static String OTHER_ERROR = "其他错误";
+
     @Autowired
     private ProjectMapper projectMapper;
     @Autowired
     private AttendService attendService;
 
     @Override
-    public Boolean addProject(ProjectForm projectForm) {
+    public ResponseVO addProject(ProjectForm projectForm) {
         Project project = new Project();
         BeanUtils.copyProperties(projectForm, project);
         project.setStatus(ProjectStatus.Running);
-        projectMapper.createNewProject(project);
-        return true;
+        try {
+            projectMapper.createNewProject(project);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
     }
 
     @Override
-    public Boolean deleteProject(Integer projectID) {
+    public ResponseVO deleteProject(Integer projectID) {
         if (projectExist(projectID)) {
-            projectMapper.deleteProject(projectID);
-            return true;
+            try {
+                projectMapper.deleteProject(projectID);
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                return ResponseVO.buildFailure(OTHER_ERROR);
+            }
+            return ResponseVO.buildSuccess();
         } else {
-            return false;
+            return ResponseVO.buildFailure(NO_PROJECT_ERROR);
         }
     }
 
     @Override
-    public Boolean modifyProject(ProjectVO projectVO) {
-        if (projectExist(projectVO.getProjectID())) {
-            Project project = new Project();
-            BeanUtils.copyProperties(projectVO, project);
-            projectMapper.modifyProject(project);
-            return true;
+    public ResponseVO modifyProject(int projectID, ProjectForm projectForm) {
+        if (projectExist(projectID)) {
+            try {
+                Project project = new Project();
+                BeanUtils.copyProperties(projectForm, project);
+                project.setProjectID(projectID);
+                projectMapper.modifyProject(project);
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                return ResponseVO.buildFailure(OTHER_ERROR);
+            }
+            return ResponseVO.buildSuccess();
         } else {
-            return false;
+            return ResponseVO.buildFailure(NO_PROJECT_ERROR);
         }
     }
 
@@ -74,11 +96,6 @@ public class ProjectServiceImpl implements ProjectService {
             return null;
         }
         return new ProjectVO(project);
-    }
-
-    @Override
-    public List<CooperationVO> getProjectCooperations(Integer projectID) {
-        return attendService.getProjectCooperations(projectID);
     }
 
     /**
