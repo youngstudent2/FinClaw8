@@ -8,8 +8,7 @@ import org.springframework.beans.BeanUtils;
 import java.sql.Timestamp;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: hx
  */
 public class ProjectVO {
     private Integer projectID;

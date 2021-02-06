@@ -3,8 +3,8 @@
 <mapper namespace="com.example.finclaw.data.project.ProjectMapper">
 
     <insert id="createNewProject" parameterType="com.example.finclaw.po.Project" useGeneratedKeys="true" keyProperty="projectID">
-        insert into Project(projectName, description, startTime, endTime, status)
-        values(#{projectName},#{description},#{startTime},#{endTime},#{status})
+        insert into Project(userID, projectName, description, startTime, endTime, status)
+        values(#{userID},#{projectName},#{description},#{startTime},#{endTime},#{status})
     </insert>
 
     <delete id="deleteProject">
@@ -17,10 +17,7 @@
            description=#{description},
            startTime=#{startTime},
            endTime=#{endTime},
-           status=#{status},
-           fileID=#{fileID},
-           modelID=#{modelID},
-           modelVersion=#{modelVersion}
+           userID=#{userID},
         where projectID=#{projectID}
     </update>
 
@@ -32,19 +29,14 @@
         select * from project where projectID=#{ProjectID}
     </select>
 
-    <update id="updateProjectFile">
-        update Project set fileID=#{fileID} where projectID=#{projectID}
-    </update>
-
     <resultMap id="Project" type="com.example.finclaw.po.Project">
         <id column="projectID" property="projectID"/>
+        <result column="userID" property="userID"/>
         <result column="projectName" property="projectName"/>
         <result column="description" property="description"/>
         <result column="startTime" property="startTime"/>
         <result column="endTime" property="endTime"/>
         <result column="status" property="status"/>
-        <result column="fileID" property="fileID"/>
         <result column="modelID" property="modelID"/>
-        <result column="modelVersion" property="modelVersion"/>
     </resultMap>
 </mapper>

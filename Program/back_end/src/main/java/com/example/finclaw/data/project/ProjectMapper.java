@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: cgc
  */
 @Mapper
 @Repository
@@ -44,12 +43,5 @@ public interface ProjectMapper {
      * @return 一个项目PO
      */
     Project getProjectByID(Integer projectID);
-
-    /**
-     * 更新项目对应的文件
-     * @param projectID 项目ID
-     * @param fileID 文件ID
-     */
-    void updateProjectFile(Integer projectID, Integer fileID);
 
 }
