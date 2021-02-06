@@ -1,156 +1,172 @@
 <template>
-    <div class="header">
-        <div class="label">
-            <img
-                :src="logo_url"
-                class="logo"
-                alt="logo"
-                @click="jumpToHome"
-            />
-            <span class="title">NJU-FinClaw</span>
-        </div>
+  <div id="header">
+    <el-menu
+      class="el-menu"
+      mode="horizontal"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
+      <el-menu-item index="0" id="label">
+        <img :src="logo_url" class="logo" alt="logo" @click="jumpToHome" />
+        <span class="title">NJU-FinClaw</span>
+      </el-menu-item>
+      <el-menu-item index="1" @click="jumpToHome">首页</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">使用文档</template>
+        <el-menu-item index="2-1">联邦学习容器部署</el-menu-item>
+        <el-menu-item index="2-2">平台使用说明</el-menu-item>
+        <el-menu-item index="2-3">注册说明</el-menu-item>
+      </el-submenu>
+      <el-submenu index="3">
+        <template slot="title">客户支持</template>
+        <el-menu-item index="3-1" class="support">
+          <h2>FinClaw8 Support</h2>
+          <h5>: 故障修复、问题解决和积极指导</h5>
+        </el-menu-item>
+        <el-menu-item index="3-2" class="support">
+          <h2>FinClaw8 Managed Services</h2>
+          <h5>: 替您运维FinClaw8基础设施</h5>
+        </el-menu-item>
+        <el-menu-item index="3-3" class="support">
+          <h2>FinClaw8 IQ</h2>
+          <h5>: 来自FinClaw8认证的第三方专家的按需协助</h5>
+        </el-menu-item>
+      </el-submenu>
+      <el-menu-item index="4">探索更多信息</el-menu-item>
+      <el-menu-item
+        id="loginBox"
+        style="float: right; margin-left: 40px; cursor: pointer"
+      >
+        <template v-if="!userId">
+          <el-button @click="jumpToLogin" type="primary" round>登录</el-button>
+          <el-button @click="jumpToRegister" round>注册</el-button>
+        </template>
+        <template v-else>
+          <el-dropdown id="user">
+              <div><el-avatar :size="40" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
+            <i style="color:white;margin-left:5px">{{userInfo.username}}</i></div>
+            
 
-        <div class="operation">
-            <div>
-                <span :style="{ fontSize: '16px', color: '#fff' }">当前：{{projectInfo.projectName}}</span>
-            </div>
-            <div style="margin-left: 20px">
-                <a-menu mode="horizontal" :style="{ background: 'rgba(0,0,0,0)' }">
-                    <a-sub-menu>
-                        <span slot="title">
-                            <a-icon
-                                type="down-circle"
-                                :style="{ fontSize: '16px', color: '#08c' }"
-                            />
-                            <span :style="{ fontSize: '16px', color: '#fff' }">切换项目</span>
-                        </span>
-                        <template v-for="project in projectList">
-                            <a-menu-item :key="project" @click="changeProject(project)">
-                                {{project.projectID}} {{project.projectName}}
-                            </a-menu-item>
-                        </template>
-                    </a-sub-menu>
-                </a-menu>
-            </div>
-            <div style="margin-left: 20px">
-                <a-button type="link" :style="{ fontSize: '16px', background:'rgba(0,0,0,0)', color: '#08c'}" icon='plus-circle'  @click="add">
-                    <span style="color: #fff">添加项目</span>
-                </a-button>
-            </div>
-        </div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>我的信息</el-dropdown-item>
+              <el-dropdown-item style="color:red">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </template>
+      </el-menu-item>
+    </el-menu>
+  </div>
 
-        <div class="logout">
-            <a-dropdown placement="bottomCenter">
-                <div class="user">
-                    <a-avatar
-                        shape="square"
-                        size="large"
-                        :style="{ backgroundColor: randomColor, verticalAlign: 'middle' }"
-                    >
-                        {{ userInfo.username }}
-                    </a-avatar>
-                </div>
-                <a-menu slot="overlay">
-                    <a-menu-item @click="jumpToHome">
-                        <a-icon type="home"></a-icon>
-                        首页
-                    </a-menu-item>
-                    <a-menu-item @click="jumpToUserInfo">
-                        <a-icon type="profile"></a-icon>
-                        我的信息
-                    </a-menu-item>
-                    <a-menu-item @click="quit">
-                        <a-icon type="poweroff"></a-icon>
-                        退出登录
-                    </a-menu-item>
-                </a-menu>
-            </a-dropdown>
-        </div>
-        <AddProjectModal></AddProjectModal>
-    </div>
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
 import AddProjectModal from "../views/project/components/addProjectModal";
-const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
+const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
 export default {
-    name: "header",
-    inject: ['reload'],
-    data() {
-        return {
-            logo_url: "https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/finclaw_logo.png",
-        };
+  name: "header",
+  inject: ["reload"],
+  data() {
+    return {
+      logo_url:
+        "https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/finclaw_logo.png",
+    };
+  },
+  components: {
+    //AddProjectModal,
+  },
+  computed: {
+    randomColor: function () {
+      return colorList[Math.floor(Math.random() * colorList.length + 1) - 1];
     },
-    components: {
-        AddProjectModal,
+    ...mapGetters([
+      "userId",
+      "userInfo",
+      "projectID",
+      "projectList",
+      "projectInfo",
+      "addProjectModalVisible",
+    ]),
+  },
+  async mounted() {
+    await this.getAllProject();
+    if (this.projectID === null) {
+      this.set_currentProject(this.projectList[0]);
+      this.getProjectData({
+        operatorID: Number(this.userId),
+        projectID: this.projectID,
+      });
+    }
+  },
+  methods: {
+    ...mapMutations(["set_addProjectModalVisible", "set_currentProject"]),
+    ...mapActions(["logout", "getUserInfo", "getProjectData", "getAllProject"]),
+    selectMenu(v) {},
+    async quit() {
+      await this.$store.dispatch("logout");
+      await this.$router.push(`/login?redirect=${this.$route.fullPath}`);
     },
-    computed: {
-        randomColor: function() {
-            return colorList[Math.floor(Math.random()*colorList.length+1)-1]
+    jumpToUserInfo() {
+      this.$router.push({
+        name: "userInfo",
+        params: {
+          userId: Number(this.userId),
         },
-        ...mapGetters([
-            "userId",
-            "userInfo",
-            "projectID",
-            "projectList",
-            "projectInfo",
-            "addProjectModalVisible"
-        ]),
+      });
     },
-    async mounted() {
-        await this.getAllProject()
-        if (this.projectID === null) {
-            this.set_currentProject(this.projectList[0])
-            this.getProjectData({
-                operatorID: Number(this.userId),
-                projectID: this.projectID
-            })
-        }
+    jumpToHome() {
+      this.$router.push("/home");
     },
-    methods: {
-        ...mapMutations([
-            "set_addProjectModalVisible",
-            "set_currentProject"
-        ]),
-        ...mapActions([
-            "logout",
-            "getUserInfo",
-            "getProjectData",
-            "getAllProject"
-        ]),
-        selectMenu(v) {},
-        async quit() {
-            await this.$store.dispatch("logout");
-            await this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-        },
-        jumpToUserInfo() {
-            this.$router.push({
-                name: "userInfo",
-                params: {
-                    userId: Number(this.userId),
-                },
-            });
-        },
-        jumpToHome() {
-            this.$router.push('/home')
-        },
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        changeProject(project) {
-            this.set_currentProject(project)
-            this.reload()
-        },
-        add() {
-            this.set_addProjectModalVisible(true)
-        },
+    jumpToLogin() {
+      this.$router.push("/login");
     },
+    jumpToRegister() {
+      this.$router.push("/register");
+    },
+
+    changeProject(project) {
+      this.set_currentProject(project);
+      this.reload();
+    },
+    add() {
+      this.set_addProjectModalVisible(true);
+    },
+  },
 };
 </script>
 <style scoped lang="less">
+.support {
+  display: flex;
+  align-items: baseline;
+
+  h2 {
+    color: white;
+    margin-right: 5px;
+  }
+  h5 {
+    color: rgba(255, 255, 255, 0.808);
+  }
+}
+
+#label {
+  vertical-align: middle;
+  min-width: 400px;
+  text-align: center;
+  .logo {
+    height: 50px;
+    margin-right: 16px;
+    border-style: none;
+    cursor: pointer;
+  }
+
+  .title {
+    font-size: 33px;
+    color: rgba(255, 255, 255, 0.884);
+    font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -158,29 +174,6 @@ export default {
   min-width: 800px;
   margin: 4px 0px;
   height: 70px;
-  .label {
-    height: 44px;
-    line-height: 44px;
-    vertical-align: middle;
-    min-width: 400px;
-
-    .logo {
-      height: 44px;
-      vertical-align: top;
-      margin-right: 16px;
-      border-style: none;
-      cursor: pointer;
-    }
-
-    .title {
-      font-size: 33px;
-      color: rgba(255, 255, 255, 0.884);
-      font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
-      font-weight: 600;
-      position: relative;
-      top: 2px;
-    }
-  }
 
   .operation {
     display: flex;
