@@ -7,8 +7,7 @@ import com.example.finclaw.vo.project.ProjectVO;
 import java.util.List;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: cgc
  */
 public interface ProjectService {
 

@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: cgc
  */
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -26,8 +25,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ProjectMapper projectMapper;
-    @Autowired
-    private AttendService attendService;
 
     @Override
     public ResponseVO addProject(ProjectForm projectForm) {
@@ -97,6 +94,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
         return new ProjectVO(project);
     }
+
 
     /**
      * 检验某个projectID是否在数据库中存在对应的一行
