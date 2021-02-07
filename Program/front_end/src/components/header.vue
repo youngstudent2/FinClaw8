@@ -12,6 +12,7 @@
         <span class="title">NJU-FinClaw</span>
       </el-menu-item>
       <el-menu-item index="1" @click="jumpToHome">首页</el-menu-item>
+      <el-menu-item index="2" @click="jumpToCenter">管理中心</el-menu-item>
       <el-submenu index="2">
         <template slot="title">使用文档</template>
         <el-menu-item index="2-1">联邦学习容器部署</el-menu-item>
@@ -49,8 +50,8 @@
             
 
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>我的信息</el-dropdown-item>
-              <el-dropdown-item style="color:red">退出登录</el-dropdown-item>
+              <el-dropdown-item @click="jumpToUserInfo">我的信息</el-dropdown-item>
+              <el-dropdown-item style="color:red" @click="quit">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
@@ -123,7 +124,27 @@ export default {
     jumpToRegister() {
       this.$router.push("/register");
     },
-
+    jumpToCenter() {
+      const r = this.userInfo.role
+      if (r == "bank") {
+        this.$router.push("/bank");
+      }
+      else if (r == "cooperator") {
+        this.$router.push("/cooperator");
+      }
+      else if (r == "loaner") {
+        this.$router.push("/loaner");
+      }
+      else if (r == "manager") {
+        this.$router.push("/manager");
+      }
+      else if (r == "unathority") {
+        alert("审核未通过，请等待审核通过")
+      }
+      else {
+        alert("未登录，请先登录")
+      }
+    },
     changeProject(project) {
       this.set_currentProject(project);
       this.reload();
@@ -167,36 +188,5 @@ export default {
   }
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 800px;
-  margin: 4px 0px;
-  height: 70px;
 
-  .operation {
-    display: flex;
-    align-items: center;
-  }
-
-  .logout {
-    margin-right: 20px;
-
-    .user {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-
-      span {
-        margin-left: 5px;
-      }
-    }
-  }
-}
-</style>
-<style lang="less">
-.header {
-  background: rgb(59, 59, 59);
-}
 </style>
