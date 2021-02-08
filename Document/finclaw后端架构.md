@@ -529,7 +529,7 @@ public ResponseVO getAllProject();
 public ResponseVO getProjectInfo(@PathVariable Integer projectID);
 ```
 
-### 3.3 CooperationController 
+### 3.3 AttendanceController
 
 大部分是在处理attendance的数据，感觉改成叫AttendanceController更好，但是之前已经写好了，接着
 
