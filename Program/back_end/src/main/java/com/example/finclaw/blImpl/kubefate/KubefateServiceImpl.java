@@ -1,6 +1,7 @@
 package com.example.finclaw.blImpl.kubefate;
 
 import com.example.finclaw.bl.kubefate.KubefateService;
+import com.example.finclaw.data.cooperation.ServerInfoMapper;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.po.Project;
 import com.example.finclaw.po.ServerInfo;
@@ -27,12 +28,13 @@ public class KubefateServiceImpl implements KubefateService {
 
     @Autowired
     ProjectMapper projectMapper;
+    @Autowired
+    ServerInfoMapper serverInfoMapper;
 
     private static String cmdPrefix = "python3 /finclaw/kubefate/docker-deploy/script.py -f";
     @Override
     public ResponseVO deploy(Integer projectID) {
-        //todo 获取serverInfoList
-        List<ServerInfo> serverInfoList = null;
+        List<ServerInfo> serverInfoList = serverInfoMapper.getProjectServerInfo(projectID);
         //拼接命令 python3 script.py -f deploy -pw 123456 123456 -id 1 2 -ip 1.1.1.1 2.2.2.2
         StringBuilder sb = new StringBuilder(cmdPrefix);
         sb.append(" deploy -pw ");
@@ -58,11 +60,11 @@ public class KubefateServiceImpl implements KubefateService {
 
     @Override
     public ResponseVO upload(Integer projectID) {
-        //todo 获取serverInfoList
-        List<ServerInfo> serverInfoList = null;
+        Project project = projectMapper.getProjectByID(projectID);
+        List<ServerInfo> serverInfoList = serverInfoMapper.getProjectServerInfo(projectID);
         ServerInfo guestServerInfo = null;
         for (ServerInfo serverInfo : serverInfoList) {
-            if (serverInfo.getUserID() ==) {
+            if (serverInfo.getUserID().equals(project.getProjectID())) {
                 guestServerInfo = serverInfo;
                 break;
             }

@@ -1,5 +1,6 @@
 package com.example.finclaw.data.cooperation;
 
+import com.example.finclaw.po.ServerInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,8 @@ public interface CooperationMapper {
      * @param cooperation
      */
     void uploadServiceInfo(Cooperation cooperation);
+
+
 
     List<Cooperation> getAllCooperation();
 

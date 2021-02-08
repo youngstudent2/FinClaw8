@@ -13,6 +13,7 @@
         where cooperationID=#{cooperationID}
     </update>
 
+
     <select id="getAllCooperation" resultMap="Cooperation">
         select * from Cooperation
     </select>
