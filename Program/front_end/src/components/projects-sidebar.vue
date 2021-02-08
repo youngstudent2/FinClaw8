@@ -57,9 +57,9 @@
           </router-link>
         </a-menu-item>
       </a-sub-menu>
-      <a-menu-item key="userInfo" @click="jumpToUserInfo">
+      <!--a-menu-item key="userInfo" @click="jumpToUserInfo">
         <a-icon type="user" />个人信息  
-      </a-menu-item>
+      </a-menu-item-->
 
     </a-menu>
   </a-layout-sider>
