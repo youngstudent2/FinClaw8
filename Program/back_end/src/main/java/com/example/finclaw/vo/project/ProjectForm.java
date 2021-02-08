@@ -3,8 +3,7 @@ package com.example.finclaw.vo.project;
 import java.sql.Timestamp;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: hx
  */
 public class ProjectForm {
     private Integer userID;

@@ -5,8 +5,7 @@ import com.example.finclaw.enums.ProjectStatus;
 import java.sql.Timestamp;
 
 /**
- * @Author: GLH
- * @Date:   2020-10-11
+ * @Author: hx
  */
 public class Project {
     private Integer projectID;

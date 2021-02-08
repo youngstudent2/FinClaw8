@@ -1,16 +1,10 @@
 <template>
   <div>
-    <a-layou>
+    <a-layout>
       <Header></Header>
       <Banner></Banner>
       <div id="components-grid-demo-playground">
-        <a-row>
-          <a-col :span="24">
-            <div class="banner">
-              <h1>FinClaw花旗杯项目</h1>
-            </div>
-          </a-col>
-        </a-row>
+        
         <div class="projects">
           <a-row :gutter="[6, 2]" style="width: 100%">
             <a-col
@@ -36,7 +30,7 @@
           </a-row>
         </div>
       </div>
-    </a-layou>
+    </a-layout>
 
     <el-container>
       
