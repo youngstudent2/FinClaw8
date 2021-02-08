@@ -4,6 +4,7 @@ import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.po.User;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,9 @@ public class AccountController {
         if(user==null){
             return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
-        return ResponseVO.buildSuccess(user);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return ResponseVO.buildSuccess(userVO);
     }
 
     @PostMapping("/updateUserInfo/{userID}")

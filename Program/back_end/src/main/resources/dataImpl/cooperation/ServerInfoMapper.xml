@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.cooperation.ServerInfoMapper">
+
+    <select id="getProjectServerInfo" resultMap="ServerInfo" >
+        select * from ServerInfo where projectID=#{projectID}
+    </select>
+    <resultMap id="Cooperation" type="com.example.finclaw.po.ServerInfo">
+        <id column="serverInfoID" property="serverInfoID"/>
+        <result column="userID" property="userID"/>
+        <result column="projectID" property="projectID"/>
+        <result column="ipAddress" property="ipAddress"/>
+        <result column="serverName" property="servierName"/>
+        <result column="serverPassword" property="serverPassword"/>
+        <result column="filePath" property="filePath"/>
+    </resultMap>
+</mapper>

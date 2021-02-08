@@ -1,12 +1,21 @@
 package com.example.finclaw.po;
 
-public class ServerInfo {
+public class  ServerInfo {
+    private Integer serverInfoID;//一台服务器只能用一个ID参与一个项目，所以要用serverInfoID来标识
     private Integer userID;
     private Integer projectID;
     private String ipAddress;
     private String serverName;
     private String serverPassword;
     private String filePath;
+
+    public Integer getServerInfoID() {
+        return serverInfoID;
+    }
+
+    public void setServerInfoID(Integer serverInfoID) {
+        this.serverInfoID = serverInfoID;
+    }
 
     public Integer getUserID() {
         return userID;

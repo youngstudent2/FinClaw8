@@ -1,5 +1,6 @@
 package com.example.finclaw.controller.loan;
 
+import com.example.finclaw.vo.Loan.LoanApplicationForm;
 import com.example.finclaw.vo.ResponseVO;
 import org.springframework.web.bind.annotation.*;
 
