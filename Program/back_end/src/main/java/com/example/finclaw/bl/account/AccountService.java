@@ -6,7 +6,6 @@ import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.account.UserLoginForm;
 import com.example.finclaw.vo.account.UserRegisterForm;
 import com.example.finclaw.vo.account.UserVO;
-import com.example.finclaw.vo.cooperation.CooperationForm;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
