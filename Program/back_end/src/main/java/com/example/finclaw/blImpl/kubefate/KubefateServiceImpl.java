@@ -55,7 +55,7 @@ public class KubefateServiceImpl implements KubefateService {
         String cmd = sb.toString();
         String res = execCommand(cmd);
         //todo 结果判断
-
+        return null;
     }
 
     @Override

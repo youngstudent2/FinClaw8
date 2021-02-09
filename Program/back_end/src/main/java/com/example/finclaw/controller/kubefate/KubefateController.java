@@ -24,5 +24,4 @@ public class KubefateController {
         return kubefateService.deploy(projectID);
     }
 
-    @PostMapping
 }

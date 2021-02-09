@@ -110,7 +110,7 @@ public class AttendServiceImpl implements AttendService {
 
     @Override
     public List<UserVO> getProjectCooperations(Integer projectID) {
-        List<Integer> cooperationIDs = attendMapper.getProjectCooperationIDs(projectID);
+        /*List<Integer> cooperationIDs = attendMapper.getProjectCooperationIDs(projectID);
         ArrayList<CooperationVO> cooperationVOS = new ArrayList<>();
         for (Integer cooperationID : cooperationIDs) {
             CooperationVO cooperationVO = new CooperationVO();
@@ -120,6 +120,7 @@ public class AttendServiceImpl implements AttendService {
             cooperationVO.setAuthority(authority);
             cooperationVOS.add(cooperationVO);
         }
-        return cooperationVOS;
+        return cooperationVOS;*/
+        return null;
     }
 }
