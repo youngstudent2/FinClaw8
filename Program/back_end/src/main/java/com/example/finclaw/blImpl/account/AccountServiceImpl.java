@@ -8,6 +8,7 @@ import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserLoginForm;
 import com.example.finclaw.vo.account.UserRegisterForm;
+import com.example.finclaw.vo.account.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,12 +52,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User getUserInfo(int userID) {
+    public UserVO getUserInfo(int userID) {
         User user = accountMapper.getAccountById(userID);
         if (user == null) {
             return null;
         }
-        return user;
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return userVO;
     }
 
 //    @Override

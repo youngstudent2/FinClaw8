@@ -1,10 +1,13 @@
 package com.example.finclaw.blImpl.cooperation;
 
+import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.bl.cooperation.AttendService;
+import com.example.finclaw.bl.project.ProjectService;
 import com.example.finclaw.data.cooperation.AttendMapper;
 import com.example.finclaw.data.cooperation.ServerInfoMapper;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.po.ServerInfo;
+import com.example.finclaw.po.User;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;
@@ -26,7 +29,9 @@ public class AttendServiceImpl implements AttendService {
     @Autowired
     private ServerInfoMapper serverInfoMapper;
     @Autowired
-    private ProjectMapper projectMapper;
+    private ProjectService projectService;
+    @Autowired
+    private AccountService accountService;
 
     @Override
     public ResponseVO attendProject(Integer projectID, Integer cooperationID) {
@@ -95,7 +100,8 @@ public class AttendServiceImpl implements AttendService {
         List<Integer> projectIDs = attendMapper.getCooperationProjectIDs(cooperationID);
         ArrayList<ProjectVO> projectVOS = new ArrayList<>();
         for (Integer projectID : projectIDs) {
-            projectVOS.add(new ProjectVO(projectMapper.getProjectByID(projectID)));
+            ProjectVO projectVO = projectService.getProject(projectID);
+            projectVOS.add(projectVO);
     }
         return projectVOS;
     }
@@ -109,18 +115,13 @@ public class AttendServiceImpl implements AttendService {
     }
 
     @Override
-    public List<UserVO> getProjectCooperations(Integer projectID) {
-        /*List<Integer> cooperationIDs = attendMapper.getProjectCooperationIDs(projectID);
-        ArrayList<CooperationVO> cooperationVOS = new ArrayList<>();
-        for (Integer cooperationID : cooperationIDs) {
-            CooperationVO cooperationVO = new CooperationVO();
-            Cooperation cooperation = cooperationMapper.getCooperationByCooperationID(cooperationID);
-            BeanUtils.copyProperties(cooperation, cooperationVO);
-            int authority = attendMapper.getAuthority(cooperationID, projectID);
-            cooperationVO.setAuthority(authority);
-            cooperationVOS.add(cooperationVO);
+    public List<UserVO> getProjectDataProducers(Integer projectID) {
+        List<Integer> userIDs = attendMapper.getProjectDataProducerIDs(projectID);
+        ArrayList<UserVO> userVOS = new ArrayList<>();
+        for (Integer userID : userIDs) {
+            UserVO userVO = accountService.getUserInfo(userID);
+            userVOS.add(userVO);
         }
-        return cooperationVOS;*/
-        return null;
+        return userVOS;
     }
 }

@@ -36,7 +36,7 @@ public interface AccountService {
      * @param userID
      * @return
      */
-    User getUserInfo(int userID);
+    UserVO getUserInfo(int userID);
 
 //    ResponseVO deleteUser(int userID);
 

@@ -35,12 +35,10 @@ public class AccountController {
 
     @GetMapping("/getUserInfo/{userID}")
     public ResponseVO getUserInfo(@PathVariable int userID) {
-        User user = accountService.getUserInfo(userID);
-        if(user==null){
+        UserVO userVO = accountService.getUserInfo(userID);
+        if(userVO==null){
             return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
         }
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user,userVO);
         return ResponseVO.buildSuccess(userVO);
     }
 

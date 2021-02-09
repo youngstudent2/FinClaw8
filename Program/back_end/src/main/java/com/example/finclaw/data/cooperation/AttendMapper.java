@@ -20,8 +20,6 @@ public interface AttendMapper {
 
     List<Integer> getCooperationProjectIDs(Integer cooperationID);
 
-    List<Integer> getProjectCooperationIDs(Integer projectID);
-
-    void uploadProjectFilepath(Integer cooperationID, Integer projectID, String filepath);
+    List<Integer> getProjectDataProducerIDs(Integer projectID);
 }
 
