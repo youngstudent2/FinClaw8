@@ -11,6 +11,10 @@ public class LoanApplication {
     private String companyName;
     private boolean hasDealt;//借款人完成借款时置为true
 
+    public LoanApplication(){
+        hasDealt = false;
+    }
+
     public Integer getLoanApplicationID() {
         return loanApplicationID;
     }
