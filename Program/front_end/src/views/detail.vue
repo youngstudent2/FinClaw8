@@ -1,7 +1,12 @@
 <template>
   <a-layout>
-    <Header></Header>
-  <div>detail</div>
+    <a-layout-header>
+      <Header></Header>
+    </a-layout-header>
+    <a-layout-content>
+      
+    </a-layout-content>
+  
   </a-layout>
   
 </template>

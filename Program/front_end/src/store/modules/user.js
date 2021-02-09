@@ -66,8 +66,17 @@ const user = {
                 if(res.role == "Cooperation"){
                     router.push('/cooperator')
                 }
+                else if (res.role == "Bank"){
+                    router.push('/bank')
+                }
+                else if (res.role == 'loaner'){
+                    router.push('/loaner')
+                }
+                else if (res.role == 'manager') {
+                    router.push('/manager')
+                }
                 else{
-                    router.push('/NJUFINCLAW')
+                    router.push('/')
                 }
             }
         },
