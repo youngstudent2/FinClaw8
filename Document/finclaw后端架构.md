@@ -176,6 +176,7 @@ public class serverInfoVO{
 
 ```
 public class serverInfo{
+    private Integer serverInfoID;//一台服务器只能用一个ID参与一个项目，所以要用serverInfoID来标识
 	private Integer userID;
 	private Integer projectID;
 	private String ipAddress;
@@ -386,14 +387,15 @@ public class UserForm {
 
 ### 2.6 serverInfo表
 
-| field          | type         | description                                                  |
-| -------------- | ------------ | ------------------------------------------------------------ |
-| userID         | INT          | 一个用户可能用不同的服务器参见不同项目，userID和projectID共同构成主键 |
-| projectID      | INT          |                                                              |
-| ipAddress      | varchar(255) |                                                              |
-| serverName     | varchar(255) |                                                              |
-| serverPassword | varchar(255) |                                                              |
-| filePath       | varchar(255) | 数据文件路径                                                 |
+| field          | type         | description                            |
+| -------------- | ------------ | -------------------------------------- |
+| serverInfoID   | INT          | 主键                                   |
+| userID         | INT          | 一个用户可能用不同的服务器参见不同项目 |
+| projectID      | INT          |                                        |
+| ipAddress      | varchar(255) |                                        |
+| serverName     | varchar(255) |                                        |
+| serverPassword | varchar(255) |                                        |
+| filePath       | varchar(255) | 数据文件路径                           |
 
 ### 2.7 loanApplication
 
