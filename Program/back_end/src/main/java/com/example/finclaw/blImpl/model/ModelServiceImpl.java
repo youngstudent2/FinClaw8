@@ -1,10 +1,10 @@
 package com.example.finclaw.blImpl.model;
 
+import com.example.finclaw.bl.kubefate.KubefateService;
 import com.example.finclaw.bl.model.ModelService;
+import com.example.finclaw.blImpl.kubefate.KubefateServiceImpl;
 import com.example.finclaw.data.model.ModelMapper;
 import com.example.finclaw.po.Model;
-import com.example.finclaw.util.KubefateService;
-import com.example.finclaw.util.KubefateServiceImpl;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.model.ModelVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class ModelServiceImpl implements ModelService {
         String[] ip = new String[]{"39.105.36.203"};
         String[] pw = new String[]{"root123456"};
         String[] path = new String[]{"/finclaw/test.csv"};
-        kubefateService.deploy(userId,pw,ip,path,"test");
+        //kubefateService.deploy(userId,pw,ip,path,"test");
         return ResponseVO.buildSuccess();
     }
 }
