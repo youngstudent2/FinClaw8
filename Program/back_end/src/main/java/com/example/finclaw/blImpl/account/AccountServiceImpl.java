@@ -2,20 +2,15 @@ package com.example.finclaw.blImpl.account;
 
 import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.data.account.AccountMapper;
-import com.example.finclaw.data.cooperation.CooperationMapper;
 import com.example.finclaw.enums.UserType;
 import com.example.finclaw.po.User;
 import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserLoginForm;
 import com.example.finclaw.vo.account.UserRegisterForm;
-import com.example.finclaw.vo.account.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author cgc
@@ -30,8 +25,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountMapper accountMapper;
-    @Autowired
-    private CooperationMapper cooperationMapper;
 
 
     @Override

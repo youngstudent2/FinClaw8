@@ -2,10 +2,14 @@ package com.example.finclaw.blImpl.cooperation;
 
 import com.example.finclaw.bl.cooperation.AttendService;
 import com.example.finclaw.data.cooperation.AttendMapper;
-import com.example.finclaw.data.cooperation.CooperationMapper;
+import com.example.finclaw.data.cooperation.ServerInfoMapper;
 import com.example.finclaw.data.project.ProjectMapper;
-import com.example.finclaw.vo.cooperation.CooperationVO;
+import com.example.finclaw.po.ServerInfo;
+import com.example.finclaw.vo.ResponseVO;
+import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;
+import com.example.finclaw.vo.server.ServerInfoForm;
+import com.example.finclaw.vo.server.ServerInfoVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,26 +19,75 @@ import java.util.List;
 
 @Service
 public class AttendServiceImpl implements AttendService {
+    private final static String OTHER_ERROR = "其他错误";
+
     @Autowired
     private AttendMapper attendMapper;
     @Autowired
-    private ProjectMapper projectMapper;
+    private ServerInfoMapper serverInfoMapper;
     @Autowired
-    private CooperationMapper cooperationMapper;
+    private ProjectMapper projectMapper;
 
     @Override
-    public void attendProject(Integer cooperationID, Integer projectID) {
-        attendMapper.attendProject(cooperationID, projectID);
+    public ResponseVO attendProject(Integer projectID, Integer cooperationID) {
+        try {
+            attendMapper.attendProject(cooperationID, projectID);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
     }
 
     @Override
-    public void quitProject(Integer cooperationID, Integer projectID) {
-        attendMapper.quitProject(cooperationID, projectID);
+    public ResponseVO quitProject(Integer projectID, Integer cooperationID) {
+        try{
+            attendMapper.quitProject(cooperationID, projectID);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
     }
 
     @Override
-    public void setReadyForProject(Integer cooperationID, Integer projectID) {
-        attendMapper.setReadyForProject(cooperationID, projectID);
+    public ResponseVO updateServerInfo(ServerInfoForm serverInfoForm) {
+        try {
+            ServerInfo serverInfo=new ServerInfo();
+            BeanUtils.copyProperties(serverInfoForm,serverInfo);
+            serverInfoMapper.updateServerInfo(serverInfo);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO setReadyForProject(Integer projectID, Integer cooperationID, boolean isReady) {
+        try{
+            attendMapper.setReadyForProject(cooperationID, projectID, isReady);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO setChosen(Integer projectID, Integer cooperationID, boolean isChosen) {
+        try {
+            attendMapper.setChosen(cooperationID, projectID, isChosen);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
     }
 
     @Override
@@ -48,7 +101,15 @@ public class AttendServiceImpl implements AttendService {
     }
 
     @Override
-    public List<CooperationVO> getProjectCooperations(Integer projectID) {
+    public ServerInfoVO getServerInfo(Integer projectID, Integer cooperationID) {
+        ServerInfo serverInfo=serverInfoMapper.getServerInfo(projectID,cooperationID);
+        ServerInfoVO serverInfoVO=new ServerInfoVO();
+        BeanUtils.copyProperties(serverInfo,serverInfoVO);
+        return serverInfoVO;
+    }
+
+    @Override
+    public List<UserVO> getProjectCooperations(Integer projectID) {
         List<Integer> cooperationIDs = attendMapper.getProjectCooperationIDs(projectID);
         ArrayList<CooperationVO> cooperationVOS = new ArrayList<>();
         for (Integer cooperationID : cooperationIDs) {
@@ -60,10 +121,5 @@ public class AttendServiceImpl implements AttendService {
             cooperationVOS.add(cooperationVO);
         }
         return cooperationVOS;
-    }
-
-    @Override
-    public void uploadProjectFilepath(Integer cooperationID, Integer projectID, String filepath) {
-        attendMapper.uploadProjectFilepath(cooperationID, projectID, filepath);
     }
 }

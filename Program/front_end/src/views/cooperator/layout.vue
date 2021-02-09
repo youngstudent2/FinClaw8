@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-import Header from "@/components/cooperator-header";
+import Header from "@/components/header";
 import Sidebar from "@/components/projects-sidebar";
 import Footer from "@/components/footer";
 import { mapGetters, mapMutations, mapActions } from 'vuex';

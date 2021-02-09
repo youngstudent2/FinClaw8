@@ -2,39 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.finclaw.data.cooperation.AttendMapper">
     <insert id="attendProject">
-        insert into Attend(cooperationID, projectID, ready,authority)
-        values(#{param1}, #{param2}, 0,1)
+        insert into Attendance(userID, projectID, isChosen, isReady)
+        values(#{param1}, #{param2}, 0, 0)
     </insert>
 
-    <update id="setReadyForProject">
-        update Attend set ready=1 where cooperationID=#{param1} and projectID=#{param2}
-    </update>
-
     <delete id="quitProject">
-        delete from Attend where cooperationID=#{param1} and projectID=#{param2}
+        delete from Attendance where userID=#{param1} and projectID=#{param2}
     </delete>
 
-    <select id="getAuthority" resultType="java.lang.Integer">
-        select authority from attend where cooperationID=#{cooperationID} and projectID=#{projectID}
-    </select>
-
-    <update id="openAuthority">
-        update Attend set authority=1 where cooperationID=#{param1} and projectID=#{param2}
+    <update id="setReadyForProject">
+        update Attendance set isReady=#{isReady}
+        where userID=#{userID} and projectID=#{projectID}
     </update>
 
-    <update id="closeAuthority">
-        update Attend set authority=0 where cooperationID=#{param1} and projectID=#{param2}
+    <update id="setChosen">
+        update Attendance set isChosen=#{isChosen}
+        where userID=#{userID} and projectID=#{projectID}
     </update>
 
     <select id="getCooperationProjectIDs" resultType="java.lang.Integer">
-        select projectID from Attend where cooperationID=#{cooperationID}
+        select projectID from Attendance where userID=#{cooperationID}
     </select>
 
     <select id="getProjectCooperationIDs" resultType="java.lang.Integer">
-        select cooperationID from Attend where projectID=#{projectID}
+        select userID from Attendance where projectID=#{projectID}
     </select>
 
     <update id="uploadProjectFilepath">
-        update Attend set filepath=#{filepath} where cooperationID=#{cooperationID} and projectID=#{projectID}
+        update Attendance set filepath=#{filepath}
+        where cooperationID=#{cooperationID} and projectID=#{projectID}
     </update>
+
+    <resultMap id="Attendance" type="com.example.finclaw.po.Attendance">
+        <result column="userID" property="userID"/>
+        <result column="projectID" property="projectID"/>
+        <result column="isChosen" property="isChosen"/>
+        <result column="isReady" property="isReady"/>
+    </resultMap>
 </mapper>
