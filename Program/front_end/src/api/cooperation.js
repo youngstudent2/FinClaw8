@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request'
 
 const api = {
-    cooperation: '/api/cooperation'
+    cooperation: '/api/attendance'
 }
 
 export function attendProjectAPI(params) {

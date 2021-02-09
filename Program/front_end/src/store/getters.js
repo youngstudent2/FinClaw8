@@ -17,7 +17,7 @@ const getters = {
   // data
   projectData: state => state.data.projectData,
 
-  // cooperation
+  // attendance
   attendedProjects: state => state.cooperation.attendedProjects,
   unattendedProjects: state => state.cooperation.unattendedProjects,
   // dataManager

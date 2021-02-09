@@ -1,13 +1,11 @@
-package com.example.finclaw.blImpl.cooperation;
+package com.example.finclaw.blImpl.attendance;
 
 import com.example.finclaw.bl.account.AccountService;
-import com.example.finclaw.bl.cooperation.AttendService;
+import com.example.finclaw.bl.attendance.AttendService;
 import com.example.finclaw.bl.project.ProjectService;
-import com.example.finclaw.data.cooperation.AttendMapper;
-import com.example.finclaw.data.cooperation.ServerInfoMapper;
-import com.example.finclaw.data.project.ProjectMapper;
+import com.example.finclaw.data.attendance.AttendMapper;
+import com.example.finclaw.data.attendance.ServerInfoMapper;
 import com.example.finclaw.po.ServerInfo;
-import com.example.finclaw.po.User;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;

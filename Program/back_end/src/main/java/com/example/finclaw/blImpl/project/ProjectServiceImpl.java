@@ -1,6 +1,5 @@
 package com.example.finclaw.blImpl.project;
 
-import com.example.finclaw.bl.cooperation.AttendService;
 import com.example.finclaw.bl.project.ProjectService;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.enums.ProjectStatus;

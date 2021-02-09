@@ -1,4 +1,4 @@
-package com.example.finclaw.bl.cooperation;
+package com.example.finclaw.bl.attendance;
 
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;

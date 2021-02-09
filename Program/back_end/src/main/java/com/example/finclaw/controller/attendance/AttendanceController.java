@@ -1,6 +1,6 @@
-package com.example.finclaw.controller.cooperation;
+package com.example.finclaw.controller.attendance;
 
-import com.example.finclaw.bl.cooperation.AttendService;
+import com.example.finclaw.bl.attendance.AttendService;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;

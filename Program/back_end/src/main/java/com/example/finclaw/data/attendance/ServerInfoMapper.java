@@ -1,4 +1,4 @@
-package com.example.finclaw.data.cooperation;
+package com.example.finclaw.data.attendance;
 
 import com.example.finclaw.po.ServerInfo;
 import org.apache.ibatis.annotations.Mapper;

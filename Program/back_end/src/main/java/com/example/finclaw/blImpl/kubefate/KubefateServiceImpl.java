@@ -1,7 +1,7 @@
 package com.example.finclaw.blImpl.kubefate;
 
 import com.example.finclaw.bl.kubefate.KubefateService;
-import com.example.finclaw.data.cooperation.ServerInfoMapper;
+import com.example.finclaw.data.attendance.ServerInfoMapper;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.po.Project;
 import com.example.finclaw.po.ServerInfo;
