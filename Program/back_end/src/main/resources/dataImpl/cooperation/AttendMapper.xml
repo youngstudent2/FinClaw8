@@ -24,14 +24,9 @@
         select projectID from Attendance where userID=#{cooperationID}
     </select>
 
-    <select id="getProjectCooperationIDs" resultType="java.lang.Integer">
+    <select id="getProjectDataProducerIDs" resultType="java.lang.Integer">
         select userID from Attendance where projectID=#{projectID}
     </select>
-
-    <update id="uploadProjectFilepath">
-        update Attendance set filepath=#{filepath}
-        where cooperationID=#{cooperationID} and projectID=#{projectID}
-    </update>
 
     <resultMap id="Attendance" type="com.example.finclaw.po.Attendance">
         <result column="userID" property="userID"/>

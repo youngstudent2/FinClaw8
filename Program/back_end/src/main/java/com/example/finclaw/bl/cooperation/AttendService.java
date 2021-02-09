@@ -24,5 +24,5 @@ public interface AttendService {
 
     ServerInfoVO getServerInfo(Integer projectID, Integer cooperationID);
 
-    List<UserVO> getProjectCooperations(Integer projectID);
+    List<UserVO> getProjectDataProducers(Integer projectID);
 }

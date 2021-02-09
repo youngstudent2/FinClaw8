@@ -2,6 +2,7 @@ package com.example.finclaw.controller.cooperation;
 
 import com.example.finclaw.bl.cooperation.AttendService;
 import com.example.finclaw.vo.ResponseVO;
+import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
 import com.example.finclaw.vo.server.ServerInfoVO;
@@ -77,6 +78,13 @@ public class AttendanceController {
 
     @GetMapping("/getProjectCooperation/{projectID}")
     public ResponseVO getProjectCooperation(@PathVariable Integer projectID){
-        return null;
-    };
+        try {
+            List<UserVO> userVOS= attendService.getProjectDataProducers(projectID);
+            return ResponseVO.buildSuccess(userVOS);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+    }
 }

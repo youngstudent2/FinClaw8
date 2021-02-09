@@ -20,7 +20,7 @@ public interface ServerInfoMapper {
     /**
      * 获取指定的server信息
      * @param projectID
-     * @param cooperationID
+     * @param userID
      * @return
      */
     ServerInfo getServerInfo(@Param("projectID") Integer projectID, @Param("userID") Integer userID);
