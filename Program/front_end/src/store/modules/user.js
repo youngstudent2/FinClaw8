@@ -75,7 +75,10 @@ const user = {
                 else if (res.role == 'manager') {
                     router.push('/manager')
                 }
-                else{
+                else if(res.role == "Bank") {
+                    router.push('/bank')
+                }
+                else {
                     router.push('/')
                 }
             }

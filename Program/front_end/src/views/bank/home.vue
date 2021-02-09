@@ -5,15 +5,15 @@
       <a-layout style="height: 100%">
           <!--顶部菜单栏-->
           <div>
-            <a-menu v-model="current" mode="horizontal">
+            <a-menu v-model="current" mode="horizontal" style="padding-left: 60px">
               <a-menu-item key="review">
                 <router-link :to="{ name: 'projectReview' }">
-                  <a-icon type="file" />项目浏览
+                  <a-icon type="project" />项目浏览
                 </router-link>
               </a-menu-item>
               <a-menu-item key="lending">
                 <router-link :to="{ name: 'lendingHandle' }">
-                  <a-icon type="file" />贷款申请
+                  <a-icon type="money-collect" />贷款申请
                 </router-link>
               </a-menu-item>
 

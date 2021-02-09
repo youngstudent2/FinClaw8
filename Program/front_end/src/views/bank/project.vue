@@ -6,8 +6,8 @@
         <Sidebar v-bind:links="links"></Sidebar>
         <a-layout style="padding: 0 24px 24px">
         <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>主页</a-breadcrumb-item>
-          <a-breadcrumb-item>监管</a-breadcrumb-item>
+          <a-breadcrumb-item>项目</a-breadcrumb-item>
+          <a-breadcrumb-item>管理</a-breadcrumb-item>
         </a-breadcrumb>
         <a-layout-content
           :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '1000px' }"

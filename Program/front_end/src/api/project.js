@@ -42,11 +42,3 @@ export function getAllProjectAPI() {
         method: 'GET',
     })
 }
-
-export function getProjectCooperationsAPI(projectID){
-    return axios({
-        url:`${api.projectPre}/getProjectCooperations/${projectID}`,
-        method: 'GET',
-
-    })
-}

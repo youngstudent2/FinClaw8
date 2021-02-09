@@ -21,7 +21,7 @@
         <result column="userID" property="userID"/>
         <result column="projectID" property="projectID"/>
         <result column="ipAddress" property="ipAddress"/>
-        <result column="serverName" property="servierName"/>
+        <result column="serverName" property="serverName"/>
         <result column="serverPassword" property="serverPassword"/>
         <result column="filePath" property="filePath"/>
     </resultMap>

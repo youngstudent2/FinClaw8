@@ -24,7 +24,7 @@ const getters = {
   AllDataManagers: state => state.user.AllDataManagers,
   DataManagerRegistrationModalVisible: state => state.user.DataManagerRegistrationModalVisible,
   // authority
-  cooperationsList: state => state.authority.cooperationsList,
+  cooperationList: state => state.authority.cooperationList,
   // project
   projectID: state => state.project.currentProjectID,
   projectInfo: state => state.project.currentProjectInfo,
