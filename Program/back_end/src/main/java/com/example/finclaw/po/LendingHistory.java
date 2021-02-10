@@ -31,6 +31,10 @@ public class LendingHistory {
     private boolean hasDealt;
 
 
+    public LendingHistory(){
+        hasDealt = false;
+    }
+
     public Integer getLendingHistoryID() {
         return lendingHistoryID;
     }
