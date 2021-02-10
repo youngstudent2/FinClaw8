@@ -1,9 +1,14 @@
 package com.example.finclaw.data.loan;
 
 import com.example.finclaw.po.LoanApplication;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
+@Mapper
+@Repository
 public interface LoanMapper {
     void createNewLoanApplication(LoanApplication loanApplication);
 
@@ -16,4 +21,6 @@ public interface LoanMapper {
     void setDealt(Integer loanApplicationID);
 
     List<LoanApplication> getUserLoanHistory(Integer userID);
+
+    void changeAmount(Integer loanApplicationID, double amount);
 }
