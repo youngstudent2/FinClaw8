@@ -125,6 +125,23 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<UserVO> getAllUsers() throws Exception{
         List<User> users = accountMapper.getAllUsers();
+        return usersToUserVOs(users);
+    }
+
+    @Override
+    public List<UserVO> getUnauthorizedUsers() throws Exception {
+        List<User> users = accountMapper.getUnauthorizedUsers();
+        return usersToUserVOs(users);
+    }
+
+
+    /**
+     * 将user列表转变为userVO列表
+     * @param users
+     * @return
+     * @throws Exception
+     */
+    private List<UserVO> usersToUserVOs(List<User> users) throws Exception {
         ArrayList<UserVO> userVOS = new ArrayList<>();
         for(User user : users){
             UserVO userVO = new UserVO();

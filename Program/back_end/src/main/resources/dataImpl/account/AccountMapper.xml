@@ -27,8 +27,13 @@
         update user set role=#{role} where userID=#{userID}
     </update>
 
-    <select id="getAllUsers" resultMap="User">
+    <select id="getAllUsers" resultType="com.example.finclaw.po.User">
         select * from User
+    </select>
+
+    <select id="getUnauthorizedUsers" resultType="com.example.finclaw.po.User">
+        select * from User
+        where role='UnauthorizedBank' or role='UnauthorizedCompany' or role='UnauthorizedDataProvider'
     </select>
 
     <resultMap id="User" type="com.example.finclaw.po.User">

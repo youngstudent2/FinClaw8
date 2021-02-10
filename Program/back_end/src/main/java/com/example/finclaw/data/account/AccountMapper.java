@@ -40,4 +40,6 @@ public interface AccountMapper {
      int setRole(@Param("userID") int userID, @Param("role") UserType role);
 
      List<User> getAllUsers();
+
+     List<User> getUnauthorizedUsers();
 }

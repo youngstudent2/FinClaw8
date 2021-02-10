@@ -77,4 +77,15 @@ public class AccountController {
         }
     }
 
+    @GetMapping("/getUnauthorizedUsers")
+    public ResponseVO getUnauthorizedUsers(){
+        try {
+            List<UserVO> userVOS = accountService.getUnauthorizedUsers();
+            return ResponseVO.buildSuccess(userVOS);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+    }
 }
