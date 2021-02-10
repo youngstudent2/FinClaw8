@@ -8,7 +8,7 @@ import {
     setReadyAPI,
     getAllAttendedProjectsAPI,
     getAllUnattendedProjectsAPI
-} from '@/api/attendance'
+} from '@/api/cooperation'
 
 const cooperation = {
     state: {
