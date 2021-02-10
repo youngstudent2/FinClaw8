@@ -38,4 +38,6 @@ public interface AccountMapper {
      int updateUserInfo(User user);
 
      int setRole(@Param("userID") int userID, @Param("role") UserType role);
+
+     List<User> getAllUsers();
 }

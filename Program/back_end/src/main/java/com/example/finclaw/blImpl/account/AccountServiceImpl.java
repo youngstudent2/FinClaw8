@@ -13,6 +13,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author cgc
  */
@@ -117,5 +120,17 @@ public class AccountServiceImpl implements AccountService {
             return ResponseVO.buildFailure(OTHER_ERROR);
         }
         return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public List<UserVO> getAllUsers() throws Exception{
+        List<User> users = accountMapper.getAllUsers();
+        ArrayList<UserVO> userVOS = new ArrayList<>();
+        for(User user : users){
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(user,userVO);
+            userVOS.add(userVO);
+        }
+        return userVOS;
     }
 }

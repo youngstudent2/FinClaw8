@@ -27,6 +27,10 @@
         update user set role=#{role} where userID=#{userID}
     </update>
 
+    <select id="getAllUsers" resultMap="User">
+        select * from User
+    </select>
+
     <resultMap id="User" type="com.example.finclaw.po.User">
         <id column="userID" property="userID"/>
         <result column="email" property="email"/>
