@@ -51,4 +51,6 @@ public interface AccountService {
      * @return
      */
     List<UserVO> getAllUsers() throws Exception;
+
+    List<UserVO> getUnauthorizedUsers() throws Exception;
 }
