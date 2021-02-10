@@ -1,12 +1,21 @@
-package com.example.finclaw.vo.Loan;
+package com.example.finclaw.vo.loan;
 
 //小微企业  借贷表
+
 public class LoanApplicationForm {
     private Integer userID;
-    private double amount;//预期借款额
-    private String phoneNumber;//贷款人联系电话
-    private String certificationCode;//社会统一认证代码
-    private String registrationCode;//注册号
+
+    //预期借款额
+    private double amount;
+
+    //贷款人联系电话
+    private String phoneNumber;
+
+    //社会统一认证代码
+    private String certificationCode;
+
+    //注册号
+    private String registrationCode;
     private String companyName;
 
     public Integer getUserID() {

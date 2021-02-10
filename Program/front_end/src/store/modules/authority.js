@@ -5,7 +5,7 @@ import{
     getProjectCooperationAPI,
     getServerInfoAPI,
     setChosenStatusAPI
-} from '@/api/attendance'
+} from '@/api/cooperation'
 
 
 const authority = {

@@ -1,4 +1,4 @@
-package com.example.finclaw.vo.Loan;
+package com.example.finclaw.vo.loan;
 
 public class LoanApplicationVO {
     private Integer loanApplicationID;
