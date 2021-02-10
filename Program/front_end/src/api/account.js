@@ -20,6 +20,13 @@ export function getUserInfoAPI(userID){
     })
 }
 
+export function getAllUserInfoAPI() {
+    return axios({
+        url: `${api.accountPre}/getAllUserInfo`,
+        method: 'GET',
+    })
+}
+
 export function updateUserInfoAPI(data) {
     return axios({
         url: `${api.accountPre}/${data.userID}/updateUserInfo`,

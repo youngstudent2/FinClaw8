@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request'
 
 const api = {
-    cooperation: '/api/cooperation'
+    cooperation: '/api/attendance'
 }
 
 export function attendProjectAPI(params) {
@@ -49,5 +49,27 @@ export function getAllUnattendedProjectsAPI(params) {
         url:`${api.cooperation}/getAllUnAttendedProjects/${params.cooperationID}`,
         method: 'GET',
         params
+    })
+}
+
+export function getProjectCooperationAPI(projectID){
+    return axios({
+        url:`${api.cooperation}/getProjectCooperation/${projectID}`,
+        method: 'GET',
+    })
+}
+
+export function getServerInfoAPI(projectID, cooperationID) {
+    return axios({
+        url:`${api.cooperation}/getServerInfo/${projectID}/${cooperationID}`,
+        method: 'GET',
+    })
+}
+
+export function setChosenStatusAPI(projectID, cooperationID, isChosen) {
+    return axios({
+        url:`${api.cooperation}/setChosenStatus/${projectID}/${cooperationID}`,
+        method: 'POST',
+        isChosen,
     })
 }

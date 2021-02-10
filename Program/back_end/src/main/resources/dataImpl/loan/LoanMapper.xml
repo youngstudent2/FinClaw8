@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.loan.LoanMapper">
+
+    <insert id="createNewLoanApplication" parameterType="com.example.finclaw.po.LoanApplication" useGeneratedKeys="true" keyProperty="loanApplicationID">
+        insert into loanapplication(userID,amount,certificationCode,registrationCode,companyName,phoneNumber,hasDealt)
+        values(#{userID},#{amount},#{certificationCode},#{registrationCode},#{companyName},#{phoneNumber},#{hasDealt})
+    </insert>
+
+    <delete id="deleteLoanApplication">
+        delete * from loanApplication
+        where loanApplicationID=#{loanApplicationID}
+    </delete>
+
+    <select id="getAllLoanApplication" resultMap="loanApplication" >
+        select * from loanApplication
+        where userID=#{userID}
+    </select>
+
+    <select id="getLoanApplication" resultMap="loanApplication" >
+        select * from loanApplication
+        where loanApplicationID=#{loanApplicationID}
+    </select>
+
+    <update id="setDealt">
+        update loanapplication set hasDealt=true
+        where loanApplicationID=#{loanApplicationID}
+    </update>
+
+    <select id="getUserLoanHistory" resultMap="loanApplication">
+        select * from loanapplication
+        where userID=#{userID} and hasDealt=true
+    </select>
+
+    <update id="changeAmount">
+        update loanapplication set amount=#{amount}
+        where loanApplicationID=#{loanApplicationID}
+    </update>
+
+    <resultMap id="loanApplication" type="com.example.finclaw.po.LoanApplication">
+        <id column="loanApplicationID" property="loanApplicationID"/>
+        <result column="userID" property="userID"/>
+        <result column="amount" property="amount"/>
+        <result column="certificationCode" property="certificationCode"/>
+        <result column="registrationCode" property="registrationCode"/>
+        <result column="companyName" property="companyName"/>
+        <result column="phoneNumber" property="phoneNumber"/>
+        <result column="hasDealt" property="hasDealt"/>
+    </resultMap>
+</mapper>

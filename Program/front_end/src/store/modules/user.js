@@ -7,6 +7,7 @@ import { message } from 'ant-design-vue'
 import {
     loginAPI,
     getUserInfoAPI,
+    getAllUserInfoAPI,
     updateUserInfoAPI,
     registerDataManagerAPI,
     registerCooperationAPI,
@@ -17,21 +18,19 @@ import {
 const getDefaultState = () => {
     return {
         userId: '',
-        userInfo: {
-
-        },
-        AllDataManagers:[],
+        userInfo: {},
+        AllUsers:[],
         DataManagerRegistrationModalVisible: false ,
     }
-}
+};
 
 const user = {
     state : getDefaultState(),
 
     mutations: {
         reset_state: function(state) {
-            state.token = '',
-            state.userId = '',
+            state.token = '';
+            state.userId = '';
             state.userInfo = {
                 
             }
@@ -48,12 +47,12 @@ const user = {
                 ...data
             }
         },
-        set_AllDataManagers: function(state, data) {
-            state.AllDataManagers = data
+        set_AllUsers: function(state, data) {
+            state.AllUsers = data;
         },
         set_DataManagerRegistrationModalVisible: function(state,data) {
             state.DataManagerRegistrationModalVisible = data
-        }
+        },
     },
 
     actions: {
@@ -66,8 +65,20 @@ const user = {
                 if(res.role == "Cooperation"){
                     router.push('/cooperator')
                 }
-                else{
-                    router.push('/NJUFINCLAW')
+                else if (res.role == "Bank"){
+                    router.push('/bank')
+                }
+                else if (res.role == 'loaner'){
+                    router.push('/loaner')
+                }
+                else if (res.role == 'Admin') {
+                    router.push('/manager')
+                }
+                else if(res.role == "Bank") {
+                    router.push('/bank')
+                }
+                else {
+                    router.push('/')
                 }
             }
         },
@@ -106,6 +117,12 @@ const user = {
                 reject(error)
               })
             })
+        },
+        getAllUserInfo: async({ state, commit }) => {
+            const res = await getAllUserInfoAPI();
+            if(res){
+                commit('set_AllUsers', res);
+            }
         },
         updateUserInfo: async({ state, dispatch }, data) => {
             const params = {

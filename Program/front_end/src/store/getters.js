@@ -3,6 +3,7 @@ const getters = {
   token: state => state.user.token,
   userId: state => state.user.userId,
   userInfo: state => state.user.userInfo,
+  AllUsers: state => state.user.AllUsers,
 
   // file
   uploadState: state => state.file.uploadState,
@@ -17,14 +18,14 @@ const getters = {
   // data
   projectData: state => state.data.projectData,
 
-  // cooperation
+  // attendance
   attendedProjects: state => state.cooperation.attendedProjects,
   unattendedProjects: state => state.cooperation.unattendedProjects,
   // dataManager
   AllDataManagers: state => state.user.AllDataManagers,
   DataManagerRegistrationModalVisible: state => state.user.DataManagerRegistrationModalVisible,
   // authority
-  cooperationsList: state => state.authority.cooperationsList,
+  cooperationList: state => state.authority.cooperationList,
   // project
   projectID: state => state.project.currentProjectID,
   projectInfo: state => state.project.currentProjectInfo,

@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/api/account")
 public class AccountController {
     private final static String ACCOUNT_INFO_ERROR = "用户名或密码错误";
+    private final static String OTHER_ERROR = "其他错误";
 
     @Autowired
     private AccountService accountService;
@@ -35,13 +36,17 @@ public class AccountController {
 
     @GetMapping("/getUserInfo/{userID}")
     public ResponseVO getUserInfo(@PathVariable int userID) {
-        User user = accountService.getUserInfo(userID);
-        if(user==null){
-            return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
+        try {
+            UserVO userVO = accountService.getUserInfo(userID);
+            if (userVO == null) {
+                return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
+            }
+            return ResponseVO.buildSuccess(userVO);
         }
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user,userVO);
-        return ResponseVO.buildSuccess(userVO);
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
     }
 
     @PostMapping("/updateUserInfo/{userID}")
@@ -58,6 +63,18 @@ public class AccountController {
     @PostMapping("/registerIdentity/{userID}")
     public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role){
         return accountService.registerIdentity(userID,role);
+    }
+
+    @GetMapping("/getAllUsers")
+    public ResponseVO getAllUsers(){
+        try {
+            List<UserVO> userVOS = accountService.getAllUsers();
+            return ResponseVO.buildSuccess(userVOS);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
     }
 
 }

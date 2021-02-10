@@ -36,7 +36,7 @@ public interface AccountService {
      * @param userID
      * @return
      */
-    User getUserInfo(int userID);
+    UserVO getUserInfo(int userID);
 
 //    ResponseVO deleteUser(int userID);
 
@@ -45,4 +45,10 @@ public interface AccountService {
     ResponseVO updatePassword(int userID,String oldPassword,String newPassword);
 
     ResponseVO registerIdentity(int userID,int role);
+
+    /**
+     * 获取所有用户的个人信息
+     * @return
+     */
+    List<UserVO> getAllUsers() throws Exception;
 }

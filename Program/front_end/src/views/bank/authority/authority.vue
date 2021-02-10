@@ -1,15 +1,8 @@
 <template>
-    <a-table :columns="columns" :data-source="cooperationsList">
-        <span slot="customTitle">
-            <a-icon type="smile-o" />
-            合作方
-        </span>
+    <a-table :columns="columns" :data-source="cooperationList">
         <span slot="action" slot-scope="record">
-            <a-button type="dashed" @click="Open(record)" v-if="record.authority===0">
-                开放权限
-            </a-button>
-            <a-button type="danger" @click="Close(record)" v-if="record.authority===1">
-                关闭权限
+            <a-button type="primary" ghost @click="control(record.userID)">
+                权限控制
             </a-button>
         </span>
     </a-table>
@@ -20,31 +13,20 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 const columns = [
     {
-        title: '合作方ID',
-        dataIndex: 'cooperationID',
+        title: '数据提供方',
+        dataIndex: 'username',
     },
     {
-        dataIndex: '合作方名称',
-        slots: { title: 'customTitle' },
-        scopedSlots: { customRender: 'cooperationName' },
+        title: '联系电话',
+        dataIndex: 'phoneNumber'
     },
     {
-        title: '电话号码',
-        dataIndex: 'phoneNumber',
-        scopedSlots: { customRender: 'phoneNumber' },
-    },
-    {
-        title: 'Ip地址',
-        dataIndex: 'ipAddress',
-        scopedSlots: {customRender: 'ipAddress'},
-    },
-    {
-        title: '服务名称',
-        dataIndex: 'serviceName',
+        title: '邮件地址',
+        dataIndex: 'email'
     },
     {
         title: '服务密码',
-        dataIndex: 'servicePassword',
+        dataIndex: 'password',
     },
     {
         title: '操作',
@@ -66,38 +48,27 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'cooperationsList',
+            'cooperationList',
             'projectID',
             'userId',
         ])
     },
     async mounted() {
         console.log(Number(this.projectID))
-        await this.getProjectCooperations(Number(this.projectID))
+        await this.getProjectCooperation(1)
     },
     methods: {
         ...mapActions([
-            "OpenAuthority",
-            "CloseAuthority",
-            "getProjectCooperations",
+            "controlAuthority",
+            "getProjectCooperation",
         ]),
-        Open(record){
-            let params = {
-                userId: Number(this.userId),
-                projectID: Number(this.projectID),
-                cooperationID: Number(record.cooperationID),
+        control(cooperationID) {
+            const data = {
+                cooperationID: cooperationID,
+                projectID: 1
             }
-            this.OpenAuthority(params)
-        },
-        Close(record){
-            console.log(record)
-            let params = {
-                userId: Number(this.userId),
-                projectID: Number(this.projectID),
-                cooperationID: Number(record.cooperationID),
-            }
-            this.CloseAuthority(params)
-        },
+            this.controlAuthority(data)
+        }
     }
 }
 </script>

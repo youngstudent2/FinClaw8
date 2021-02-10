@@ -8,9 +8,13 @@ import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserLoginForm;
 import com.example.finclaw.vo.account.UserRegisterForm;
+import com.example.finclaw.vo.account.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author cgc
@@ -51,12 +55,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User getUserInfo(int userID) {
+    public UserVO getUserInfo(int userID) {
         User user = accountMapper.getAccountById(userID);
         if (user == null) {
             return null;
         }
-        return user;
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return userVO;
     }
 
 //    @Override
@@ -114,5 +120,17 @@ public class AccountServiceImpl implements AccountService {
             return ResponseVO.buildFailure(OTHER_ERROR);
         }
         return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public List<UserVO> getAllUsers() throws Exception{
+        List<User> users = accountMapper.getAllUsers();
+        ArrayList<UserVO> userVOS = new ArrayList<>();
+        for(User user : users){
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(user,userVO);
+            userVOS.add(userVO);
+        }
+        return userVOS;
     }
 }
