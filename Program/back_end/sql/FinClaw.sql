@@ -136,10 +136,10 @@ CREATE TABLE `Model` (
 
 BEGIN;
 /*!40000 ALTER TABLE `Model` DISABLE KEYS */;
-INSERT INTO `Model` VALUES (1,'null','null', 'SVM');
-INSERT INTO `Model` VALUES (2,'null','null', 'Regression');
-INSERT INTO `Model` VALUES (3,'null','null', 'NeuralNetwork');
-INSERT INTO `Model` VALUES (4,'null','null', 'SecureBoost');
+INSERT INTO `Model` VALUES (1,'null','null', 'SVM','null');
+INSERT INTO `Model` VALUES (2,'null','null', 'Regression','null');
+INSERT INTO `Model` VALUES (3,'null','null', 'NeuralNetwork','null');
+INSERT INTO `Model` VALUES (4,'null','null', 'SecureBoost','null');
 /*!40000 ALTER TABLE `Model` ENABLE KEYS */;
 COMMIT;
 
