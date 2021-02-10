@@ -32,6 +32,11 @@
         where userID=#{userID} and hasDealt=true
     </select>
 
+    <update id="changeAmount">
+        update loanapplication set amount=#{amount}
+        where loanApplicationID=#{loanApplicationID}
+    </update>
+
     <resultMap id="loanApplication" type="com.example.finclaw.po.LoanApplication">
         <id column="loanApplicationID" property="loanApplicationID"/>
         <result column="userID" property="userID"/>
