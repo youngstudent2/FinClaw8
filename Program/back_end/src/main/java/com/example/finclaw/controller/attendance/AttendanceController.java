@@ -18,7 +18,7 @@ import java.util.List;
  *     因此实际是用于 数据提供方
  */
 @RestController
-@RequestMapping("/api/cooperation")
+@RequestMapping("/api/attendance")
 public class AttendanceController {
     private final static String OTHER_ERROR = "其他错误";
 

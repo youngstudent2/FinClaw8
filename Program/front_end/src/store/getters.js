@@ -3,6 +3,7 @@ const getters = {
   token: state => state.user.token,
   userId: state => state.user.userId,
   userInfo: state => state.user.userInfo,
+  AllUsers: state => state.user.AllUsers,
 
   // file
   uploadState: state => state.file.uploadState,

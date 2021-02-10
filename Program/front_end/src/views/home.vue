@@ -33,8 +33,6 @@
     </a-layout>
 
     <el-container>
-      
-
       <el-main style="height: 20%; margin-bottom: 3%">
         <el-row type="flex" justify="center" style="margin-top: 30%">
           <el-col :span="20">
