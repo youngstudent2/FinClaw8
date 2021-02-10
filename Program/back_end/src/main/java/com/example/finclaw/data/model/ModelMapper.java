@@ -13,6 +13,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ModelMapper {
+
     int createNewModel(Model model);
-    List<Model> getAllModels();
+
+    Model getModel(int modelID);
+
+
 }

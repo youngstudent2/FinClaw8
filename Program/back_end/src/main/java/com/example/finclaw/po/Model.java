@@ -9,6 +9,16 @@ public class Model {
     private String mid;
     private String modelVerion;//和mid一起标识当前版本模型
     private String modelName;//在load_bind时需要指明，predict时是使用mname来进行标识
+    private String jid;//query时使用
+
+    public Model(){}
+
+    public Model(String mid, String modelVerion, String modelName, String jid){
+        this.mid = mid;
+        this.modelVerion = modelVerion;
+        this.modelName = modelName;
+        this.jid = jid;
+    }
 
     public Integer getModelID() {
         return modelID;
@@ -17,7 +27,6 @@ public class Model {
     public void setModelID(Integer modelID) {
         this.modelID = modelID;
     }
-
 
     public String getMid() {
         return mid;
@@ -41,5 +50,13 @@ public class Model {
 
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    public String getJid() {
+        return jid;
+    }
+
+    public void setJid(String jid) {
+        this.jid = jid;
     }
 }

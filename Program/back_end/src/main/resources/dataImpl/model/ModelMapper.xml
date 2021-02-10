@@ -3,12 +3,12 @@
 <mapper namespace="com.example.finclaw.data.model.ModelMapper">
 
     <insert id="createNewModel" parameterType="com.example.finclaw.po.Model" useGeneratedKeys="true" keyProperty="modelID">
-        insert into Model(mid, modelName, modelVersion)
-        values(#{mid},#{modelName},#{modelVersion})
+        insert into Model(mid, jib, modelVersion)
+        values(#{mid},#{jid},#{modelVersion})
     </insert>
 
-    <select id="getAllModels" resultMap="Model">
-        select * from model
+    <select id="getModel" resultMap="Model">
+        select * from model where modelID=#{modelID}
     </select>
 
     <resultMap id="Model" type="com.example.finclaw.po.Model">
@@ -16,6 +16,7 @@
         <result column="mid" property="mid"/>
         <result column="modelName" property="modelName"/>
         <result column="modelVersion" property="modelVersion"/>
+        <result column="jid" property="jid"/>
     </resultMap>
 
 </mapper>
