@@ -122,9 +122,10 @@ DROP TABLE IF EXISTS `Model`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Model` (
                          `modelID` int(11) NOT NULL AUTO_INCREMENT,
-                         `mid` varchar(255) NOT NULL,
-                         `modelVersion` varchar(255) NOT NULL,
-                         `modelName` varchar(255) NOT NULL,
+                         `mid` varchar(255),
+                         `modelVersion` varchar(255),
+                         `modelName` varchar(255),
+                         `jid` varchar(255) ,
                          PRIMARY KEY (`modelID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

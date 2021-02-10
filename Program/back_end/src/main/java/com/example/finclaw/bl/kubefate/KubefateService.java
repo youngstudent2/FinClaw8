@@ -22,10 +22,26 @@ public interface KubefateService {
     public ResponseVO upload(Integer projectID);
 
     /**
-     * 必须在upload完成后才能执行，功能：在训练环境部署完成的前提下由监管方发起一次训练任务
+     * 必须在upload完成后才能执行，且一般upload后紧跟submit操作，功能：在训练环境部署完成的前提下由监管方发起一次训练任务
      * @return
      */
     public ResponseVO submit(Integer projectID);
+
+    /**
+     * 根据jid可以查询模型训练状态
+     * @param projectID
+     * @return
+     */
+    public ResponseVO query(Integer projectID);
+
+    /**
+     * 必须先绑定才能进行predict
+     * @param projectID
+     * @return
+     */
+    public ResponseVO load_bind(Integer projectID);
+
+    public ResponseVO predict();
 
 }
 

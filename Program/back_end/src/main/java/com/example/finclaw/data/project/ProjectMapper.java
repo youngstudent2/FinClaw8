@@ -1,5 +1,6 @@
 package com.example.finclaw.data.project;
 
+import com.example.finclaw.enums.ProjectStatus;
 import com.example.finclaw.po.Project;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -43,5 +44,19 @@ public interface ProjectMapper {
      * @return 一个项目PO
      */
     Project getProjectByID(Integer projectID);
+
+    /**
+     * submit后得到模型相关数值后存入model表，获得modelID
+     * @param projectID
+     * @param modelID
+     */
+    void setModelID(Integer projectID, Integer modelID);
+
+    /**
+     * 设置项目状态
+     * @param projectID
+     * @param projectStatus
+     */
+    void setProjectStatus(Integer projectID, ProjectStatus projectStatus);
 
 }

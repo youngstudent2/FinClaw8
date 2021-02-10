@@ -29,6 +29,14 @@
         select * from project where projectID=#{ProjectID}
     </select>
 
+    <update id="setModelID">
+        update Project set modelID=#{modelID} where projectID=#{projectID}
+    </update>
+
+    <update id="setProjectStatus">
+        update Project set status=#{projectStatus} where projectID=#{projectID}
+    </update>
+
     <resultMap id="Project" type="com.example.finclaw.po.Project">
         <id column="projectID" property="projectID"/>
         <result column="userID" property="userID"/>
