@@ -1,14 +1,21 @@
 package com.example.finclaw.blImpl.lending;
 
 import com.example.finclaw.bl.lending.LendingService;
+import com.example.finclaw.data.lending.LendingMapper;
+import com.example.finclaw.po.LendingHistory;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.lending.LendingForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class LendingServiceImpl implements LendingService{
+
+    @Autowired
+    private LendingMapper lendingMapper;
 
     /**
      * @param lendingForm
@@ -19,8 +26,21 @@ public class LendingServiceImpl implements LendingService{
      */
     @Override
     public ResponseVO addLendingForm(LendingForm lendingForm){
-        //todo 花旗API
-        return null;
+        LendingHistory lendingHistory = new LendingHistory(){{
+            setBankID(lendingForm.getBankID());
+            setLenderID(lendingForm.getLenderID());
+            setBankName(lendingForm.getBankName());
+            setAmount(lendingForm.getAmount());
+            setInterestRate(lendingForm.getInterestRate());
+            setPhoneNumber(lendingForm.getPhoneNumber());
+        }};
+        try{
+            //todo 花旗API
+            lendingMapper.createLendingHistory(lendingHistory);
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 201 :  Can't create new lendingHistory! Exam your information and try again.\n");
+        }
+        return ResponseVO.buildSuccess();
     }
 
 
@@ -33,8 +53,14 @@ public class LendingServiceImpl implements LendingService{
      */
     @Override
     public ResponseVO getBankLendingHistory(Integer bankID){
-        //todo 花旗API
-        return null;
+        List<LendingHistory> lendingHistories;
+        try{
+            //todo 花旗API
+            lendingHistories = lendingMapper.getBankLendingHistory(bankID);
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 202 : Can't get the lending information. Please input correct bank ID and try again.\n");
+        }
+        return ResponseVO.buildSuccess(lendingHistories);
     }
 
 
@@ -46,8 +72,14 @@ public class LendingServiceImpl implements LendingService{
      */
     @Override
     public ResponseVO getLendingHistory(Integer lendingHistoryID){
-        //todo 花旗API
-        return null;
+        LendingHistory lendingHistory;
+        try{
+            //todo 花旗API
+            lendingHistory = lendingMapper.getLendingHistory(lendingHistoryID);
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 203 : Can't get the lending information by this ID. Please input correct lendingHistory ID and try again.\n");
+        }
+        return ResponseVO.buildSuccess(lendingHistory);
     }
 
 
@@ -60,7 +92,12 @@ public class LendingServiceImpl implements LendingService{
 
     @Override
     public ResponseVO setDealt(Integer lendingHistoryID){
-        //todo 花旗API
-        return null;
+        try{
+            //todo 花旗API
+            lendingMapper.setDealt(lendingHistoryID);
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 204 : Can't set this lendingHistory DEALT! Please input correct lendingHistory ID and try again.\n");
+        }
+        return ResponseVO.buildSuccess();
     }
 }

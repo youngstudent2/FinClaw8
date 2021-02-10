@@ -65,5 +65,15 @@ public class ProjectController {
         }
     }
 
-
+    @GetMapping("getAllBankProjectInfo/{userID}")
+    public ResponseVO getAllBankProjectInfo(@PathVariable Integer userID){
+        try {
+            List<ProjectVO> projectVOList =  projectService.getAllBankProjectInfo(userID);
+            return ResponseVO.buildSuccess(projectVOList);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+    }
 }
