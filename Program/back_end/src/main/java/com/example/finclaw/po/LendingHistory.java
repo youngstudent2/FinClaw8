@@ -1,14 +1,35 @@
 package com.example.finclaw.po;
 
+/**
+ * @Author HX
+ * @Date 2021/2/2
+ */
+
+//银行借贷历史纪录
+
 public class LendingHistory {
+
     private Integer lendingHistoryID;
-    private Integer bankID;//银行的userID
-    private Integer lenderID;//贷款的小微企业的userID
+
+    //银行的userID
+    private Integer bankID;
+
+    //贷款的小微企业的userID
+    private Integer lenderID;
+
     private String bankName;
-    private double amount;//意愿贷款数额
-    private double interestRate;//年利率
+
+    //意愿贷款数额
+    private double amount;
+
+    //年利率
+    private double interestRate;
+
     private String phoneNumber;
-    private boolean hasDealt;//借款人完成借款时置为true
+
+    //借款人完成借款时置为true
+    private boolean hasDealt;
+
 
     public Integer getLendingHistoryID() {
         return lendingHistoryID;
