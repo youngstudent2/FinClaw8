@@ -12,6 +12,16 @@
                 <a-form-model-item label="申请金额">
                     <a-input v-model="form.amount" />
                 </a-form-model-item>
+                <a-form-model-item label="企业名称">
+                    <a-input v-model="form.companyName" />
+                </a-form-model-item>
+                <a-form-model-item label="社会统一认证代码">
+                    <a-input v-model="form.certificationCode" />
+                </a-form-model-item>
+                <a-form-model-item label="注册号">
+                    <a-input v-model="form.registrationCode" />
+                </a-form-model-item>
+                
                 <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
                     <a-button type="primary" @click="onSubmit">
                         提交
@@ -26,29 +36,65 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      labelCol: { span: 8 },
-      wrapperCol: { span: 10 },
-      form: {
-        name: '',
-        phoneNumber: '',
-        amount: '',
-      },
+    import {
+        mapGetters,
+        mapMutations,
+        mapActions
+    } from 'vuex'
+import registerVue from '../register.vue';
+    export default {
+        data() {
+            return {
+                labelCol: {
+                    span: 8
+                },
+                wrapperCol: {
+                    span: 10
+                },
+                form: {
+                    name: '',
+                    phoneNumber: '',
+                    amount: '',
+                    certificationCode: '',
+                    registrationCode: '',
+                    companyName: '',
+                },
+            };
+        },
+        components: {
+
+        },
+        computed: {
+            ...mapGetters([
+                'userId'
+            ])
+        },
+        methods: {
+            ...mapActions([
+                'addLoanApplication'
+            ]),
+
+            onSubmit() {
+                console.log('submit!', this.form);
+                var data = {
+                    userID: 7,
+                    amount: this.form.amount,
+                    phoneNumber: this.form.phoneNumber,
+                    certificationCode: this.form.certificationCode,
+                    registrationCode: this.form.registrationCode,
+                    companyName: this.form.companyName
+                }
+                console.log(data)
+                this.addLoanApplication(data)
+                this.form.resetFields()
+            },
+        },
     };
-  },
-  methods: {
-    onSubmit() {
-      console.log('submit!', this.form);
-    },
-  },
-};
 </script>
 
 <style>
-.center {
-    width: 70%;
-    margin: auto auto;
-}
+    .center {
+        width: 70%;
+        margin: auto auto;
+    }
 </style>

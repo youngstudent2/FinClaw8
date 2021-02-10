@@ -10,6 +10,7 @@ import cooperation from "./modules/cooperation";
 import predict from "./modules/predict";
 import project from "./modules/project";
 import train from "./modules/train";
+import loaner from "./modules/loaner"
 
 import getters from './getters'
 Vue.use(Vuex)
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     cooperation,
     predict,
     project,
+    loaner,
     //测试用的train
     train,
   },
