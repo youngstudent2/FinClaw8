@@ -3,6 +3,7 @@ package com.example.finclaw.data.project;
 import com.example.finclaw.enums.ProjectStatus;
 import com.example.finclaw.po.Project;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -50,13 +51,19 @@ public interface ProjectMapper {
      * @param projectID
      * @param modelID
      */
-    void setModelID(Integer projectID, Integer modelID);
+    void setModelID(@Param("projectID") Integer projectID,@Param("modelID") Integer modelID);
 
     /**
      * 设置项目状态
      * @param projectID
      * @param projectStatus
      */
-    void setProjectStatus(Integer projectID, ProjectStatus projectStatus);
+    void setProjectStatus(@Param("projectID") Integer projectID,@Param("projectStatus") ProjectStatus projectStatus);
 
+    /**
+     * 每个银行只能查看并修改自己创建的项目
+     * @param userID
+     * @return
+     */
+    List<Project> getAllBankProjectInfo(@Param("userID") Integer userID);
 }

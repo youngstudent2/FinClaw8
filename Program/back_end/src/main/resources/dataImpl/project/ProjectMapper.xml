@@ -37,6 +37,11 @@
         update Project set status=#{projectStatus} where projectID=#{projectID}
     </update>
 
+    <select id="getAllBankProjectInfo" resultType="com.example.finclaw.po.Project">
+        select * from Project
+        where userID=#{userID}
+    </select>
+
     <resultMap id="Project" type="com.example.finclaw.po.Project">
         <id column="projectID" property="projectID"/>
         <result column="userID" property="userID"/>

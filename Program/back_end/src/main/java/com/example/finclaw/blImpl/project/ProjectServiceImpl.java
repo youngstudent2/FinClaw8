@@ -94,6 +94,15 @@ public class ProjectServiceImpl implements ProjectService {
         return new ProjectVO(project);
     }
 
+    @Override
+    public List<ProjectVO> getAllBankProjectInfo(Integer userID) throws Exception{
+        List<Project> projectList = projectMapper.getAllBankProjectInfo(userID);
+        ArrayList<ProjectVO> projectVOArrayList = new ArrayList<>();
+        for (Project project : projectList) {
+            projectVOArrayList.add(new ProjectVO(project));
+        }
+        return projectVOArrayList;
+    }
 
     /**
      * 检验某个projectID是否在数据库中存在对应的一行

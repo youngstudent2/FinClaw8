@@ -20,4 +20,6 @@ public interface ProjectService {
     List<ProjectVO> getAllProject();
 
     ProjectVO getProject(Integer projectID);
+
+    List<ProjectVO> getAllBankProjectInfo(Integer userID) throws Exception;
 }
