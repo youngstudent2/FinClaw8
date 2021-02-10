@@ -472,6 +472,22 @@ public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String 
 public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role);
 ```
 
+#### 3.1.7 获取所有用户（新增）
+
+**url:** /api/account/getAllUsers
+
+```
+public ResponseVO getAllUsers();
+```
+
+#### 3.1.8 获取所有未注册用户（新增）
+
+**url:** /api/account/getUnauthorizedUsers
+
+```
+public ResponseVO getUnauthorizedUsers();
+```
+
 #### 删除
 
 - 注册数据管理员
