@@ -28,6 +28,11 @@
         select userID from Attendance where projectID=#{projectID}
     </select>
 
+    <select id="getAttendanceInfo" resultType="com.example.finclaw.po.Attendance">
+        select * from Attendance
+         where userID=#{userID} and projectID=#{projectID}
+    </select>
+
     <resultMap id="Attendance" type="com.example.finclaw.po.Attendance">
         <result column="userID" property="userID"/>
         <result column="projectID" property="projectID"/>

@@ -3,6 +3,7 @@ package com.example.finclaw.controller.attendance;
 import com.example.finclaw.bl.attendance.AttendService;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
+import com.example.finclaw.vo.attendance.AttendanceVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
 import com.example.finclaw.vo.server.ServerInfoVO;
@@ -81,6 +82,18 @@ public class AttendanceController {
         try {
             List<UserVO> userVOS= attendService.getProjectDataProducers(projectID);
             return ResponseVO.buildSuccess(userVOS);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+    }
+
+    @GetMapping("/getAttendanceInfo/{projectID}/{cooperationID}")
+    public ResponseVO getAttendanceInfo(@PathVariable Integer projectID, @PathVariable Integer cooperationID){
+        try{
+            AttendanceVO attendanceVO = attendService.getAttendanceInfo(projectID,cooperationID);
+            return ResponseVO.buildSuccess(attendanceVO);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

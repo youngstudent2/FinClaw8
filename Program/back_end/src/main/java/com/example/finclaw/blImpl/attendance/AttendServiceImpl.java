@@ -5,9 +5,11 @@ import com.example.finclaw.bl.attendance.AttendService;
 import com.example.finclaw.bl.project.ProjectService;
 import com.example.finclaw.data.attendance.AttendMapper;
 import com.example.finclaw.data.attendance.ServerInfoMapper;
+import com.example.finclaw.po.Attendance;
 import com.example.finclaw.po.ServerInfo;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
+import com.example.finclaw.vo.attendance.AttendanceVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
 import com.example.finclaw.vo.server.ServerInfoVO;
@@ -121,5 +123,13 @@ public class AttendServiceImpl implements AttendService {
             userVOS.add(userVO);
         }
         return userVOS;
+    }
+
+    @Override
+    public AttendanceVO getAttendanceInfo(Integer projectID, Integer cooperationID) throws Exception {
+        Attendance attendance = attendMapper.getAttendanceInfo(cooperationID,projectID);
+        AttendanceVO attendanceVO = new AttendanceVO();
+        BeanUtils.copyProperties(attendance, attendanceVO);
+        return attendanceVO;
     }
 }

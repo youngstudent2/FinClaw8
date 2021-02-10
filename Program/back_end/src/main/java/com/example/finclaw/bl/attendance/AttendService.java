@@ -2,6 +2,7 @@ package com.example.finclaw.bl.attendance;
 
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserVO;
+import com.example.finclaw.vo.attendance.AttendanceVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
 import com.example.finclaw.vo.server.ServerInfoVO;
@@ -25,4 +26,6 @@ public interface AttendService {
     ServerInfoVO getServerInfo(Integer projectID, Integer cooperationID);
 
     List<UserVO> getProjectDataProducers(Integer projectID);
+
+    AttendanceVO getAttendanceInfo(Integer projectID, Integer cooperationID) throws Exception;
 }

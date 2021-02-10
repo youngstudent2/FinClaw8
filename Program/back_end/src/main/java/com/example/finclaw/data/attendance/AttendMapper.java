@@ -1,5 +1,6 @@
 package com.example.finclaw.data.attendance;
 
+import com.example.finclaw.po.Attendance;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,7 @@ public interface AttendMapper {
     List<Integer> getCooperationProjectIDs(Integer cooperationID);
 
     List<Integer> getProjectDataProducerIDs(Integer projectID);
+
+    Attendance getAttendanceInfo(@Param("userID") Integer userID, @Param("projectID") Integer projectID);
 }
 
