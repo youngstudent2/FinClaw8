@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.finclaw.data.lending.LendingMapper">
+
+    <insert id="createNewLendingHistory" parameterType="com.example.finclaw.po.LendingHistory" useGeneratedKeys="true" keyProperty="lendingHistoryID">
+        insert into lendingHistory(bankID,lenderID,bankName,amount,interestRate,phoneNumber,hasDealt)
+        values(#{bankID},#{lenderID},#{bankName},#{amount},#{interestRate},#{phoneNumber},#{hasDealt})
+    </insert>
+
+    <delete id="deleteLendingHistory">
+        delete * from lendingHistory
+        where lendingHistoryID=#{lendingHistoryID}
+    </delete>
+
+    <select id="getBankLendingHistory" resultMap="lendingHistory" >
+        select * from lendingHistory
+        where bankID=#{bankID}
+    </select>
+
+    <select id="getLendingHistory" resultMap="lendingHistory" >
+        select * from lendingHistory
+        where lendingHistoryID=#{lendingHistoryID}
+    </select>
+
+    <update id="setDealt">
+        update lendingHistory set hasDealt=true
+        where lendingHistoryID=#{lendingHistoryID}
+    </update>
+
+
+    <resultMap id="lendingHistory" type="com.example.finclaw.po.LendingHistory">
+        <id column="lendingHistoryID" property="lendingHistoryID"/>
+        <result column="bankID" property="bankID"/>
+        <result column="lenderID" property="lenderID"/>
+        <result column="bankName" property="bankName"/>
+        <result column="amount" property="amount"/>
+        <result column="interestRate" property="interestRate"/>
+        <result column="phoneNumber" property="phoneNumber"/>
+        <result column="hasDealt" property="hasDealt"/>
+    </resultMap>
+</mapper>
