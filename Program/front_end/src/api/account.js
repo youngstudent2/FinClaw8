@@ -22,8 +22,15 @@ export function getUserInfoAPI(userID){
 
 export function getAllUserInfoAPI() {
     return axios({
-        url: `${api.accountPre}/getAllUserInfo`,
+        url: `${api.accountPre}/getAllUsers`,
         method: 'GET',
+    })
+}
+
+export function getUnauthorizedUsersAPI() {
+    return axios({
+        url: `${api.accountPre}/getUnauthorizedUsers`,
+        method: `GET`,
     })
 }
 

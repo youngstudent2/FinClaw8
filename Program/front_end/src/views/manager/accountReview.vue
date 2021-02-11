@@ -1,14 +1,62 @@
 <template>
-    <div>
-    <h2>后端没有审核相关的代码,俺也不知道这个页面要做成啥样（一脸懵逼）</h2>
-        <p>需要后端提供一个包含所有待审核账号信息的列表</p>
-    </div>
+    <a-table :columns="accountColumns" :data-source="unauthorizedUsers">
+
+    </a-table>
 </template>
 
 <script>
-export default {
+    import {mapActions, mapMutations, mapGetters} from "vuex";
+    const accountColumns = [
+        {
+            title: '用户编号',
+            dataIndex: 'userID',
+        },
+        {
+            title: '用户名',
+            dataIndex: 'username',
+        },
+        {
+            title: '用户邮箱',
+            dataIndex: 'email',
+        },
+        {
+            title: '密码',
+            dataIndex: 'password',
+        },
+        {
+            title: '联系电话',
+            dataIndex: 'phoneNumber',
+        },
+        {
+            title: '角色',
+            dataIndex: 'role',
+        },
+    ];
+    export default {
+        name: 'accountReview',
+        data(){
+            return {
+                accountColumns,
+            }
+        },
+        components: {
 
-}
+        },
+        computed: {
+            ...mapGetters([
+                'unauthorizedUsers',
+            ])
+        },
+        async mounted() {
+            await this.getUnauthorizedUsers();
+            console.log(this.unauthorizedUsers);
+        },
+        methods: {
+            ...mapActions([
+                'getUnauthorizedUsers',
+            ]),
+        }
+    }
 </script>
 
 <style>

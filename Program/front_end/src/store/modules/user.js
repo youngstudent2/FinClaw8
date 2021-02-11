@@ -14,12 +14,14 @@ import {
     getAllDataManagersAPI,
     deleteUserAPI
 } from '@/api/account'
+import {getUnauthorizedUsersAPI} from "../../api/account";
 
 const getDefaultState = () => {
     return {
         userId: '',
         userInfo: {},
-        AllUsers:[],
+        AllUsers: [],
+        unauthorizedUsers: [],
         DataManagerRegistrationModalVisible: false ,
     }
 };
@@ -51,8 +53,11 @@ const user = {
             state.AllUsers = data;
         },
         set_DataManagerRegistrationModalVisible: function(state,data) {
-            state.DataManagerRegistrationModalVisible = data
+            state.DataManagerRegistrationModalVisible = data;
         },
+        set_UnauthorizedUsers: function(state , data){
+            state.unauthorizedUsers = data;
+        }
     },
 
     actions: {
@@ -120,8 +125,16 @@ const user = {
         },
         getAllUserInfo: async({ state, commit }) => {
             const res = await getAllUserInfoAPI();
+            //console.log(res);
             if(res){
                 commit('set_AllUsers', res);
+            }
+        },
+        getUnauthorizedUsers: async({ state, commit }) => {
+            const res = await getUnauthorizedUsersAPI();
+            //console.log(res);
+            if(res){
+                commit('set_UnauthorizedUsers', res);
             }
         },
         updateUserInfo: async({ state, dispatch }, data) => {

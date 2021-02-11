@@ -1,15 +1,18 @@
 <template>
-    <a-table :columns="accountColumns" :datasrc="AllUsers">
+    <a-table :columns="accountColumns" :data-source="AllUsers" :bordered=true>
     </a-table>
 </template>
 
 <script>
-    import {mapActions, mapGetters} from "vuex";
-
+    import {mapActions, mapMutations, mapGetters} from "vuex";
     const accountColumns = [
         {
             title: '用户编号',
-            dataIndex: 'userID'
+            dataIndex: 'userID',
+        },
+        {
+            title: '用户名',
+            dataIndex: 'username',
         },
         {
             title: '用户邮箱',
@@ -17,19 +20,15 @@
         },
         {
             title: '密码',
-            dataIndex: 'password'
-        },
-        {
-            title: '用户名',
-            dataIndex: 'username'
+            dataIndex: 'password',
         },
         {
             title: '联系电话',
-            dataIndex: 'phoneNumber'
+            dataIndex: 'phoneNumber',
         },
         {
             title: '角色',
-            dataIndex: 'role'
+            dataIndex: 'role',
         },
     ];
 export default {
