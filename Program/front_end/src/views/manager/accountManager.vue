@@ -1,5 +1,8 @@
 <template>
     <a-table :columns="accountColumns" :data-source="AllUsers" :bordered=true>
+        <span slot="action" slot-scope="record">
+            <a-button type="danger" @click="deleteUsers(record.userID)">删除用户</a-button>
+        </span>
     </a-table>
 </template>
 
@@ -30,6 +33,11 @@
             title: '角色',
             dataIndex: 'role',
         },
+        {
+            title: '操作',
+            key: 'action',
+            scopedSlots: {customRender: 'action'},
+        }
     ];
 export default {
     name: 'accountManage',
@@ -52,7 +60,11 @@ export default {
     methods: {
         ...mapActions([
             'getAllUserInfo',
+            'deleteUser',
         ]),
+        deleteUsers(userID){
+            this.deleteUser(userID);
+        }
     }
 }
 </script>

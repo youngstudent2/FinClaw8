@@ -14,7 +14,7 @@ import {
     getAllDataManagersAPI,
     deleteUserAPI
 } from '@/api/account'
-import {getUnauthorizedUsersAPI} from "../../api/account";
+import {getUnauthorizedUsersAPI, reviewUserAPI} from "../../api/account";
 
 const getDefaultState = () => {
     return {
@@ -22,7 +22,9 @@ const getDefaultState = () => {
         userInfo: {},
         AllUsers: [],
         unauthorizedUsers: [],
-        DataManagerRegistrationModalVisible: false ,
+        DataManagerRegistrationModalVisible: false,
+        accountModalVisible: false,
+        temp: {},
     }
 };
 
@@ -57,7 +59,13 @@ const user = {
         },
         set_UnauthorizedUsers: function(state , data){
             state.unauthorizedUsers = data;
-        }
+        },
+        set_accountModalVisible: (state, data) => {
+            state.accountModalVisible = data;
+        },
+        set_temp: (state, data) => {
+            state.temp = data;
+        },
     },
 
     actions: {
@@ -157,6 +165,16 @@ const user = {
             // else{
             //     message.error('删除失败')
             // }
+        },
+        reviewUser: async({commit,dispatch},userID)=>{
+            const res = await reviewUserAPI(userID);
+            if(res){
+                dispatch('getUnauthorizedUsers');
+                message.success('操作成功');
+            }
+            else{
+                message.error('操作失败');
+            }
         },
         logout: async({ commit }) => {
             removeToken()

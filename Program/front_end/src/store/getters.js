@@ -5,6 +5,8 @@ const getters = {
   userInfo: state => state.user.userInfo,
   AllUsers: state => state.user.AllUsers,
   unauthorizedUsers: state => state.user.unauthorizedUsers,
+  accountModalVisible: state => state.user.accountModalVisible,
+  temp: state => state.user.temp,
 
   // file
   uploadState: state => state.file.uploadState,

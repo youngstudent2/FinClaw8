@@ -75,6 +75,14 @@ export function deleteUserAPI(params) {
     })
 }
 
+export function reviewUserAPI(userID){
+    return axios({
+        url: `${api.accountPre}/${userID}/reviewUser`,
+        method: `POST`,
+        userID
+    })
+}
+
 export function getAllDataManagersAPI(){
     return axios({
         url: `${api.accountPre}/getAllDataManagers`,
