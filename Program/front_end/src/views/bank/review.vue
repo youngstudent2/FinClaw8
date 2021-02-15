@@ -1,5 +1,6 @@
 <template>
   <div>
+      <a-button @click="addProject">添加项目</a-button>
       <a-row :gutter="[6, 2]" style="width: 100%">
           <a-col
               v-for="item in 8"
@@ -22,12 +23,43 @@
               </div>
           </a-col>
       </a-row>
+      <AddProjectModal></AddProjectModal>
   </div>
 </template>
 
 <script>
-export default {
 
+import {mapActions, mapGetters, mapMutations} from "vuex";
+import AddProjectModal from "./components/addProjectModal";
+
+export default {
+    name: 'review',
+    data(){
+        return {
+
+        };
+    },
+    components: {
+        AddProjectModal
+    },
+    computed: {
+        ...mapGetters([
+        ])
+    },
+    async mounted() {
+        //await this.getProjectCooperation(1)
+    },
+    methods: {
+        ...mapMutations([
+            'set_addProjectModalVisible'
+        ]),
+        ...mapActions([
+        ]),
+        addProject() {
+
+            this.set_addProjectModalVisible(true)
+        }
+    }
 }
 </script>
 

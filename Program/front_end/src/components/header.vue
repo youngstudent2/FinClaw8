@@ -62,7 +62,7 @@
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
-import AddProjectModal from "../views/project/components/addProjectModal";
+import AddProjectModal from "../views/bank/components/addProjectModal";
 const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
 export default {
   name: "header",

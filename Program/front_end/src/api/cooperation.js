@@ -70,6 +70,15 @@ export function setChosenStatusAPI(projectID, cooperationID, isChosen) {
     return axios({
         url:`${api.cooperation}/setChosenStatus/${projectID}/${cooperationID}`,
         method: 'POST',
-        isChosen,
+        params: {
+            isChosen: isChosen
+        },
+    })
+}
+
+export function getAttendanceInfoAPI(projectID, cooperationID) {
+    return axios({
+        url:`${api.cooperation}/getAttendanceInfo/${projectID}/${cooperationID}`,
+        method: 'GET'
     })
 }

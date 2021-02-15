@@ -52,6 +52,7 @@
         computed: {
             ...mapGetters([
                 'addProjectModalVisible',
+                'userId'
             ]),
         },
         methods: {
@@ -69,6 +70,7 @@
                 this.form.validateFieldsAndScroll((err, values) => {
                     if (!err) {
                         const data = {
+                            userID: this.userId,
                             projectName: this.form.getFieldValue('projectName'),
                             startTime: moment(this.form.getFieldValue('date')[0]).format('YYYY-MM-DD'),
                             endTime: moment(this.form.getFieldValue('date')[1]).format('YYYY-MM-DD'),
