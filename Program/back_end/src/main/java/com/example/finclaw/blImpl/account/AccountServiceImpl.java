@@ -65,11 +65,17 @@ public class AccountServiceImpl implements AccountService {
         return userVO;
     }
 
-//    @Override
-//    public ResponseVO deleteUser(int userID) {
-//        accountMapper.deleteUser(userID);
-//        return ResponseVO.buildSuccess(true);
-//    }
+    @Override
+    public ResponseVO deleteUser(int userID) {
+        try {
+            accountMapper.deleteUser(userID);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
+    }
 
     @Override
     public ResponseVO updateUserInfo(int userID,UserForm userForm) {

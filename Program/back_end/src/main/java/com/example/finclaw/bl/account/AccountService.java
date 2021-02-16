@@ -38,7 +38,7 @@ public interface AccountService {
      */
     UserVO getUserInfo(int userID);
 
-//    ResponseVO deleteUser(int userID);
+    ResponseVO deleteUser(int userID);
 
     ResponseVO updateUserInfo(int userID,UserForm userForm);
 
