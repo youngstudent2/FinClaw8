@@ -1,10 +1,8 @@
 package com.example.finclaw.controller.account;
 
 import com.example.finclaw.bl.account.AccountService;
-import com.example.finclaw.po.User;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,18 +48,18 @@ public class AccountController {
     }
 
     @PostMapping("/updateUserInfo/{userID}")
-    public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm userForm){
+    public ResponseVO updateUserInfo(@PathVariable int userID, @RequestBody UserForm userForm){
         return accountService.updateUserInfo(userID, userForm);
     }
 
     @PostMapping("/updatePassword/{userID}")
-    public ResponseVO updatePassword(@PathVariable int userID,@RequestParam String oldPassword,@RequestParam String newPassword){
+    public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String oldPassword, @RequestParam String newPassword){
         return accountService.updatePassword(userID,oldPassword,newPassword);
     }
 
     // 表示该用户还没有经过认证
     @PostMapping("/registerIdentity/{userID}")
-    public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role){
+    public ResponseVO registerIdentity(@PathVariable int userID, @RequestParam int role){
         return accountService.registerIdentity(userID,role);
     }
 
@@ -87,5 +85,20 @@ public class AccountController {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure(OTHER_ERROR);
         }
+    }
+
+    @PostMapping("/deleteUser/{userID}")
+    public ResponseVO deleteUser(@PathVariable int userID){
+        return accountService.deleteUser(userID);
+    }
+
+    @PostMapping("/verifyAuthentication/{userID}")
+    public ResponseVO verifyAuthentication(@PathVariable int userID){
+        return accountService.examineAuthentication(userID, 1);
+    }
+
+    @PostMapping("/rejectAuthentication/{userID}")
+    public ResponseVO rejectAuthentication(@PathVariable int userID){
+        return accountService.examineAuthentication(userID,0);
     }
 }
