@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="myheader">
     <div class="label">
       <img
         :src="logo_url"

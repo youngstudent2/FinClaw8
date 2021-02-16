@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="myheader">
     <el-menu
       class="el-menu"
       mode="horizontal"
@@ -62,10 +62,8 @@
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
-import AddProjectModal from "../views/bank/components/addProjectModal";
-const colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
 export default {
-  name: "header",
+  name: "myheader",
   inject: ["reload"],
   data() {
     return {
@@ -74,38 +72,27 @@ export default {
     };
   },
   components: {
-    //AddProjectModal,
   },
   computed: {
-    randomColor: function () {
-      return colorList[Math.floor(Math.random() * colorList.length + 1) - 1];
-    },
     ...mapGetters([
       "userId",
       "userInfo",
-      "projectID",
-      "projectList",
-      "projectInfo",
-      "addProjectModalVisible",
     ]),
   },
   async mounted() {
-    await this.getAllProject();
-    if (this.projectID === null) {
-      this.set_currentProject(this.projectList[0]);
-      this.getProjectData({
-        operatorID: Number(this.userId),
-        projectID: this.projectID,
-      });
-    }
-  },
+        await this.getUserInfo()
+        console.log(this.userInfo)
+    },
   methods: {
-    ...mapMutations(["set_addProjectModalVisible", "set_currentProject"]),
-    ...mapActions(["logout", "getUserInfo", "getProjectData", "getAllProject"]),
+    ...mapActions(["logout", "getUserInfo"]),
     selectMenu(v) {},
     async quit() {
       await this.$store.dispatch("logout");
       await this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    },
+    async mounted() {
+        await this.getUserInfo()
+        console.log(this.userInfo)
     },
     jumpToUserInfo() {
       this.$router.push({
@@ -125,33 +112,30 @@ export default {
       this.$router.push("/register");
     },
     jumpToCenter() {
+      alert("user id = "+this.userId)
+      console.log("userinfo:",this.userInfo)
       const r = this.userInfo.role
-      if (r == "bank") {
+      if (r == "Bank") {
         this.$router.push("/bank");
       }
-      else if (r == "cooperator") {
+      else if (r == "DataProvider") {
         this.$router.push("/cooperator");
       }
-      else if (r == "loaner") {
+      else if (r == "Company") {
         this.$router.push("/loaner");
       }
-      else if (r == "manager") {
+      else if (r == "Admin") {
         this.$router.push("/manager");
       }
-      else if (r == "unathority") {
+      else if (r == "UnauthorizedCompany") {
         alert("审核未通过，请等待审核通过")
       }
       else {
-        alert("未登录，请先登录")
+        this.$router.push("/login");
       }
     },
-    changeProject(project) {
-      this.set_currentProject(project);
-      this.reload();
-    },
-    add() {
-      this.set_addProjectModalVisible(true);
-    },
+
+   
   },
 };
 </script>

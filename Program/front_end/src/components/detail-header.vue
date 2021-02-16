@@ -1,5 +1,5 @@
 <template>
-  <div id="header">
+  <div id="myheader">
     <el-menu
       class="el-menu"
       mode="horizontal"
@@ -45,7 +45,7 @@
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
-  name: "header",
+  name: "detailHeader",
   data() {
     return {
       logo_url:

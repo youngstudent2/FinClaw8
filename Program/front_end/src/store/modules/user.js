@@ -75,13 +75,13 @@ const user = {
                 setToken(res.userID)
                 commit('set_userId', res.userID)
                 dispatch('getUserInfo')
-                if(res.role == "Cooperation"){
+                if(res.role == "DataProvider"){
                     router.push('/cooperator')
                 }
                 else if (res.role == "Bank"){
                     router.push('/bank')
                 }
-                else if (res.role == 'loaner'){
+                else if (res.role == 'Company'){
                     router.push('/loaner')
                 }
                 else if (res.role == 'Admin') {
