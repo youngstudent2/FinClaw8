@@ -14,7 +14,7 @@
             >
               <div>
                 <router-link tag='detail' :to="{name:'detail',params:{projectId:0}}">
-                <a-card hoverable style="width: 300px">
+                <a-card hoverable style="width: 300px; margin: 10px; padding: 10px">
                   <img
                     slot="cover"
                     alt="example"
@@ -33,8 +33,8 @@
     </a-layout>
 
     <el-container>
-      <el-main style="height: 20%; margin-bottom: 3%">
-        <el-row type="flex" justify="center" style="margin-top: 30%">
+      <el-main style="height: 100%; margin-bottom: 3%">
+        <el-row type="flex" justify="center" style="margin-top: 5%">
           <el-col :span="20">
             <el-carousel :interval="4000" type="card" height="400px">
               <el-carousel-item v-for="item in 6" :key="item">
