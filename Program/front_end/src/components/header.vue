@@ -112,8 +112,6 @@ export default {
       this.$router.push("/register");
     },
     jumpToCenter() {
-      alert("user id = "+this.userId)
-      console.log("userinfo:",this.userInfo)
       const r = this.userInfo.role
       if (r == "Bank") {
         this.$router.push("/bank");

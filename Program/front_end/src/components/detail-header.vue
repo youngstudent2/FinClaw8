@@ -52,32 +52,15 @@ export default {
         "https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/finclaw_logo.png",
     };
   },
-  components: {
-    //AddProjectModal,
-  },
   computed: {
     ...mapGetters([
       "userId",
       "userInfo",
-      "projectID",
-      "projectList",
-      "projectInfo",
-      "addProjectModalVisible",
     ]),
   },
-  async mounted() {
-    await this.getAllProject();
-    if (this.projectID === null) {
-      this.set_currentProject(this.projectList[0]);
-      this.getProjectData({
-        operatorID: Number(this.userId),
-        projectID: this.projectID,
-      });
-    }
-  },
+
   methods: {
-    ...mapMutations(["set_addProjectModalVisible", "set_currentProject"]),
-    ...mapActions(["logout", "getUserInfo", "getProjectData", "getAllProject"]),
+    ...mapActions(["logout", "getUserInfo"]),
     selectMenu(v) {},
     async quit() {
       await this.$store.dispatch("logout");
@@ -102,23 +85,23 @@ export default {
     },
     jumpToCenter() {
       const r = this.userInfo.role
-      if (r == "bank") {
+      if (r == "Bank") {
         this.$router.push("/bank");
       }
-      else if (r == "cooperator") {
+      else if (r == "DataProvider") {
         this.$router.push("/cooperator");
       }
-      else if (r == "loaner") {
+      else if (r == "Company") {
         this.$router.push("/loaner");
       }
-      else if (r == "manager") {
+      else if (r == "Admin") {
         this.$router.push("/manager");
       }
-      else if (r == "unathority") {
+      else if (r == "UnauthorizedCompany") {
         alert("审核未通过，请等待审核通过")
       }
       else {
-        alert("未登录，请先登录")
+        this.$router.push("/login");
       }
     },
 
