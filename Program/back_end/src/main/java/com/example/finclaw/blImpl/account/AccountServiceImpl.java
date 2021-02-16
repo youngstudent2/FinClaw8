@@ -26,6 +26,7 @@ public class AccountServiceImpl implements AccountService {
     private final static String UPDATE_ERROR = "修改失败";
     private final static String ACCOUNT_INFO_ERROR = "用户名或密码错误";
     private final static String OTHER_ERROR = "其他错误";
+    private final static String AUTHORIZED_ALREADY = "该用户已完成审核";
 
     @Autowired
     private AccountMapper accountMapper;
@@ -140,6 +141,35 @@ public class AccountServiceImpl implements AccountService {
         return usersToUserVOs(users);
     }
 
+    @Override
+    public ResponseVO examineAuthentication(Integer userID, Integer isPassed) {
+        try{
+            if(isPassed == 0){
+                accountMapper.setRole(userID, UserType.Rejected);
+            }
+            else {
+                User user = accountMapper.getAccountById(userID);
+                switch (user.getRole()){
+                    case UnauthorizedBank:
+                        accountMapper.setRole(userID, UserType.Bank);
+                        break;
+                    case UnauthorizedCompany:
+                        accountMapper.setRole(userID,UserType.Company);
+                        break;
+                    case UnauthorizedDataProvider:
+                        accountMapper.setRole(userID, UserType.DataProvider);
+                        break;
+                    default:
+                        return ResponseVO.buildFailure(AUTHORIZED_ALREADY);
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+        return ResponseVO.buildSuccess();
+    }
 
     /**
      * 将user列表转变为userVO列表
