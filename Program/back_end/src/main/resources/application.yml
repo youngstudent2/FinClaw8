@@ -1,10 +1,10 @@
 spring:
   datasource:
-     #虚拟机用，docker里用localhost连不了mysql，必须指定虚拟机ip
-     #url: jdbc:mysql://172.17.0.1:3306/finclaw?serverTimezone=CTT&characterEncoding=UTF-8
+    #虚拟机用，docker里用localhost连不了mysql，必须指定虚拟机ip
+     #url: jdbc:mysql://192.167.0.1:3306/finclaw?serverTimezone=CTT&characterEncoding=UTF-8
      url: jdbc:mysql://localhost:3306/finclaw?serverTimezone=CTT&characterEncoding=UTF-8
      username: root
-     password: root
+     password: 20000508
      driver-class-name: com.mysql.cj.jdbc.Driver
      max-active: 200
      max-idle: 20
