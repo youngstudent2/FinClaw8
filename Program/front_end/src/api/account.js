@@ -51,17 +51,10 @@ export function updatePasswordAPI(params) {
 }
 
 
-export function registerDataManagerAPI(data){
-    return axios({
-        url: `${api.accountPre}/registerDataManager`,
-        method: 'POST',
-        data
-    })
-}
 
-export function registerCooperationAPI(data){
+export function registerAPI(data) {
     return axios({
-        url: `${api.accountPre}/registerCooperation`,
+        url: `${api.accountPre}/register`,
         method:'POST',
         data
     })

@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <div class="background" style="position:absolute;z-index:-1;width:100%;height:100%;top:0px;left:0px;">
+        <div class="background" style="position:absolute;z-index:-1;width:100%;top:0px;left:0px;">
             <img src='https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/登录.png' width="100%" height="100%"/>
         </div>
         <a-form id="formLogin" class="user-layout-login" ref="formLogin" :form="form">

@@ -9,8 +9,7 @@ import {
     getUserInfoAPI,
     getAllUserInfoAPI,
     updateUserInfoAPI,
-    registerDataManagerAPI,
-    registerCooperationAPI,
+    registerAPI,
     getAllDataManagersAPI,
     deleteUserAPI
 } from '@/api/account'
@@ -95,23 +94,15 @@ const user = {
                 }
             }
         },
-        registerDataManager: async({ commit, dispatch }, data) => {
-            const res = await registerDataManagerAPI(data)
-            if(typeof(res) != "undefined"){
-                commit('set_DataManagerRegistrationModalVisible',false)
-                message.success('注册成功')
-                dispatch('getAllDataManagers')
-            }
-            // else
-        },
+
         getAllDataManagers: async({ commit }) => {
             const res = await getAllDataManagersAPI()
             if(res){
                 commit('set_AllDataManagers',res)
             }
         },
-        registerCooperation: async({ commit }, data) => {
-            const res = await registerCooperationAPI(data)
+        register: async({ commit }, data) => {
+            const res = await registerAPI(data)
             if(typeof(res) != undefined){
                 message.success('注册成功')
             }
