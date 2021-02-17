@@ -23,8 +23,8 @@ spring:
     #最大支持请求大小
       max-request-size: 100MB
 
-#文件存储路径
-filepath: "F:/User"
+#文件存储根路径
+rootPath: "F:/Test"
 
 mybatis:
   mapper-locations: classpath:dataImpl/*/*Mapper.xml

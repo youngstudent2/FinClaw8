@@ -3,10 +3,7 @@ package com.example.finclaw.controller.kubefate;
 import com.example.finclaw.bl.kubefate.KubefateService;
 import com.example.finclaw.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: LLY
@@ -22,6 +19,26 @@ public class KubefateController {
     @PostMapping("/deploy/{projectID}")
     public ResponseVO deploy(@PathVariable Integer projectID){
         return kubefateService.deploy(projectID);
+    }
+
+    @PostMapping("/upload/{projectID}")
+    public ResponseVO upload(@PathVariable Integer projectID){
+        return kubefateService.upload(projectID);
+    }
+
+    @PostMapping("/submit/{projectID}")
+    public ResponseVO submit(@PathVariable Integer projectID){
+        return kubefateService.submit(projectID);
+    }
+
+    @GetMapping("/query/{projectID}")
+    public ResponseVO query(@PathVariable Integer projectID){
+        return kubefateService.query(projectID);
+    }
+
+    @PostMapping("/loadBind/{projectID}")
+    public ResponseVO loadBind(@PathVariable Integer projectID){
+        return kubefateService.loadBind(projectID);
     }
 
 }

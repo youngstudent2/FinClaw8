@@ -39,7 +39,7 @@ public interface KubefateService {
      * @param projectID
      * @return
      */
-    public ResponseVO load_bind(Integer projectID);
+    public ResponseVO loadBind(Integer projectID);
 
     public ResponseVO predict();
 

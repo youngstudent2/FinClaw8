@@ -166,15 +166,18 @@ public class KubefateServiceImpl implements KubefateService {
             }
         }
         if(failedFlag){
+            projectMapper.setProjectStatus(projectID,ProjectStatus.Failed);
             return ResponseVO.buildSuccess(ProjectStatus.Failed);
         }else if(runningFlag){
+            projectMapper.setProjectStatus(projectID,ProjectStatus.Training);
             return ResponseVO.buildSuccess(ProjectStatus.Training);
         }
+        projectMapper.setProjectStatus(projectID,ProjectStatus.Finished);
         return ResponseVO.buildSuccess(ProjectStatus.Finished);
     }
 
     @Override
-    public ResponseVO load_bind(Integer projectID) {
+    public ResponseVO loadBind(Integer projectID) {
         Project project = projectMapper.getProjectByID(projectID);
         Model model = modelMapper.getModel(project.getModelID());
         String mid = model.getMid();
