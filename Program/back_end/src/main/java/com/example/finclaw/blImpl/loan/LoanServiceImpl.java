@@ -70,17 +70,28 @@ public class LoanServiceImpl implements LoanService {
      * 查看所有贷款申请记录
      */
     @Override
-    public ResponseVO getAllLoanApplication(Integer userID){
+    public ResponseVO getUserLoanApplication(Integer userID){
         List<LoanApplication> loanApplications;
         try{
             //todo 调用花旗API
-            loanApplications = loanMapper.getAllLoanApplication(userID);
+            loanApplications = loanMapper.getUserLoanApplication(userID);
         }catch (Exception e){
             return ResponseVO.buildFailure("Error 103 : Can't get the loan information. Please input correct user ID and try again.\n");
         }
         return ResponseVO.buildSuccess(loanApplications);
     }
 
+
+    @Override
+    public ResponseVO getAllLoanApplication(){
+        List<LoanApplication> loanApplications;
+        try {
+            loanApplications = loanMapper.getAllLoanApplication();
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 104 : Can't get the loan information. Please try again.\n");
+        }
+        return ResponseVO.buildSuccess(loanApplications);
+    }
 
     /**
      * @param loanApplicationID
@@ -95,7 +106,7 @@ public class LoanServiceImpl implements LoanService {
             //todo 调用花旗API
             loanApplication = loanMapper.getLoanApplication(loanApplicationID);
         }catch (Exception e){
-            return ResponseVO.buildFailure("Error 104 : Can't get the loan information by this ID. Please input correct loanApplication ID and try again.\n");
+            return ResponseVO.buildFailure("Error 105 : Can't get the loan information by this ID. Please input correct loanApplication ID and try again.\n");
         }
         return ResponseVO.buildSuccess(loanApplication);
     }
@@ -114,7 +125,7 @@ public class LoanServiceImpl implements LoanService {
             //todo 调用花旗API
             loanMapper.setDealt(loanApplicationID);
         }catch (Exception e){
-            return ResponseVO.buildFailure("Error 105 : Can't set this loanApplication DEALT! Please input correct loanApplication ID and try again.\n");
+            return ResponseVO.buildFailure("Error 106 : Can't set this loanApplication DEALT! Please input correct loanApplication ID and try again.\n");
         }
         return ResponseVO.buildSuccess();
     }
@@ -133,7 +144,7 @@ public class LoanServiceImpl implements LoanService {
             //todo 调用花旗API
             loanApplications = loanMapper.getUserLoanHistory(userID);
         }catch (Exception e){
-            return ResponseVO.buildFailure("Error 106 : Can't get the loan history! Please input correct user ID and try again.\n");
+            return ResponseVO.buildFailure("Error 107 : Can't get the loan history! Please input correct user ID and try again.\n");
         }
         return ResponseVO.buildSuccess(loanApplications);
     }

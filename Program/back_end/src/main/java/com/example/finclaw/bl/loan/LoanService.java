@@ -13,7 +13,9 @@ public interface LoanService {
 
     ResponseVO deleteLoanApplication(Integer loanApplicationID);
 
-    ResponseVO getAllLoanApplication(Integer userID);
+    ResponseVO getUserLoanApplication(Integer userID);
+
+    ResponseVO getAllLoanApplication();
 
     ResponseVO getLoanApplication(Integer loanApplicationID);
 

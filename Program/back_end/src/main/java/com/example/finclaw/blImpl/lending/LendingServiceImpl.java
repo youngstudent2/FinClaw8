@@ -28,8 +28,9 @@ public class LendingServiceImpl implements LendingService{
     public ResponseVO addLendingForm(LendingForm lendingForm){
         LendingHistory lendingHistory = new LendingHistory(){{
             setBankID(lendingForm.getBankID());
-            setLenderID(lendingForm.getLenderID());
             setBankName(lendingForm.getBankName());
+            setLenderID(lendingForm.getLenderID());
+            setLenderName(lendingForm.getLenderName());
             setAmount(lendingForm.getAmount());
             setInterestRate(lendingForm.getInterestRate());
             setPhoneNumber(lendingForm.getPhoneNumber());

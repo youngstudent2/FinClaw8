@@ -1,13 +1,40 @@
 package com.example.finclaw.vo.lending;
 
 public class LendingForm {
-    private Integer bankID;//银行的userID
-    private Integer lenderID;//贷款的小微企业的userID
+
+    /**
+     * 银行的userID
+     */
+    private Integer bankID;
+
     private String bankName;
-    private double amount;//意愿贷款数额
-    private double interestRate;//年利率
-    private String phoneNumber;//银行经理联系方式
-    private String description;//贷款说明
+
+    /**
+     * 贷款的小微企业的userID
+     */
+    private Integer lenderID;
+
+    private String lenderName;
+
+    /**
+     * 意愿贷款数额
+     */
+    private double amount;
+
+    /**
+     * 年利率
+     */
+    private double interestRate;
+
+    /**
+     * 银行经理联系方式
+     */
+    private String phoneNumber;
+
+    /**
+     * 贷款说明
+     */
+    private String description;
 
     public Integer getBankID() {
         return bankID;
@@ -63,5 +90,13 @@ public class LendingForm {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLenderName() {
+        return lenderName;
+    }
+
+    public void setLenderName(String lenderName) {
+        this.lenderName = lenderName;
     }
 }

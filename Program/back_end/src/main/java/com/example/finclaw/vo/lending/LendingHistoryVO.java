@@ -1,14 +1,40 @@
 package com.example.finclaw.vo.lending;
 
 public class LendingHistoryVO {
+
     private Integer lendingHistoryID;
-    private Integer bankID;//银行的userID
-    private Integer lenderID;//贷款的小微企业的userID
+
+    /**
+     * 银行的userID
+     */
+    private Integer bankID;
+
     private String bankName;
-    private double amount;//意愿贷款数额
-    private double interestRate;//年利率
+
+    /**
+     * 贷款的小微企业的userID
+     */
+    private Integer lenderID;
+
+    private String lenderName;
+
+    /**
+     * 意愿贷款数额
+     */
+    private double amount;
+
+    /**
+     * 年利率
+     */
+    private double interestRate;
+
     private String phoneNumber;
-    private boolean hasDealt;//借款人完成借款时置为true
+
+    /**
+     * 借款人完成借款时置为true
+     */
+    private boolean hasDealt;
+
 
     public Integer getLendingHistoryID() {
         return lendingHistoryID;
@@ -72,5 +98,13 @@ public class LendingHistoryVO {
 
     public void setHasDealt(boolean hasDealt) {
         this.hasDealt = hasDealt;
+    }
+
+    public String getLenderName() {
+        return lenderName;
+    }
+
+    public void setLenderName(String lenderName) {
+        this.lenderName = lenderName;
     }
 }

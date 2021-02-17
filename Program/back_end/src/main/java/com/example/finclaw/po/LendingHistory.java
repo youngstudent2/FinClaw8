@@ -11,23 +11,35 @@ public class LendingHistory {
 
     private Integer lendingHistoryID;
 
-    //银行的userID
+    /**
+     * 银行的userID
+     */
     private Integer bankID;
-
-    //贷款的小微企业的userID
-    private Integer lenderID;
 
     private String bankName;
 
-    //意愿贷款数额
+    /**
+     * 贷款的小微企业的userID
+     */
+    private Integer lenderID;
+
+    private String lenderName;
+
+    /**
+     * 意愿贷款数额
+     */
     private double amount;
 
-    //年利率
+    /**
+     * 年利率
+     */
     private double interestRate;
 
     private String phoneNumber;
 
-    //借款人完成借款时置为true
+    /**
+     * 借款人完成借款时置为true
+     */
     private boolean hasDealt;
 
 
@@ -97,5 +109,13 @@ public class LendingHistory {
 
     public void setHasDealt(boolean hasDealt) {
         this.hasDealt = hasDealt;
+    }
+
+    public String getLenderName() {
+        return lenderName;
+    }
+
+    public void setLenderName(String lenderName) {
+        this.lenderName = lenderName;
     }
 }

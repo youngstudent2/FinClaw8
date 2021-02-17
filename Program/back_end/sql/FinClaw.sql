@@ -1,3 +1,4 @@
+
 -- MySQL dump 10.13  Distrib 5.7.19, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: FinClaw
@@ -225,16 +226,16 @@ COMMIT;
 DROP TABLE IF EXISTS `lendingHistory`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lendingHistory`
-(
-    `lendingHistoryID` int(11)      NOT NULL AUTO_INCREMENT,
-    `bankID`           int(11)      NOT NULL,
-    `lenderID`         int(11)      NOT NULL,
-    `bankName`         varchar(255) NOT NULL,
-    `amount`           DECIMAL      NOT NULL,
-    `interestRate`     DECIMAL      NOT NULL,
-    `phoneNumber`      varchar(255) NOT NULL,
-    `hasDealt`         int(11)      NOT NULL,
+CREATE TABLE `lendingHistory` (
+    `lendingHistoryID`  int(11)         NOT NULL AUTO_INCREMENT,
+    `bankID`            int(11)         NOT NULL,
+    `bankName`          varchar(255)    NOT NULL,
+    `lenderID`          int(11)         NOT NULL,
+    `lenderName`        varchar(255)    NOT NULL,
+    `amount`            DECIMAL         NOT NULL,
+    `interestRate`      DECIMAL         NOT NULL,
+    `phoneNumber`       varchar(255)    NOT NULL,
+    `hasDealt`          int(11)         NOT NULL,
     PRIMARY KEY (`lendingHistoryID`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -246,12 +247,9 @@ CREATE TABLE `lendingHistory`
 --
 
 BEGIN;
-/*!40000 ALTER TABLE `lendingHistory`
-    DISABLE KEYS */;
-INSERT INTO `lendingHistory`
-VALUES (1, 3, 7, '花旗银行', 100000, 0.1, 12345678911, 0);
-/*!40000 ALTER TABLE `lendingHistory`
-    ENABLE KEYS */;
+/*!40000 ALTER TABLE `lendingHistory` DISABLE KEYS */;
+INSERT INTO `lendingHistory` VALUES (1, 3,'花旗银行', 7,'hx', 100000, 0.1, 12345678911, 0);
+/*!40000 ALTER TABLE `lendingHistory` ENABLE KEYS */;
 COMMIT;
 
 

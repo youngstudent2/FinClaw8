@@ -14,7 +14,9 @@ public interface LoanMapper {
 
     void deleteLoanApplication(Integer loanApplicationID);
 
-    List<LoanApplication> getAllLoanApplication(Integer userID);
+    List<LoanApplication> getUserLoanApplication(Integer userID);
+
+    List<LoanApplication> getAllLoanApplication();
 
     LoanApplication getLoanApplication(Integer loanApplicationID);
 
