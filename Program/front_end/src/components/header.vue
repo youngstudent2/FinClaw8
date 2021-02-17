@@ -50,8 +50,8 @@
             
 
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click="jumpToUserInfo">我的信息</el-dropdown-item>
-              <el-dropdown-item style="color:red" @click="quit">退出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="jumpToUserInfo()">我的信息</el-dropdown-item>
+              <el-dropdown-item style="color:red" @click.native="quit()">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
@@ -132,7 +132,7 @@ export default {
         this.$router.push("/login");
       }
     },
-
+    
    
   },
 };
