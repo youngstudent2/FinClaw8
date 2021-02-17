@@ -8,7 +8,8 @@ public enum UserType {
     Admin("4"),//平台管理员
     UnauthorizedBank("5"),//未认证
     UnauthorizedCompany("6"),
-    UnauthorizedDataProvider("7");
+    UnauthorizedDataProvider("7"),
+    Rejected("8");
 
     private final String value;
 

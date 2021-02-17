@@ -15,7 +15,7 @@ export function loginAPI(data){
 export function getUserInfoAPI(userID){
     console.log(userID)
     return axios({
-        url: `${api.accountPre}/${userID}/getUserInfo`,
+        url: `${api.accountPre}/getUserInfo/${userID}`,
         method: 'GET'
     })
 }
@@ -36,7 +36,7 @@ export function getUnauthorizedUsersAPI() {
 
 export function updateUserInfoAPI(data) {
     return axios({
-        url: `${api.accountPre}/${data.userID}/updateUserInfo`,
+        url: `${api.accountPre}/updateUserInfo/${data.userID}`,
         method: 'POST',
         data
     })
@@ -44,7 +44,7 @@ export function updateUserInfoAPI(data) {
 
 export function updatePasswordAPI(params) {
     return axios({
-        url: `${api.accountPre}/${params.userID}/updatePassword`,
+        url: `${api.accountPre}/updatePassword/${params.userID}`,
         method: 'POST',
         params
     })
@@ -77,7 +77,7 @@ export function deleteUserAPI(params) {
 
 export function reviewUserAPI(userID){
     return axios({
-        url: `${api.accountPre}/${userID}/reviewUser`,
+        url: `${api.accountPre}/reviewUser/${userID}`,
         method: `POST`,
         userID
     })

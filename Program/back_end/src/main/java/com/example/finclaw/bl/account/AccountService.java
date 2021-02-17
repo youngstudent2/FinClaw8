@@ -1,13 +1,10 @@
 package com.example.finclaw.bl.account;
 
-import com.example.finclaw.po.User;
 import com.example.finclaw.vo.*;
 import com.example.finclaw.vo.account.UserForm;
 import com.example.finclaw.vo.account.UserLoginForm;
 import com.example.finclaw.vo.account.UserRegisterForm;
 import com.example.finclaw.vo.account.UserVO;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,7 +35,7 @@ public interface AccountService {
      */
     UserVO getUserInfo(int userID);
 
-//    ResponseVO deleteUser(int userID);
+    ResponseVO deleteUser(int userID);
 
     ResponseVO updateUserInfo(int userID,UserForm userForm);
 
@@ -52,5 +49,12 @@ public interface AccountService {
      */
     List<UserVO> getAllUsers() throws Exception;
 
+    /**
+     * 得到所有未认证的用户
+     * @return
+     * @throws Exception
+     */
     List<UserVO> getUnauthorizedUsers() throws Exception;
+
+    ResponseVO examineAuthentication(Integer userID, Integer isPassed);
 }
