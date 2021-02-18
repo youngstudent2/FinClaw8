@@ -15,18 +15,29 @@ import {
 
 const loaner = {
     state : {
-
+        userLoanHistory: [],
     },
 
     mutations: {
-
+        set_userLoanHistory: (state, data) => {
+            state.userLoanHistory = data;
+        }
     },
 
     actions: {
         addLoanApplication: async({commit}, data) => {
-            const res = await addLoanApplicationAPI(data)
+            const res = await addLoanApplicationAPI(data);
             if (!res) {
-                message.success('申请成功')
+                message.success('申请成功');
+            }
+        },
+        setDealt: async({commit}, loanApplicationID) => {
+            const res = await setDealtAPI(loanApplicationID);
+        },
+        getUserLoanHistory: async({commit}, userID) => {
+            const res = await getUserLoanHistoryAPI(userID);
+            if (res) {
+                commit('set_userLoanHistory', res);
             }
         }
     }

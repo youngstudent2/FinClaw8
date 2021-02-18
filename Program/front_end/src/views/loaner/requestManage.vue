@@ -15,6 +15,7 @@
                     </a-descriptions-item>
                 </a-descriptions>
             </div>
+            <a-button type="danger">撤销申请</a-button>
         </div>
         <a-divider />
         <div>
@@ -26,9 +27,9 @@
                 </span>
 
                 <span slot="action">
-                    <a>accept</a>
+                    <a>接受</a>
                     <a-divider type="vertical" />
-                    <a>Delete</a>
+                    <a>放弃</a>
                 </span>
             </a-table>
         </div>
@@ -58,7 +59,7 @@
             key: 'rate',
         },
         {
-            title: 'Action',
+            title: '操作',
             key: 'action',
             scopedSlots: {
                 customRender: 'action'

@@ -39,6 +39,8 @@ const getters = {
   addProjectModalVisible: state => state.project.addProjectModalVisible,
   //predict
   predictScore: state => state.predict.predictScore,
+  // loan
+  userLoanHistory: state => state.loaner.userLoanHistory,
 }
   
 export default getters
