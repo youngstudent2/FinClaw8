@@ -76,7 +76,7 @@
                             endTime: moment(this.form.getFieldValue('date')[1]).format('YYYY-MM-DD'),
                             description: this.form.getFieldValue('description'),
                         }
-                        console.log(data)
+                        //console.log(data)
                         this.addProject(data)
                         this.set_addProjectModalVisible(false)
                     }

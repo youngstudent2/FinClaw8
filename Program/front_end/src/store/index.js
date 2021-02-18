@@ -11,6 +11,7 @@ import predict from "./modules/predict";
 import project from "./modules/project";
 import train from "./modules/train";
 import loaner from "./modules/loaner"
+import lender from "./modules/lender"
 
 import getters from './getters'
 Vue.use(Vuex)
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     predict,
     project,
     loaner,
+    lender,
     //测试用的train
     train,
   },

@@ -16,16 +16,22 @@
                   <a-icon type="money-collect" />贷款申请
                 </router-link>
               </a-menu-item>
-
+              <a-menu-item key="history">
+                <router-link :to="{ name: 'lendingHistory' }">
+                  <a-icon type="history" />意愿记录
+                </router-link>
+              </a-menu-item>
               
             </a-menu>
           </div>
         
         <!--内容页-->
-        <a-lauout-content>
-          <transition name="fade-transform" mode="out-in">
-                <router-view/>
-          </transition>
+        <a-lauout-content style="padding: 20px 40px">
+          <div :style="{ background: '#fff', padding: '24px', minHeight: '600px' }">
+              <transition name="fade-transform" mode="out-in">
+                  <router-view/>
+              </transition>
+          </div>
         </a-lauout-content>
       </a-layout>
     </a-layout>

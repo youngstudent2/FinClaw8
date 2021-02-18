@@ -233,7 +233,7 @@ CREATE TABLE `lendingHistory` (
     `lenderID`          int(11)         NOT NULL,
     `lenderName`        varchar(255)    NOT NULL,
     `amount`            DECIMAL         NOT NULL,
-    `interestRate`      DECIMAL         NOT NULL,
+    `interestRate`      DOUBLE          NOT NULL,
     `phoneNumber`       varchar(255)    NOT NULL,
     `hasDealt`          int(11)         NOT NULL,
     PRIMARY KEY (`lendingHistoryID`)
@@ -248,7 +248,7 @@ CREATE TABLE `lendingHistory` (
 
 BEGIN;
 /*!40000 ALTER TABLE `lendingHistory` DISABLE KEYS */;
-INSERT INTO `lendingHistory` VALUES (1, 3,'花旗银行', 7,'hx', 100000, 0.1, 12345678911, 0);
+INSERT INTO `lendingHistory` VALUES (1, 3,'花旗银行', 7,'A', 100000, 0.1, 12345678911, 0);
 /*!40000 ALTER TABLE `lendingHistory` ENABLE KEYS */;
 COMMIT;
 
@@ -325,42 +325,6 @@ BEGIN;
 INSERT INTO `loanApplication`
 VALUES (1, 7, 100000, 'null', 'null', 'A', 12345678911, false);
 /*!40000 ALTER TABLE `loanApplication`
-    ENABLE KEYS */;
-COMMIT;
-
---
--- Table structure for table `lendingHistory`
---
-
-DROP TABLE IF EXISTS `lendingHistory`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lendingHistory`
-(
-    `lendingHistoryID` int(11)      NOT NULL AUTO_INCREMENT,
-    `bankID`           int(11)      NOT NULL,
-    `lenderID`         DECIMAL      NOT NULL,
-    `bankName`         varchar(255) NOT NULL,
-    `amount`           DECIMAL      NOT NULL,
-    `interestRate`     DECIMAL      not null,
-    `phoneNumber`      varchar(255) NOT NULL,
-    `hasDealt`         int(11)      NOT NULL,
-    PRIMARY KEY (`lendingHistoryID`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lendingHistory`
---
-
-BEGIN;
-/*!40000 ALTER TABLE `lendingHistory`
-    DISABLE KEYS */;
-INSERT INTO `lendingHistory`
-VALUES (1, 1, 1, 'Citi', 20000.00, 0.17, 12345678911, false);
-/*!40000 ALTER TABLE `lendingHistory`
     ENABLE KEYS */;
 COMMIT;
 

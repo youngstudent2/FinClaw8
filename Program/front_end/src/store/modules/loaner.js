@@ -7,7 +7,7 @@ import { message } from 'ant-design-vue'
 import {
     addLoanApplicationAPI,
     deleteLoanApplicationAPI,
-    getAllLoanApplicationAPI,
+    getUserLoanApplicationAPI,
     getLoanApplicationAPI,
     setDealtAPI,
     getUserLoanHistoryAPI

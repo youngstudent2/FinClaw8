@@ -115,6 +115,11 @@ const routes = [
         path: 'lending',
         name: 'lendingHandle',
         component: () => import('@/views/bank/lending')
+      },
+      {
+        path: 'history',
+        name: 'lendingHistory',
+        component: () => import('@/views/bank/history')
       }
     ]
   },

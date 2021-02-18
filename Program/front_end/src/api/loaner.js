@@ -20,9 +20,16 @@ export function deleteLoanApplicationAPI(loanApplicationID) {
     })
 }
 
-export function getAllLoanApplicationAPI(userID) {
+export function getAllLoanApplicationAPI() {
     return axios({
-        url: `${api.loanPre}/getAllLoanApplication/${userID}`,
+        url: `${api.loanPre}/getAllLoanApplication`,
+        method: 'GET'
+    })
+}
+
+export function getUserLoanApplicationAPI(userID) {
+    return axios({
+        url: `${api.loanPre}/getUserLoanApplication/${userID}`,
         method: 'GET'
     })
 }

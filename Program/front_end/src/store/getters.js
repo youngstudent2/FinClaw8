@@ -27,6 +27,11 @@ const getters = {
   // dataManager
   AllDataManagers: state => state.user.AllDataManagers,
   DataManagerRegistrationModalVisible: state => state.user.DataManagerRegistrationModalVisible,
+  // lender
+  lendingHistory: state => state.lender.lendingHistory,
+  allLoanApplication: state => state.lender.allLoanApplication,
+  addLendingWishModalVisible: state => state.lender.addLendingWishModalVisible,
+  currentLoanerInfo: state => state.lender.currentLoanerInfo,
   // authority
   cooperationList: state => state.authority.cooperationList,
   controlModalVisible: state => state.authority.controlModalVisible,

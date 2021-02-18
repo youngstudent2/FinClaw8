@@ -36,7 +36,7 @@ public class LoanController {
         return loanService.getUserLoanApplication(userID);
     }
 
-    @GetMapping("/getAllLoanApplication/")
+    @GetMapping("/getAllLoanApplication")
     public ResponseVO getAllLoanApplication(){
         //查看全部的贷款申请    2.17新增
         return loanService.getAllLoanApplication();
