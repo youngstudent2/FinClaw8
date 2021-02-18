@@ -3,6 +3,11 @@ package com.example.finclaw.vo.lending;
 public class LendingForm {
 
     /**
+     * 对应的借款申请的ID
+     */
+    private Integer loanApplicationID;
+
+    /**
      * 银行的userID
      */
     private Integer bankID;
@@ -98,5 +103,13 @@ public class LendingForm {
 
     public void setLenderName(String lenderName) {
         this.lenderName = lenderName;
+    }
+
+    public Integer getLoanApplicationID() {
+        return loanApplicationID;
+    }
+
+    public void setLoanApplicationID(Integer loanApplicationID) {
+        this.loanApplicationID = loanApplicationID;
     }
 }

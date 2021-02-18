@@ -3,8 +3,8 @@
 <mapper namespace="com.example.finclaw.data.loan.LoanMapper">
 
     <insert id="createNewLoanApplication" parameterType="com.example.finclaw.po.LoanApplication" useGeneratedKeys="true" keyProperty="loanApplicationID">
-        insert into loanapplication(userID,amount,certificationCode,registrationCode,companyName,phoneNumber,hasDealt)
-        values(#{userID},#{amount},#{certificationCode},#{registrationCode},#{companyName},#{phoneNumber},#{hasDealt})
+        insert into loanapplication(userID,userName,amount,certificationCode,registrationCode,companyName,phoneNumber,hasDealt)
+        values(#{userID},#{userName},#{amount},#{certificationCode},#{registrationCode},#{companyName},#{phoneNumber},#{hasDealt})
     </insert>
 
     <delete id="deleteLoanApplication">
@@ -44,11 +44,13 @@
     <resultMap id="loanApplication" type="com.example.finclaw.po.LoanApplication">
         <id column="loanApplicationID" property="loanApplicationID"/>
         <result column="userID" property="userID"/>
+        <result column="userName" property="userName"/>
         <result column="amount" property="amount"/>
         <result column="certificationCode" property="certificationCode"/>
         <result column="registrationCode" property="registrationCode"/>
         <result column="companyName" property="companyName"/>
         <result column="phoneNumber" property="phoneNumber"/>
         <result column="hasDealt" property="hasDealt"/>
+        <result column="createTime" property="createTime"/>
     </resultMap>
 </mapper>

@@ -1,8 +1,20 @@
 package com.example.finclaw.vo.lending;
 
+import java.sql.Timestamp;
+
+/**
+ * @Author HX
+ * 银行的借贷意向表
+ */
+
 public class LendingHistoryVO {
 
     private Integer lendingHistoryID;
+
+    /**
+     * 对应的借款申请的ID
+     */
+    private Integer loanApplicationID;
 
     /**
      * 银行的userID
@@ -34,6 +46,8 @@ public class LendingHistoryVO {
      * 借款人完成借款时置为true
      */
     private boolean hasDealt;
+
+    private Timestamp createTime;
 
 
     public Integer getLendingHistoryID() {
@@ -106,5 +120,21 @@ public class LendingHistoryVO {
 
     public void setLenderName(String lenderName) {
         this.lenderName = lenderName;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getLoanApplicationID() {
+        return loanApplicationID;
+    }
+
+    public void setLoanApplicationID(Integer loanApplicationID) {
+        this.loanApplicationID = loanApplicationID;
     }
 }

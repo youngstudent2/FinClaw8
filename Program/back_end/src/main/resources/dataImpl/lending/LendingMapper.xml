@@ -3,8 +3,8 @@
 <mapper namespace="com.example.finclaw.data.lending.LendingMapper">
 
     <insert id="createLendingHistory" parameterType="com.example.finclaw.po.LendingHistory" useGeneratedKeys="true" keyProperty="lendingHistoryID">
-        insert into lendingHistory(bankID,bankName,lenderID,lenderName,amount,interestRate,phoneNumber,hasDealt)
-        values(#{bankID},#{bankName},#{lenderID},#{lenderName},#{amount},#{interestRate},#{phoneNumber},#{hasDealt})
+        insert into lendingHistory(loanApplicationID,bankID,bankName,lenderID,lenderName,amount,interestRate,phoneNumber,hasDealt)
+        values(#{loanApplicationID},#{bankID},#{bankName},#{lenderID},#{lenderName},#{amount},#{interestRate},#{phoneNumber},#{hasDealt})
     </insert>
 
     <delete id="deleteLendingHistory">
@@ -22,6 +22,11 @@
         where lendingHistoryID=#{lendingHistoryID}
     </select>
 
+    <select id="getLendingHistoryByLoanApplicationID" resultMap="lendingHistory">
+        select * from lendingHistory
+        where loanApplicationID=#{loanApplicationID}
+    </select>
+
     <update id="setDealt">
         update lendingHistory set hasDealt=true
         where lendingHistoryID=#{lendingHistoryID}
@@ -30,6 +35,7 @@
 
     <resultMap id="lendingHistory" type="com.example.finclaw.po.LendingHistory">
         <id column="lendingHistoryID" property="lendingHistoryID"/>
+        <result column="loanApplicationID" property="loanApplicationID"/>
         <result column="bankID" property="bankID"/>
         <result column="bankName" property="bankName"/>
         <result column="lenderID" property="lenderID"/>
@@ -38,5 +44,6 @@
         <result column="interestRate" property="interestRate"/>
         <result column="phoneNumber" property="phoneNumber"/>
         <result column="hasDealt" property="hasDealt"/>
+        <result column="createTime" property="createTime"/>
     </resultMap>
 </mapper>

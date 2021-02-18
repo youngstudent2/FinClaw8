@@ -1,22 +1,38 @@
 package com.example.finclaw.vo.loan;
 
-//小微企业  借贷表
+/**
+ * @Author HX
+ * 小微企业  借贷表
+ */
 
 public class LoanApplicationForm {
+
     private Integer userID;
 
-    //预期借款额
+    private String userName;
+
+    /**
+     * 预期借款额
+     */
     private double amount;
 
-    //贷款人联系电话
+    /**
+     * 贷款人联系电话
+     */
     private String phoneNumber;
 
-    //社会统一认证代码
+    /**
+     * 社会统一认证代码
+     */
     private String certificationCode;
 
-    //注册号
+    /**
+     * 注册号
+     */
     private String registrationCode;
+
     private String companyName;
+
 
     public Integer getUserID() {
         return userID;
@@ -64,5 +80,13 @@ public class LoanApplicationForm {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

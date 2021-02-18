@@ -1,15 +1,22 @@
 package com.example.finclaw.po;
 
+import java.sql.Timestamp;
+
 /**
  * @Author HX
  * @Date 2021/2/2
+ * 银行借贷历史纪录
  */
 
-//银行借贷历史纪录
 
 public class LendingHistory {
 
     private Integer lendingHistoryID;
+
+    /**
+     * 对应的借款申请的ID
+     */
+    private Integer loanApplicationID;
 
     /**
      * 银行的userID
@@ -41,6 +48,8 @@ public class LendingHistory {
      * 借款人完成借款时置为true
      */
     private boolean hasDealt;
+
+    private Timestamp createTime;
 
 
     public LendingHistory(){
@@ -117,5 +126,21 @@ public class LendingHistory {
 
     public void setLenderName(String lenderName) {
         this.lenderName = lenderName;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getLoanApplicationID() {
+        return loanApplicationID;
+    }
+
+    public void setLoanApplicationID(Integer loanApplicationID) {
+        this.loanApplicationID = loanApplicationID;
     }
 }

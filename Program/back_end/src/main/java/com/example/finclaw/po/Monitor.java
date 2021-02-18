@@ -6,6 +6,17 @@ import java.util.Objects;
 
 public class Monitor {
 
+    private int monitorID;
+
+    private int userID;
+
+    private int projectID;
+
+    private String operation;
+
+    private Timestamp operateTime;
+
+
     public Monitor(){}
 
     public Monitor(int userID, int projectID, int operatorID){
@@ -15,12 +26,6 @@ public class Monitor {
         setOperation(operation);
         setOperateTime(operateTime);
     }
-
-    private int monitorID;
-    private int userID;
-    private int projectID;
-    private String operation;
-    private Timestamp operateTime;
 
     public int getUserID() {
         return userID;

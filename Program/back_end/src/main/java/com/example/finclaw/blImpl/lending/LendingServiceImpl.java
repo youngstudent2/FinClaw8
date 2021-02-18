@@ -5,9 +5,11 @@ import com.example.finclaw.data.lending.LendingMapper;
 import com.example.finclaw.po.LendingHistory;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.lending.LendingForm;
+import com.example.finclaw.vo.lending.LendingHistoryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,14 +56,20 @@ public class LendingServiceImpl implements LendingService{
      */
     @Override
     public ResponseVO getBankLendingHistory(Integer bankID){
-        List<LendingHistory> lendingHistories;
+
+        List<LendingHistoryVO> lendingHistoryVOS = new ArrayList<>();
+
         try{
-            //todo 花旗API
-            lendingHistories = lendingMapper.getBankLendingHistory(bankID);
+            for (LendingHistory lendingHistory:
+                    lendingMapper.getBankLendingHistory(bankID)) {
+
+                lendingHistoryVOS.add(convert2vo(lendingHistory));
+            }
+
         }catch (Exception e){
             return ResponseVO.buildFailure("Error 202 : Can't get the lending information. Please input correct bank ID and try again.\n");
         }
-        return ResponseVO.buildSuccess(lendingHistories);
+        return ResponseVO.buildSuccess(lendingHistoryVOS);
     }
 
 
@@ -73,16 +81,40 @@ public class LendingServiceImpl implements LendingService{
      */
     @Override
     public ResponseVO getLendingHistory(Integer lendingHistoryID){
-        LendingHistory lendingHistory;
+
+        LendingHistoryVO lendingHistoryVO;
+
         try{
-            //todo 花旗API
-            lendingHistory = lendingMapper.getLendingHistory(lendingHistoryID);
+            lendingHistoryVO = convert2vo(lendingMapper.getLendingHistory(lendingHistoryID));
+
         }catch (Exception e){
             return ResponseVO.buildFailure("Error 203 : Can't get the lending information by this ID. Please input correct lendingHistory ID and try again.\n");
         }
-        return ResponseVO.buildSuccess(lendingHistory);
+        return ResponseVO.buildSuccess(lendingHistoryVO);
     }
 
+
+    /**
+     * 根据所给的借贷申请编号（loanApplicationID）返回对应的银行借贷意愿表
+     * @param loanApplicationID
+     * @return
+     */
+    @Override
+    public ResponseVO getLendingHistoryByLoanApplicationID(Integer loanApplicationID){
+        List<LendingHistoryVO> lendingHistoryVOS = new ArrayList<>();
+
+        try{
+            for (LendingHistory lendingHistory :
+                    lendingMapper.getLendingHistoryByLoanApplicationID(loanApplicationID)) {
+                lendingHistoryVOS.add(convert2vo(lendingHistory));
+            }
+        }catch (Exception e){
+            return ResponseVO.buildFailure("Error 204 : Can't get the lending history by this loanApplicationID. Please input correct ID and try again.\n");
+        }
+
+        return ResponseVO.buildSuccess(lendingHistoryVOS);
+    }
+    
 
     /**
      * @param lendingHistoryID
@@ -97,8 +129,31 @@ public class LendingServiceImpl implements LendingService{
             //todo 花旗API
             lendingMapper.setDealt(lendingHistoryID);
         }catch (Exception e){
-            return ResponseVO.buildFailure("Error 204 : Can't set this lendingHistory DEALT! Please input correct lendingHistory ID and try again.\n");
+            return ResponseVO.buildFailure("Error 205 : Can't set this lendingHistory DEALT! Please input correct lendingHistory ID and try again.\n");
         }
         return ResponseVO.buildSuccess();
+    }
+
+
+    /**
+     * 将从数据库获取到的PO类转化为VO类
+     * @param lendingHistory
+     * @return
+     */
+    private LendingHistoryVO convert2vo(LendingHistory lendingHistory){
+
+        return new LendingHistoryVO(){{
+           setLendingHistoryID(lendingHistory.getLendingHistoryID());
+           setLoanApplicationID(lendingHistory.getLoanApplicationID());
+           setBankID(lendingHistory.getBankID());
+           setBankName(lendingHistory.getBankName());
+           setLenderID(lendingHistory.getLenderID());
+           setLenderName(lendingHistory.getLenderName());
+           setAmount(lendingHistory.getAmount());
+           setInterestRate(lendingHistory.getInterestRate());
+           setPhoneNumber(lendingHistory.getPhoneNumber());
+           setHasDealt(lendingHistory.isHasDealt());
+           setCreateTime(lendingHistory.getCreateTime());
+        }};
     }
 }

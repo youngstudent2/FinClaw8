@@ -1,5 +1,7 @@
 package com.example.finclaw.po;
 
+import java.sql.Timestamp;
+
 /**
  * @Author HX
  * @Date 2021/2/2
@@ -13,22 +15,39 @@ public class LoanApplication {
 
     private Integer userID;
 
-    //预期借款额
+    private String userName;
+
+    /**
+     * 预期借款额
+     */
     private double amount;
 
-    //贷款人联系电话
+    /**
+     * 贷款人联系电话
+     */
     private String phoneNumber;
 
-    //社会统一认证代码
+    /**
+     * 社会统一认证代码
+     */
     private String certificationCode;
 
-    //注册号
+    /**
+     * 注册号
+     */
     private String registrationCode;
 
     private String companyName;
 
-    //借款人完成借款时置为true
+    /**
+     * 借款人完成借款时置为true
+     */
     private boolean hasDealt;
+
+    /**
+     * 创建的时间
+     */
+    private Timestamp createTime;
 
 
     public LoanApplication(){
@@ -97,5 +116,21 @@ public class LoanApplication {
 
     public void setHasDealt(boolean hasDealt) {
         this.hasDealt = hasDealt;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 }

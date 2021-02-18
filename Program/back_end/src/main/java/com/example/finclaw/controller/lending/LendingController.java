@@ -17,27 +17,63 @@ public class LendingController {
     @Autowired
     private LendingService lendingService;
 
+
+    /**
+     * 银行可以浏览到在平台上借款的小微企业的借款列表，然后可以为某个借款请求提交贷款意愿，需要填写的信息见LendingForm
+     * @param lendingForm
+     * @return
+     */
     @PostMapping("/addLendingForm")
     public ResponseVO addLendingForm(@RequestBody LendingForm lendingForm){
-        //银行可以浏览到在平台上借款的小微企业的借款列表，然后可以为某个借款请求提交贷款意愿，需要填写的信息见LendingForm
+
         return lendingService.addLendingForm(lendingForm);
     }
 
+
+    /**
+     * 查看某银行在平台的所有贷款记录
+     * @param bankID
+     * @return
+     */
     @GetMapping("/getBankLendingHistory/{bankID}")
     public ResponseVO getBankLendingHistory(@PathVariable Integer bankID){
-        //查看某银行在平台的所有贷款记录
+
         return lendingService.getBankLendingHistory(bankID);
     }
 
+
+    /**
+     * 查看某条贷款记录
+     * @param lendingHistoryID
+     * @return
+     */
     @GetMapping("/getLendingHistory/{lendingHistoryID}")
     public ResponseVO getLendingHistory(@PathVariable Integer lendingHistoryID){
-        //查看某条贷款记录
+
         return lendingService.getLendingHistory(lendingHistoryID);
     }
 
+
+    /**
+     * 根据借贷申请表的编号返回对应的银行借贷意愿
+     * @param loanApplicationID
+     * @return
+     */
+    @GetMapping("/getLendingHistoryByLoanApplicationID/{loanApplicationID}")
+    public ResponseVO getLendingHistoryByLoanApplicationID(@PathVariable Integer loanApplicationID){
+
+        return lendingService.getLendingHistoryByLoanApplicationID(loanApplicationID);
+    }
+
+
+    /**
+     * 银行发布的贷款意愿被用户采纳后置为将hasDealt置为true
+     * @param lendingHistoryID
+     * @return
+     */
     @PostMapping("/setDealt/{lendingHistoryID}")
     public ResponseVO setDealt(@PathVariable Integer lendingHistoryID){
-        //银行发布的贷款意愿被用户采纳后置为将hasDealt置为true
+
         return lendingService.setDealt(lendingHistoryID);
     }
 

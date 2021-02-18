@@ -16,5 +16,7 @@ public interface LendingMapper {
 
     LendingHistory getLendingHistory(Integer lendingHistoryID);
 
+    List<LendingHistory> getLendingHistoryByLoanApplicationID(Integer loanApplicationID);
+
     void setDealt(Integer lendingHistoryID);
 }

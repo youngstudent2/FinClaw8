@@ -2,8 +2,7 @@ package com.example.finclaw.bl.lending;
 
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.lending.LendingForm;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * @Author HX
@@ -17,5 +16,8 @@ public interface LendingService {
 
     ResponseVO getLendingHistory(Integer lendingHistoryID);
 
+    ResponseVO getLendingHistoryByLoanApplicationID(Integer loanApplicationID);
+
     ResponseVO setDealt(Integer lendingHistoryID);
+
 }
