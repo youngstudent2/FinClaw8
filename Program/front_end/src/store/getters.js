@@ -41,7 +41,9 @@ const getters = {
   projectID: state => state.project.currentProjectID,
   projectInfo: state => state.project.currentProjectInfo,
   projectList: state => state.project.projectList,
+  bankProjectList: state => state.project.bankProjectList,
   addProjectModalVisible: state => state.project.addProjectModalVisible,
+  modifyProjectModalVisible: state => state.project.modifyProjectModalVisible,
   //predict
   predictScore: state => state.predict.predictScore,
   // loan

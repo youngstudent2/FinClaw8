@@ -17,7 +17,7 @@
            description=#{description},
            startTime=#{startTime},
            endTime=#{endTime},
-           userID=#{userID},
+           userID=#{userID}
         where projectID=#{projectID}
     </update>
 

@@ -100,7 +100,7 @@ VALUES (1, 3, '南京市活动1', '企业信用预测', NOW(), date_add(NOW(), i
 INSERT INTO `Project`
 VALUES (2, 3, '南京市活动2', '企业信用预测', NOW(), date_add(NOW(), interval 1 month), 'Running', null);
 INSERT INTO `Project`
-VALUES (3, 3, '南京市活动2', '企业信用预测', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
+VALUES (3, 3, '南京市活动3', '企业信用预测', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
 /*!40000 ALTER TABLE `Project`
     ENABLE KEYS */;
 COMMIT;
