@@ -28,3 +28,11 @@ export function viewAllFileAPI(params) {
         params
     })
 }
+
+export function getFileMetadataAPI(params) {
+    return axios({
+        url: `${api.dataPre}/getFileMetadata/${params.operatorID}`,
+        method: 'GET',
+        params
+    })
+}

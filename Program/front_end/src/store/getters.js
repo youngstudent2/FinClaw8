@@ -14,8 +14,6 @@ const getters = {
   uploadedFileList: state => state.file.uploadedFileList,
   metadataVisible: state => state.file.metadataVisible,
   metadata: state => state.file.metadata,
-  // model
-  modelList: state => state.model.modelList,
   // monitor
   monitorInfo: state => state.monitor.monitorInfo,
   // data
@@ -44,8 +42,6 @@ const getters = {
   bankProjectList: state => state.project.bankProjectList,
   addProjectModalVisible: state => state.project.addProjectModalVisible,
   modifyProjectModalVisible: state => state.project.modifyProjectModalVisible,
-  //predict
-  predictScore: state => state.predict.predictScore,
   // loan
   userLoanApplication: state => state.loaner.userLoanApplication,
   userLoanHistory: state => state.loaner.userLoanHistory,

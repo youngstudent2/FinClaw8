@@ -1,65 +1,47 @@
 <template>
     <div>
-       <!-- <a-form :form="form" @submit="handleSubmit">
-            <a-form-item
-                    v-for="(k, index) in form.getFieldValue('keys')"
-                    :key="k"
-                    v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
-                    :label="index === 0 ? 'Attribute' : ''"
-                    :required="false"
-            >
-                <a-input
-                        v-decorator="[`AttributeNames[${k}]`,{
-                        validateTrigger: ['change', 'blur'],
-                        rules: [{required: true,
-                                 whitespace: true,
-                                 message: 'Please input attribute name or delete this field.',
-                                },],
-                               },]"
-                        placeholder="attribute name"
-                        style="width: 30%; margin-right: 14px"/>
-                <a-input
-                        v-decorator="[`AttributeValues[${k}]`,{
-                        validateTrigger: ['change', 'blur'],
-                        rules: [{required: true,
-                                 whitespace: true,
-                                 message: 'Please input attribute value or delete this field.',
-                                },],
-                               },]"
-                        placeholder="attribute value"
-                        style="width: 30%; margin-right: 8px"/>
-                <a-icon
-                        v-if="form.getFieldValue('keys').length > 1"
-                        class="dynamic-delete-button"
-                        type="minus-circle-o"
-                        :disabled="form.getFieldValue('keys').length === 1"
-                        @click="() => remove(k)"/>
-            </a-form-item>
-            <a-form-item v-bind="formItemLayoutWithOutLabel">
-                <a-button type="dashed" style="width: 60%; margin-right: 14px" @click="add">
-                    <a-icon type="plus"/>
-                    Add Attribute
-                </a-button>
-            </a-form-item>
-            <a-form-item v-bind="formItemLayoutWithOutLabel">
-                <a-button type="primary" html-type="submit">
-                    Submit
-                </a-button>
-            </a-form-item>
-        </a-form>-->
-        <Running v-if="projectData.status==='1'"></Running>
-        <Stop v-else-if="projectData.status==='2'"></Stop>
-        <Training v-else-if="projectData.status==='3'"></Training>
-        <Finished v-else></Finished>
+        <dv-border-box-11 title="信用预测">
+            <el-row type="flex" justify="center" align="middle" style="padding-top: 60px">
+                <el-col :span="4">
+                    <el-form
+                        label-position="right"
+                        label-width="80px"
+                        :model="predictForm"
+                        ref="predictForm">
+
+
+                        <el-form-item
+                            v-for="(attr, index) in this.predictForm.values"
+                            :label="attr.key"
+                            :key="attr.key"
+                            :prop="'values.' + index + '.value'"
+                            :rules="{
+                                required: true, trigger: 'blur'
+                            }"
+                        >
+                            <el-input v-model="attr.value"></el-input>
+                        </el-form-item>
+
+
+                        <el-form-item>
+                            <el-button type="primary" @click="submitForm('predictForm')">开始预测</el-button>
+                            <el-button type="primary" @click="resetForm('predictForm')">重置</el-button>
+                        </el-form-item>
+
+                    </el-form>
+                </el-col>
+
+                <el-col :span="6" :offset="2">
+                    <dv-charts :option="option" style="height: 400px; width: 400px" />
+                </el-col>
+
+            </el-row>
+        </dv-border-box-11>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations, mapActions} from 'vuex'
-    import Running from "./components/running";
-    import Stop from "./components/stop";
-    import Training from "./components/training";
-    import Finished from "./components/finished";
 
     let id = 0;
     export default {
@@ -89,15 +71,10 @@
             this.form.getFieldDecorator('keys', {initialValue: [], preserve: true});
         },
         components: {
-            Running,
-            Stop,
-            Training,
-            Finished,
         },
         computed: {
             ...mapGetters([
-                'projectData',
-
+                'projectInfo',
             ])
         },
         methods: {
