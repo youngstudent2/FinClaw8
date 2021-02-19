@@ -2,9 +2,9 @@
     <div>
         <a-modal
                 :visible="addProjectModalVisible"
-                title="添加项目"
+                title="创建项目"
                 cancelText="取消"
-                okText="添加"
+                okText="创建"
                 @cancel="cancelSubmit"
                 @ok="handleSubmit"
         >
