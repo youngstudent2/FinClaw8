@@ -18,6 +18,7 @@ public class ProjectVO {
     private ProjectStatus status;
     private Timestamp startTime;
     private Timestamp endTime;
+    private Integer modelID;
 
     public ProjectVO(Project project) {
         BeanUtils.copyProperties(project, this);
@@ -80,5 +81,13 @@ public class ProjectVO {
 
     public void setUserID(Integer userID) {
         this.userID = userID;
+    }
+
+    public Integer getModelID() {
+        return modelID;
+    }
+
+    public void setModelID(Integer modelID) {
+        this.modelID = modelID;
     }
 }

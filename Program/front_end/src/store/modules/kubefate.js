@@ -2,27 +2,28 @@ import Vue from 'vue'
 import { message } from 'ant-design-vue'
 
 import {
-
+    predictAPI,
 } from '@/api/kubefate'
 
 const kubefate = {
     state: {
-
+        predictPoint: 80,
     },
 
     mutations: {
-        // set_monitorInfo: function(state, data) {
-        //     state.monitorInfo = data
-        // },
+        set_predictPoint: function(state, data) {
+            state.predictPoint = data
+        },
     },
 
     actions: {
-        // getMonitorInfo: async ({ commit }, data) => {
-        //     const res = await getProjectMonitorInfoAPI(data)
-        //     if (res) {
-        //         commit('set_monitorInfo', res)
-        //     }
-        // },
+        predict: async ({ commit }) => {
+            const res = await predictAPI()
+            if (res) {
+                //console.log(res)
+                commit('set_predictPoint', res)
+            }
+        },
     }
 }
 

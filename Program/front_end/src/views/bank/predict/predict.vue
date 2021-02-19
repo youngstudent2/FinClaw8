@@ -1,146 +1,84 @@
 <template>
     <div>
-        <dv-border-box-11 title="信用预测">
-            <el-row type="flex" justify="center" align="middle" style="padding-top: 60px">
-                <el-col :span="4">
-                    <el-form
-                        label-position="right"
-                        label-width="80px"
-                        :model="predictForm"
-                        ref="predictForm">
+        <dv-border-box13 style="height: 500px">
+            <a-row :gutter="10">
+                <a-col :span="12"
+                       style="height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center">
+                    <a-button type="primary" size="large" @click="startPredict" style="width: 100px; margin-bottom: 50px">
+                        预测
+                    </a-button>
+                    <a-button type="primary" size="large" ghost @click="reset" style="width: 100px">
+                        重置
+                    </a-button>
+                </a-col>
+                <a-col :span="12" style="height: 500px; padding-top: 50px">
+                    <dv-charts :option="option" style="height: 450px"></dv-charts>
+                </a-col>
+            </a-row>
 
-
-                        <el-form-item
-                            v-for="(attr, index) in this.predictForm.values"
-                            :label="attr.key"
-                            :key="attr.key"
-                            :prop="'values.' + index + '.value'"
-                            :rules="{
-                                required: true, trigger: 'blur'
-                            }"
-                        >
-                            <el-input v-model="attr.value"></el-input>
-                        </el-form-item>
-
-
-                        <el-form-item>
-                            <el-button type="primary" @click="submitForm('predictForm')">开始预测</el-button>
-                            <el-button type="primary" @click="resetForm('predictForm')">重置</el-button>
-                        </el-form-item>
-
-                    </el-form>
-                </el-col>
-
-                <el-col :span="6" :offset="2">
-                    <dv-charts :option="option" style="height: 400px; width: 400px" />
-                </el-col>
-
-            </el-row>
-        </dv-border-box-11>
+        </dv-border-box13>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 
-    let id = 0;
     export default {
         name: 'predict',
         data() {
             return {
-                formItemLayout: {
-                    labelCol: {
-                        xs: {span: 24},
-                        sm: {span: 4},
+                option: {
+                    title: {
+                        text: '预测信用值'
                     },
-                    wrapperCol: {
-                        xs: {span: 24},
-                        sm: {span: 20},
-                    },
-                },
-                formItemLayoutWithOutLabel: {
-                    wrapperCol: {
-                        xs: {span: 24, offset: 0},
-                        sm: {span: 20, offset: 4},
-                    },
-                },
+                    series: [
+                        {
+                            type: 'gauge',
+                            data: [
+                                { name: 'itemA', value: 0, gradient: ['#2fded6', '#1ed3e5', '#03c2fd'], localGradient: true }
+                            ],
+                            axisLabel: {
+                                formatter: '{value}'
+                            },
+                            details: {
+                                show: true,
+                                offset: [5, 40],
+                                formatter: '{value}分'
+                            },
+                        }
+                    ]
+                }
             };
-        },
-        beforeCreate() {
-            this.form = this.$form.createForm(this, {name: 'dynamic_form_item'});
-            this.form.getFieldDecorator('keys', {initialValue: [], preserve: true});
-        },
-        components: {
         },
         computed: {
             ...mapGetters([
                 'projectInfo',
+                'predictPoint'
             ])
+        },
+        async mounted() {
+            await this.setPoint()
         },
         methods: {
             ...mapActions([
                 "predict",
             ]),
-            remove(k) {
-                const {form} = this;
-                // can use data-binding to get
-                const keys = form.getFieldValue('keys');
-                // We need at least one attribute
-                if (keys.length === 1) {
-                    return;
-                }
-
-                // can use data-binding to set
-                form.setFieldsValue({
-                    keys: keys.filter(key => key !== k),
-                });
+            setPoint() {
+                this.option.series[0].data[0].value = this.predictPoint
             },
-            add() {
-                const {form} = this;
-                // can use data-binding to get
-                const keys = form.getFieldValue('keys');
-                const nextKeys = keys.concat(id++);
-                // can use data-binding to set
-                // important! notify form to detect changes
-                form.setFieldsValue({
-                    keys: nextKeys,
-                });
+            startPredict() {
+                this.predict()
+                this.setPoint()
+                this.option = { ...this.option }
             },
-            handleSubmit(e) {
-                e.preventDefault();
-                this.form.validateFields((err, values) => {
-                    if (!err) {
-                        const {keys, AttributeNames, AttributeValues} = values;
-                        console.log('Received values of form: ', values);
-                        console.log(
-                            'Merged values:',
-                            keys.map(key => AttributeNames[key]),
-                            keys.map(key => AttributeValues[key]),
-                        );
-                        this.predict(values)
-                    }
-                });
-            },
+            reset() {
+                this.option.series[0].data[0].value = 0
+                this.option = { ...this.option }
+            }
         },
     }
 </script>
 
 <style>
-    .dynamic-delete-button {
-        cursor: pointer;
-        position: relative;
-        top: 4px;
-        font-size: 24px;
-        color: #999;
-        transition: all 0.3s;
-    }
 
-    .dynamic-delete-button:hover {
-        color: #777;
-    }
-
-    .dynamic-delete-button[disabled] {
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
 </style>

@@ -35,6 +35,8 @@ const getters = {
   controlModalVisible: state => state.authority.controlModalVisible,
   currentServerInfo: state => state.authority.currentServerInfo,
   currentAttendanceInfo: state => state.authority.currentAttendanceInfo,
+  //kubefate
+  predictPoint: state => state.kubefate.predictPoint,
   // project
   projectID: state => state.project.currentProjectID,
   projectInfo: state => state.project.currentProjectInfo,
