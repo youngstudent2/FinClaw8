@@ -14,17 +14,16 @@ export function addProjectAPI(data) {
 
 export function deleteProjectAPI(data) {
     return axios({
-        url:`${api.projectPre}/deleteProject`,
+        url:`${api.projectPre}/deleteProject/${data}`,
         method: 'POST',
-        data
     })
 }
 
 export function modifyProjectAPI(data) {
     return axios({
-        url:`${api.projectPre}/modifyProject`,
+        url:`${api.projectPre}/modifyProject/${data.projectID}`,
         method: 'POST',
-        data
+        data: data.projectData
     })
 }
 
@@ -36,9 +35,16 @@ export function getProjectInfoAPI(params) {
     })
 }
 
-export function getAllProjectAPI() {
+export function getAllProjectInfoAPI() {
     return axios({
         url:`${api.projectPre}/getAllProjectInfo`,
+        method: 'GET',
+    })
+}
+
+export function getAllBankProjectInfoAPI(data) {
+    return axios({
+        url:`${api.projectPre}/getAllBankProjectInfo/${data}`,
         method: 'GET',
     })
 }

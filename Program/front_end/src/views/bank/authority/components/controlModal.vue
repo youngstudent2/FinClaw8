@@ -48,10 +48,10 @@ export default {
                     sm: {span: 16},
                 },
             },
-            form: this.$form.createForm(this, { name: 'controlModal'}),
-            chosen: false
+            form: this.$form.createForm(this, { name: 'controlModal'})
         }
     },
+    props: ['chosen'],
     computed: {
         ...mapGetters([
             'controlModalVisible',

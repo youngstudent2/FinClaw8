@@ -41,4 +41,9 @@ public class KubefateController {
         return kubefateService.loadBind(projectID);
     }
 
+    @GetMapping("/predict")
+    public ResponseVO predict(){
+        return kubefateService.predict();
+    }
+
 }
