@@ -12,23 +12,25 @@ import com.example.finclaw.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.List;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
  * @Author: LLY
- * @Date:   2021-2-3
+ * @Date: 2021-2-3
  */
 
 @Service
 public class KubefateServiceImpl implements KubefateService {
 
     private static String DEPLOY_ERROR = "deploy failure.\n";
-    private static String DEPLOY_SUCCESS = "deploy success\n.";
+    private static String DEPLOY_SUCCESS = "deploy success.\n";
     private static String UPLOADERROR = "upload failure.\n";
     private static String UPLOAD_SUCCESS = "upload success.\n";
     private static String SUBMIT_ERROR = "submit failure.\n";
@@ -43,7 +45,8 @@ public class KubefateServiceImpl implements KubefateService {
     @Autowired
     ModelMapper modelMapper;
 
-    private static String cmdPrefix = "python3 /finclaw/kubefate/docker-deploy/script.py -f";
+    private static String cmdPrefix = "python3 /home/lly/Desktop/finclaw/kubefate/docker-deploy/script.py -f";
+
     @Override
     public ResponseVO deploy(Integer projectID) {
         List<ServerInfo> serverInfoList = serverInfoMapper.getProjectServerInfo(projectID);
@@ -64,11 +67,12 @@ public class KubefateServiceImpl implements KubefateService {
             sb.append(serverInfo.getIpAddress());
             sb.append(" ");
         }
+        //String cmd = "python3 /home/lly/Desktop/finclaw/kubefate/docker-deploy/script.py -f deploy -ip 192.168.42.131 -id 1 -pw 123456 -u root";
         String cmd = sb.toString();
         String res = execCommand(cmd);
-        if(res.equals(DEPLOY_SUCCESS)){
+        if (res.equals(DEPLOY_SUCCESS)) {
             return ResponseVO.buildSuccess(DEPLOY_SUCCESS);
-        }else{
+        } else {
             return ResponseVO.buildFailure(DEPLOY_ERROR);
         }
     }
@@ -103,9 +107,9 @@ public class KubefateServiceImpl implements KubefateService {
         }
         String cmd = sb.toString();
         String res = execCommand(cmd);
-        if(res.equals(UPLOAD_SUCCESS)){
+        if (res.equals(UPLOAD_SUCCESS)) {
             return ResponseVO.buildSuccess(UPLOAD_SUCCESS);
-        }else{
+        } else {
             return ResponseVO.buildFailure(UPLOADERROR);
         }
     }
@@ -124,18 +128,18 @@ public class KubefateServiceImpl implements KubefateService {
         JsonParser jp = new JsonParser();
         JsonObject jo = jp.parse(res).getAsJsonObject();
         int retCode = jo.get("retcode").getAsInt();
-        if(retCode==1){
+        if (retCode == 1) {
             return ResponseVO.buildFailure(SUBMIT_ERROR);
-        }else {
+        } else {
             String mid = jo.get("model_id").getAsString();
             String modelVersion = jo.get("model_version").getAsString();
             //modelName可以自定义，且只用设置一次，就在这里设置了
             String modelName = "model";
             String jid = jo.get("jobid").getAsString();
-            Model model = new Model(mid,modelVersion,modelName,jid);
+            Model model = new Model(mid, modelVersion, modelName, jid);
             int modelID = modelMapper.createNewModel(model);
             //设置modelID后项目可以根据modelID找到相应的model信息
-            projectMapper.setModelID(projectID,modelID);
+            projectMapper.setModelID(projectID, modelID);
             //设置项目状态为Training
             projectMapper.setProjectStatus(projectID, ProjectStatus.Training);
             return ResponseVO.buildSuccess(SUBMIT_SUCCESS);
@@ -156,23 +160,23 @@ public class KubefateServiceImpl implements KubefateService {
         String[] status = res.split("\n");
         boolean failedFlag = false;
         boolean runningFlag = false;
-        for(int i=0;i<status.length;i++){
-            if(status[i].equals("falied")){
-                failedFlag= true;
+        for (int i = 0; i < status.length; i++) {
+            if (status[i].equals("falied")) {
+                failedFlag = true;
                 break;
             }
-            if(status[i].equals("running")){
+            if (status[i].equals("running")) {
                 runningFlag = true;
             }
         }
-        if(failedFlag){
-            projectMapper.setProjectStatus(projectID,ProjectStatus.Failed);
+        if (failedFlag) {
+            projectMapper.setProjectStatus(projectID, ProjectStatus.Failed);
             return ResponseVO.buildSuccess(ProjectStatus.Failed);
-        }else if(runningFlag){
-            projectMapper.setProjectStatus(projectID,ProjectStatus.Training);
+        } else if (runningFlag) {
+            projectMapper.setProjectStatus(projectID, ProjectStatus.Training);
             return ResponseVO.buildSuccess(ProjectStatus.Training);
         }
-        projectMapper.setProjectStatus(projectID,ProjectStatus.Finished);
+        projectMapper.setProjectStatus(projectID, ProjectStatus.Finished);
         return ResponseVO.buildSuccess(ProjectStatus.Finished);
     }
 
@@ -193,29 +197,28 @@ public class KubefateServiceImpl implements KubefateService {
         sb.append(modelName);
         String cmd = sb.toString();
         String res = execCommand(cmd);
-        if(res.equals(LOAD_BIND_SUCCESS)){
+        if (res.equals(LOAD_BIND_SUCCESS)) {
             return ResponseVO.buildSuccess(LOAD_BIND_SUCCESS);
-        }else{
+        } else {
             return ResponseVO.buildFailure(LOAD_BIND_ERROR);
         }
     }
 
     @Override
     public ResponseVO predict() {
-        return null;
+        int res = (int) (Math.random() * 100);
+        return ResponseVO.buildSuccess(res);
     }
 
     private String execCommand(String cmd) {
-        //System.out.println("the cmd is: " + cmd);
+        System.out.println("the cmd is: " + cmd);
         String res;
-        int retCode = 0;
         try {
-            Process process = Runtime.getRuntime().exec(cmd);
-            retCode = process.waitFor();
+            Process process = Runtime.getRuntime().exec( new String[]{"/bin/sh", "-c",cmd});
+            process.waitFor();
             res = getOutput(process);
         } catch (IOException | InterruptedException e) {
             res = "failure";
-            retCode = -1;
             e.printStackTrace();
         }
         return res;
@@ -229,17 +232,11 @@ public class KubefateServiceImpl implements KubefateService {
         StringBuilder output = new StringBuilder();
         while ((line = input.readLine()) != null) {
             output.append(line).append("\n");
+            System.out.println(line);
         }
-        //System.out.println(output.toString());
         input.close();
         ir.close();
         return output.toString();
     }
 
-    private void appendArg(String[] args, StringBuilder s) {
-        for (String arg : args) {
-            s.append(arg);
-            s.append(" ");
-        }
-    }
 }
