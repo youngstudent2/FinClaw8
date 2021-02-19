@@ -1,35 +1,12 @@
 <template>
     <div :style="backgroundStyle">
-<!--        <a-row style="height: 100px">-->
-<!--            <a-col :span="8">-->
-<!--                <a-statistic title="项目名称" :value="projectData.name"/>-->
-<!--            </a-col>-->
-<!--            <a-col :span="8">-->
-<!--                <a-statistic title="项目简介" :value="projectData.description"/>-->
-<!--            </a-col>-->
-<!--            <a-col :span="8">-->
-<!--                <a-statistic title="项目状态" :value="projectStatus[projectData.status]"-->
-<!--                                            :value-style="{ color: colorList[projectData.status] }"/>-->
-<!--            </a-col>-->
-<!--        </a-row>-->
-<!--        <a-row style="height: 100px">-->
-<!--            <a-col :span="12">-->
-<!--                <a-statistic title="项目进度" :value="projectData.progressRate / 100"/>-->
-<!--            </a-col>-->
-<!--            <a-col :span="12">-->
-<!--                <a-statistic-countdown title="剩余天数" :value="projectData.endTime" format="D 天 H 小时"/>-->
-<!--            </a-col>-->
-<!--        </a-row>-->
-<!--        <a-row type="flex" align="middle">-->
-<!--            <a-col :span="12" align="middle">-->
-<!--            </a-col>-->
-<!--            <a-col :span="12">-->
-<!--                <a-statistic title="合作总数" :value="projectData.cooperationNumber" :value-style="{ color: 'red' }"/>-->
-<!--            </a-col>-->
-<!--        </a-row>-->
-
+        <div style="width: 100%; padding-left: 930px; padding-top: 215px; text-align: left; font-size: 9px">
+            <p>{{projectInfo.projectName}}</p>
+            <p>{{projectInfo.description}}</p>
+            <p>{{status}}</p>
+            <p>{{restDays}}</p>
+        </div>
     </div>
-
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
@@ -38,49 +15,42 @@ export default {
 
     data(){
         return {
-            projectStatus: {
-                "1": "进行中",
-                "2": "已结束",
-                "3": "训练中",
-                "4": "已完成"
-            },
-            colorList: {
-                "1": "green",
-                "2": "black",
-                "3": "orange",
-                "4": "blue"
-            },
             backgroundStyle: {
                 height: '1200px',
                 backgroundImage: "url(" + require("../../../assets/test.png") + ")",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'top',
                 backgroundSize: '1200px, 1000px'
-            }
+            },
+            restDays: 0,
+            status: ""
         }
     },
-    components: {
+    async mounted() {
+        await this.calculate()
     },
     computed: {
         ...mapGetters([
-            'userId',
-            'projectID',
-            'projectData',
-            'chartConfig'
+            'projectInfo',
         ])
-    },
-    async mounted() {
-        if (this.projectID !== null) {
-            await this.getProjectData({
-                operatorID: Number(this.userId),
-                projectID: Number(this.projectID)
-            })
-        }
     },
     methods: {
         ...mapActions([
-            'getProjectData'
+
         ]),
+        calculate() {
+            if (this.projectInfo.status === "Running") { this.status = "未截止" }
+            else if (this.projectInfo.status === "Stop") { this.status = "已结束" }
+            else if (this.projectInfo.status === "Training") { this.status = "训练中" }
+            else if (this.projectInfo.status === "Finished") { this.status = "已完成" }
+            else if (this.projectInfo.status === "Failed") { this.status = "已失败" }
+
+            let d1 = Date.parse(new Date())
+            let d2 = Date.parse(this.projectInfo.endTime)
+            if (d2 > d1) {
+                this.restDays = parseInt((d2 - d1) / (1000 * 60 * 60 * 24))
+            }
+        }
     }
 }
 

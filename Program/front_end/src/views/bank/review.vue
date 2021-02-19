@@ -36,9 +36,9 @@
                           <template slot="description">{{item.description}}</template>
                       </a-card-meta>
                       <template slot="actions" class="ant-card-actions">
-                          <router-link :to="{ name:'dataView', params:{ projectId:item.projectID } }">
+                          <div @click="setProject(item)">
                               <a-icon key="setting" type="setting" /> 管理
-                          </router-link>
+                          </div>
                           <div @click="modifyProject(item)">
                               <a-icon key="edit" type="edit" /> 修改
                           </div>
@@ -89,6 +89,7 @@ export default {
     methods: {
         ...mapMutations([
             'set_addProjectModalVisible',
+            'set_currentProject',
             'set_modifyProjectModalVisible'
         ]),
         ...mapActions([
@@ -97,6 +98,11 @@ export default {
         ]),
         addProject() {
             this.set_addProjectModalVisible(true)
+        },
+        setProject(data) {
+            //console.log(data)
+            this.set_currentProject(data)
+            this.$router.push({ name:'dataView', params:{ projectId:data.projectID }})
         },
         modifyProject(data) {
             this.modifyData = data

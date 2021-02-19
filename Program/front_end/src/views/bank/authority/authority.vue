@@ -7,7 +7,7 @@
             </a-button>
         </span>
         </a-table>
-        <ControlModal ref="controlModal"></ControlModal>
+        <ControlModal :chosen="chosen"></ControlModal>
     </div>
 </template>
 
@@ -41,6 +41,7 @@ export default {
     data(){
         return {
             columns,
+            chosen: false,
         };
     },
     components: {
@@ -55,8 +56,7 @@ export default {
         ])
     },
     async mounted() {
-        console.log(Number(this.projectID))
-        await this.getProjectCooperation(1)
+        await this.getProjectCooperation(this.projectID)
     },
     methods: {
         ...mapMutations([
@@ -72,7 +72,7 @@ export default {
                 projectID: 1
             }
             this.getCooperationInfo(data)
-            this.$refs.controlModal.chosen = this.currentAttendanceInfo.chosen
+            this.chosen = this.currentAttendanceInfo.chosen
             this.set_controlModalVisible(true)
         }
     }
