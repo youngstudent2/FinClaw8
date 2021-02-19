@@ -22,6 +22,7 @@
 
 <script>
     import {mapGetters, mapMutations, mapActions} from 'vuex'
+    import {message} from "ant-design-vue";
 
     export default {
         name: 'predict',
@@ -67,9 +68,14 @@
                 this.option.series[0].data[0].value = this.predictPoint
             },
             startPredict() {
-                this.predict()
-                this.setPoint()
-                this.option = { ...this.option }
+                if (this.projectInfo.modelID === null) {
+                    message.info("尚未绑定模型")
+                }
+                else {
+                    this.predict()
+                    this.setPoint()
+                    this.option = { ...this.option }
+                }
             },
             reset() {
                 this.option.series[0].data[0].value = 0
