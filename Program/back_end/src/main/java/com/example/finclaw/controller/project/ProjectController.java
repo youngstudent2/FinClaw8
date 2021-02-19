@@ -2,6 +2,7 @@ package com.example.finclaw.controller.project;
 
 import com.example.finclaw.bl.project.ProjectService;
 import com.example.finclaw.vo.ResponseVO;
+import com.example.finclaw.vo.model.ModelVO;
 import com.example.finclaw.vo.project.ProjectForm;
 import com.example.finclaw.vo.project.ProjectVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,11 +66,23 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("getAllBankProjectInfo/{userID}")
+    @GetMapping("/getAllBankProjectInfo/{userID}")
     public ResponseVO getAllBankProjectInfo(@PathVariable Integer userID){
         try {
             List<ProjectVO> projectVOList =  projectService.getAllBankProjectInfo(userID);
             return ResponseVO.buildSuccess(projectVOList);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseVO.buildFailure(OTHER_ERROR);
+        }
+    }
+
+    @GetMapping("/getAllModel")
+    public ResponseVO getAllModel(){
+        try{
+            List<ModelVO> modelVOS = projectService.getAllModel();
+            return ResponseVO.buildSuccess(modelVOS);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

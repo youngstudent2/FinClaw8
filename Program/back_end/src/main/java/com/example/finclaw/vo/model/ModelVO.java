@@ -4,11 +4,11 @@ import com.example.finclaw.po.Model;
 
 public class ModelVO {
     private Integer modelID;
-    private String name;
+    private String modelName;
 
     public ModelVO(Model model) {
         this.modelID = model.getModelID();
-        this.name = model.getModelName();
+        this.modelName = model.getModelName();
     }
 
     public Integer getModelID() {
@@ -19,11 +19,11 @@ public class ModelVO {
         this.modelID = modelID;
     }
 
-    public String getName() {
-        return name;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 }
