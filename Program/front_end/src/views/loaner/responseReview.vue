@@ -1,12 +1,16 @@
 <template>
     <div>
-
         <div>
             <h2>历史贷款信息</h2>
-            <a-table :columns="columns" :data-source="data">
+            <div v-if="this.history.length != 0">
+            <a-table :columns="columns" :data-source="this.history">
                 <a slot="bank" slot-scope="text">{{ text }}</a>
                 <span slot="customTitle">
                     <a-icon type="bank" /> 银行
+                </span>
+
+                <span slot="createTime" slot-scope="text">
+                    {{ new Date(text).toLocaleDateString().replace(/\//g, '-') }}
                 </span>
 
                 <span slot="action">
@@ -15,15 +19,21 @@
                     <a>Delete</a>
                 </span>
             </a-table>
+            </div>
+            
+            <div v-else>
+                <span>暂无贷款记录</span>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
-const columns = [{
-        dataIndex: 'bank',
-        key: 'bank',
+const columns = [
+    {
+        dataIndex: 'bankName',
+        key: 'bankName',
         slots: {
             title: 'customTitle'
         },
@@ -38,13 +48,16 @@ const columns = [{
     },
     {
         title: '贷款利息',
-        dataIndex: 'rate',
-        key: 'rate',
+        dataIndex: 'interestRate',
+        key: 'interestRate',
     },
     {
         title: '贷款时间',
-        dataIndex: 'time',
-        key: 'time',
+        dataIndex: 'createTime',
+        key: 'createTime',
+        scopedSlots: {
+            customRender: 'createTime'
+        }
     },
     {
         title: '申请人',
@@ -53,51 +66,39 @@ const columns = [{
     },
 ];
 
-const data = [{
-        key: '1',
-        bank: '花旗银行',
-        amount: 32,
-        rate: '5%',
-        time: '2020-04-01',
-        person: '王经理',
-    },
-    {
-        key: '2',
-        bank: '中国银行',
-        amount: 42,
-        rate: '5%',
-        time: '2020-04-01',
-        person: '李经理',
-    },
-    {
-        key: '3',
-        bank: '中国建设银行',
-        amount: 32,
-        rate: '5%',
-        time: '2020-04-01',
-        person: '张经理',
-    },
-];
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            data,
+            history: [],
             columns,
         };
     },
     async mounted() {
-        await this.getUserLoanHistory(7);
-        console.log(this.userLoanHistory)
+        await this.getUserLoanHistory(this.userId);
+        for (let loan of this.userLoanHistory) {
+            if (loan.hasDealt) {
+                await this.getLendingHistoryByLoanApplicationID(loan.loanApplicationID);
+                for (let res of this.loanApplicationResponse) {
+                    if (res.hasDealt) {
+                        res.person = loan.userName;
+                        this.history.push(res);
+                    }
+                }
+            }
+        }
     },
     computed: {
         ...mapGetters([
-            'userLoanHistory'
-        ])
+            'userLoanHistory',
+            'loanApplicationResponse',
+            'userId'
+        ]),
     },
     methods: {
         ...mapActions([
-            'getUserLoanHistory'
+            'getUserLoanHistory',
+            'getLendingHistoryByLoanApplicationID',
         ])
     }
 };

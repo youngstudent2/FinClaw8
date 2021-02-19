@@ -45,7 +45,9 @@ const getters = {
   //predict
   predictScore: state => state.predict.predictScore,
   // loan
+  userLoanApplication: state => state.loaner.userLoanApplication,
   userLoanHistory: state => state.loaner.userLoanHistory,
+  loanApplicationResponse: state => state.loaner.loanApplicationResponse,
 }
   
 export default getters
