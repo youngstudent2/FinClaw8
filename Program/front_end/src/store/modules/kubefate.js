@@ -12,10 +12,14 @@ import {
 
 const kubefate = {
     state: {
+        bindStatus: false,
         predictPoint: 80,
     },
 
     mutations: {
+        set_bindStatus: function(state, data) {
+            state.bindStatus = data
+        },
         set_predictPoint: function(state, data) {
             state.predictPoint = data
         },
@@ -53,6 +57,16 @@ const kubefate = {
             const res = await queryAPI(data)
             if (res) {
                 message.info(res)
+            }
+        },
+        loadBind: async ( { commit }, data ) => {
+            const res = await loadBindAPI(data)
+            if (res) {
+                commit('set_bindStatus', true)
+                message.success("绑定成功")
+            }
+            else {
+                message.error("绑定失败")
             }
         },
         predict: async ({ commit }) => {

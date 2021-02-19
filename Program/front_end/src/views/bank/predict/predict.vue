@@ -4,6 +4,9 @@
             <a-row :gutter="10">
                 <a-col :span="12"
                        style="height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center">
+                    <a-button size="large" @click="doBind" style="width: 100px; margin-bottom: 50px">
+                        绑定模型
+                    </a-button>
                     <a-button type="primary" size="large" @click="startPredict" style="width: 100px; margin-bottom: 50px">
                         预测
                     </a-button>
@@ -15,7 +18,6 @@
                     <dv-charts :option="option" style="height: 450px"></dv-charts>
                 </a-col>
             </a-row>
-
         </dv-border-box13>
     </div>
 </template>
@@ -53,7 +55,9 @@
         },
         computed: {
             ...mapGetters([
+                'projectID',
                 'projectInfo',
+                'bindStatus',
                 'predictPoint'
             ])
         },
@@ -61,14 +65,22 @@
             await this.setPoint()
         },
         methods: {
+            ...mapMutations([
+                'set_bindStatus'
+            ]),
             ...mapActions([
                 "predict",
+                'loadBind',
             ]),
+            doBind() {
+                this.loadBind(this.projectID)
+                this.set_bindStatus(true)
+            },
             setPoint() {
                 this.option.series[0].data[0].value = this.predictPoint
             },
             startPredict() {
-                if (this.projectInfo.modelID === null) {
+                if (!this.bindStatus) {
                     message.info("尚未绑定模型")
                 }
                 else {

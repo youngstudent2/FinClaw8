@@ -36,6 +36,7 @@ const getters = {
   currentServerInfo: state => state.authority.currentServerInfo,
   currentAttendanceInfo: state => state.authority.currentAttendanceInfo,
   //kubefate
+  bindStatus: state => state.kubefate.bindStatus,
   predictPoint: state => state.kubefate.predictPoint,
   // project
   projectID: state => state.project.currentProjectID,

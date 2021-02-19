@@ -79,7 +79,7 @@ const project = {
         deleteProject : async ({ state, dispatch }, data) => {
             const res = await deleteProjectAPI(data)
             dispatch('getBankProject', getToken())
-        }
+        },
     }
 }
 
