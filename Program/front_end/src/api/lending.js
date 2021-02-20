@@ -18,3 +18,17 @@ export function addLendingFormAPI(data){
         data
     })
 }
+
+export function getLendingHistoryByLoanApplicationIDAPI(loanApplicationID) {
+    return axios({
+        url: `${api.lendingPre}/getLendingHistoryByLoanApplicationID/${loanApplicationID}`,
+        method: 'GET'
+    })
+}
+
+export function setDealtAPI(lendingHistoryID) {
+    return axios({
+        url: `${api.lendingPre}/setDealt/${lendingHistoryID}`,
+        method: 'POST'
+    })
+}

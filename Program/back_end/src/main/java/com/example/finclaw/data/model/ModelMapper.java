@@ -18,5 +18,9 @@ public interface ModelMapper {
 
     Model getModel(int modelID);
 
-
+    /**
+     * 得到所有的模型
+     * @return
+     */
+    List<Model> getAllModel();
 }

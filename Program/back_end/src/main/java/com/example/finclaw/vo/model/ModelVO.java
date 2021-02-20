@@ -4,11 +4,19 @@ import com.example.finclaw.po.Model;
 
 public class ModelVO {
     private Integer modelID;
-    private String name;
+    private String mid;
+    private String modelVersion;
+    private String modelName;
+    private String jid;
+
+    public ModelVO(){}
 
     public ModelVO(Model model) {
         this.modelID = model.getModelID();
-        this.name = model.getModelName();
+        this.mid = model.getMid();
+        this.modelVersion = model.getModelVerion();
+        this.modelName = model.getModelName();
+        this.jid = model.getJid();
     }
 
     public Integer getModelID() {
@@ -19,11 +27,35 @@ public class ModelVO {
         this.modelID = modelID;
     }
 
-    public String getName() {
-        return name;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
+
+    public String getModelVersion() {
+        return modelVersion;
+    }
+
+    public void setModelVersion(String modelVersion) {
+        this.modelVersion = modelVersion;
+    }
+
+    public String getJid() {
+        return jid;
+    }
+
+    public void setJid(String jid) {
+        this.jid = jid;
     }
 }

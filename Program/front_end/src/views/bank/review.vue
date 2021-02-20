@@ -1,8 +1,8 @@
 <template>
   <div>
-      <a-row :gutter="6" style="width: 100%">
+      <a-row :gutter="[12, 18]" style="width: 100%">
           <a-col :span="6">
-              <div style="padding: 5px">
+              <div>
                   <a-card hoverable style="width: 100%; border:2px dashed #eaeaea" @click="addProject">
                       <img
                           slot="cover"
@@ -25,7 +25,7 @@
               :key="item.toString()"
               :span="6"
           >
-              <div style="padding: 5px">
+              <div>
                   <a-card style="width: 100%">
                       <img
                           slot="cover"

@@ -1,10 +1,13 @@
 package com.example.finclaw.blImpl.project;
 
 import com.example.finclaw.bl.project.ProjectService;
+import com.example.finclaw.data.model.ModelMapper;
 import com.example.finclaw.data.project.ProjectMapper;
 import com.example.finclaw.enums.ProjectStatus;
+import com.example.finclaw.po.Model;
 import com.example.finclaw.po.Project;
 import com.example.finclaw.vo.ResponseVO;
+import com.example.finclaw.vo.model.ModelVO;
 import com.example.finclaw.vo.project.ProjectForm;
 import com.example.finclaw.vo.project.ProjectVO;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +27,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ProjectMapper projectMapper;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public ResponseVO addProject(ProjectForm projectForm) {
@@ -95,13 +100,23 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectVO> getAllBankProjectInfo(Integer userID) throws Exception{
+    public List<ProjectVO> getAllBankProjectInfo(Integer userID) throws Exception {
         List<Project> projectList = projectMapper.getAllBankProjectInfo(userID);
         ArrayList<ProjectVO> projectVOArrayList = new ArrayList<>();
         for (Project project : projectList) {
             projectVOArrayList.add(new ProjectVO(project));
         }
         return projectVOArrayList;
+    }
+
+    @Override
+    public List<ModelVO> getAllModel() throws Exception {
+        List<Model> models = modelMapper.getAllModel();
+        ArrayList<ModelVO> modelVOS = new ArrayList<>();
+        for(Model model : models){
+            modelVOS.add(new ModelVO(model));
+        }
+        return modelVOS;
     }
 
     /**

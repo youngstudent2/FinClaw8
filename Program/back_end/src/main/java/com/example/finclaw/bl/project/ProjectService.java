@@ -1,6 +1,7 @@
 package com.example.finclaw.bl.project;
 
 import com.example.finclaw.vo.ResponseVO;
+import com.example.finclaw.vo.model.ModelVO;
 import com.example.finclaw.vo.project.ProjectForm;
 import com.example.finclaw.vo.project.ProjectVO;
 
@@ -22,4 +23,6 @@ public interface ProjectService {
     ProjectVO getProject(Integer projectID);
 
     List<ProjectVO> getAllBankProjectInfo(Integer userID) throws Exception;
+
+    List<ModelVO> getAllModel() throws Exception;
 }

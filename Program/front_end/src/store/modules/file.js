@@ -5,12 +5,9 @@ import { message } from 'ant-design-vue'
 import {
     uploadAPI,
     downloadAPI,
-    viewAllFileAPI
-} from '@/api/file'
-
-import {
+    viewAllFileAPI,
     getFileMetadataAPI
-} from '@/api/data'
+} from '@/api/file'
 
 const file = {
     state: {

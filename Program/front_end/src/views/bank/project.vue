@@ -39,8 +39,8 @@ export default {
       links : [
         ['dataView','数据展示','bank'],
         ['authorityManage','权限管理','lock'],
+        ['projectConfig','项目配置','setting'],
         ['predict','信用预测','stock'],
-        ['projectConfig','项目配置','setting']
       ]
     }
   }

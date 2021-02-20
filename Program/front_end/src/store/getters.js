@@ -14,8 +14,6 @@ const getters = {
   uploadedFileList: state => state.file.uploadedFileList,
   metadataVisible: state => state.file.metadataVisible,
   metadata: state => state.file.metadata,
-  // model
-  modelList: state => state.model.modelList,
   // monitor
   monitorInfo: state => state.monitor.monitorInfo,
   // data
@@ -37,6 +35,9 @@ const getters = {
   controlModalVisible: state => state.authority.controlModalVisible,
   currentServerInfo: state => state.authority.currentServerInfo,
   currentAttendanceInfo: state => state.authority.currentAttendanceInfo,
+  //kubefate
+  bindStatus: state => state.kubefate.bindStatus,
+  predictPoint: state => state.kubefate.predictPoint,
   // project
   projectID: state => state.project.currentProjectID,
   projectInfo: state => state.project.currentProjectInfo,
@@ -44,10 +45,10 @@ const getters = {
   bankProjectList: state => state.project.bankProjectList,
   addProjectModalVisible: state => state.project.addProjectModalVisible,
   modifyProjectModalVisible: state => state.project.modifyProjectModalVisible,
-  //predict
-  predictScore: state => state.predict.predictScore,
   // loan
+  userLoanApplication: state => state.loaner.userLoanApplication,
   userLoanHistory: state => state.loaner.userLoanHistory,
+  loanApplicationResponse: state => state.loaner.loanApplicationResponse,
 }
   
 export default getters

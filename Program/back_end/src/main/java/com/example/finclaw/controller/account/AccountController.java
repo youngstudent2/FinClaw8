@@ -99,6 +99,6 @@ public class AccountController {
 
     @PostMapping("/rejectAuthentication/{userID}")
     public ResponseVO rejectAuthentication(@PathVariable int userID){
-        return accountService.examineAuthentication(userID,0);
+        return accountService.examineAuthentication(userID, 0);
     }
 }

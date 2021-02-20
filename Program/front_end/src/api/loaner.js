@@ -27,13 +27,6 @@ export function getAllLoanApplicationAPI() {
     })
 }
 
-export function getUserLoanApplicationAPI(userID) {
-    return axios({
-        url: `${api.loanPre}/getUserLoanApplication/${userID}`,
-        method: 'GET'
-    })
-}
-
 export function getLoanApplicationAPI(loanApplicationID) {
     return axios({
         url: `${api.loanPre}/getLoanApplication/${loanApplicationID}`,
@@ -41,13 +34,22 @@ export function getLoanApplicationAPI(loanApplicationID) {
     })
 }
 
-export function setDealtAPI(loanApplicationID) {
+export function setLoanApplicationDealtAPI(loanApplicationID) {
     return axios({
         url: `${api.loanPre}/setDealt/${loanApplicationID}`,
         method: 'POST'
     })
 }
 
+// 获取所有的借款申请记录
+export function getUserLoanApplicationAPI(userID) {
+    return axios({
+        url: `${api.loanPre}/getUserLoanApplication/${userID}`,
+        method: 'GET'
+    })
+}
+
+// 获取所有已完成的借款记录
 export function getUserLoanHistoryAPI(userID) {
     return axios({
         url: `${api.loanPre}/getUserLoanHistory/${userID}`,

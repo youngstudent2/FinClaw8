@@ -11,6 +11,10 @@
         select * from model where modelID=#{modelID}
     </select>
 
+    <select id="getAllModel" resultMap="Model">
+        select * from model
+    </select>
+
     <resultMap id="Model" type="com.example.finclaw.po.Model">
         <id column="modelID" property="modelID"/>
         <result column="mid" property="mid"/>
