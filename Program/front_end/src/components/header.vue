@@ -45,20 +45,45 @@
         </template>
         <template v-else>
           <el-dropdown id="user">
-              <div><el-avatar :size="40" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
-            <i style="color:white;margin-left:5px">{{userInfo.username}}</i></div>
-            
+            <div>
+              <el-avatar
+                :size="40"
+                src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+              ></el-avatar>
+              <i style="color: white; margin: 5px">{{ userInfo.username }}</i>
+              <el-tooltip
+                v-if="!isAuthorized"
+                class="item"
+                effect="light"
+                content="审核未通过，请到信息页面提交审核材料"
+                placement="left-end"
+              >
+                <b style="color: #409eff">(待审核)</b>
+              </el-tooltip>
+              <el-tooltip
+                v-if="isRejected"
+                class="item"
+                effect="light"
+                content="审核被拒绝，请到信息页面重新提交材料"
+                placement="left-end"
+              >
+                <b style="color: #F56C6C">(被拒绝)</b>
+              </el-tooltip>
+            </div>
 
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="jumpToUserInfo()">我的信息</el-dropdown-item>
-              <el-dropdown-item style="color:red" @click.native="quit()">退出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="jumpToUserInfo()"
+                >我的信息</el-dropdown-item
+              >
+              <el-dropdown-item style="color: red" @click.native="quit()"
+                >退出登录</el-dropdown-item
+              >
             </el-dropdown-menu>
           </el-dropdown>
         </template>
       </el-menu-item>
     </el-menu>
   </div>
-
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from "vuex";
@@ -69,20 +94,18 @@ export default {
     return {
       logo_url:
         "https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/finclaw_logo.png",
+      isAuthorized: true,
+      isRejected: false,
     };
   },
-  components: {
-  },
+  components: {},
   computed: {
-    ...mapGetters([
-      "userId",
-      "userInfo",
-    ]),
+    ...mapGetters(["userId", "userInfo"]),
   },
   async mounted() {
-        await this.getUserInfo()
-        console.log(this.userInfo)
-    },
+    await this.getUserInfo();
+    console.log(this.userInfo);
+  },
   methods: {
     ...mapActions(["logout", "getUserInfo"]),
     selectMenu(v) {},
@@ -91,8 +114,22 @@ export default {
       await this.$router.push(`/login?redirect=${this.$route.fullPath}`);
     },
     async mounted() {
-        await this.getUserInfo()
-        console.log(this.userInfo)
+      await this.getUserInfo();
+      const r = this.userInfo.role;
+      if (
+        r == "UnauthorizedCompany" ||
+        r == "UnauthorizedBank" ||
+        r == "UnauthorizedDataProvider"
+      ) {
+        this.isAuthorized = false;
+      }
+      if (r == "rejected") {
+        this.isRejected = true
+      }
+      console.log(this.userInfo);
+    },
+    tagClick() {
+      alert("click");
     },
     jumpToUserInfo() {
       this.$router.push({
@@ -112,28 +149,27 @@ export default {
       this.$router.push("/register");
     },
     jumpToCenter() {
-      const r = this.userInfo.role
+      const r = this.userInfo.role;
       if (r == "Bank") {
         this.$router.push("/bank");
-      }
-      else if (r == "DataProvider") {
+      } else if (r == "DataProvider") {
         this.$router.push("/cooperator");
-      }
-      else if (r == "Company") {
+      } else if (r == "Company") {
         this.$router.push("/loaner");
-      }
-      else if (r == "Admin") {
+      } else if (r == "Admin") {
         this.$router.push("/manager");
-      }
-      else if (r == "UnauthorizedCompany") {
-        alert("审核未通过，请等待审核通过")
-      }
-      else {
+      } else if (
+        r == "UnauthorizedCompany" ||
+        r == "UnauthorizedBank" ||
+        r == "UnauthorizedDataProvider"
+      ) {
+        alert("审核未通过，请等待审核通过");
+      } else if (r == "rejected") {
+        alert("审核已被拒绝，请重新上传申请资料");
+      } else {
         this.$router.push("/login");
       }
     },
-    
-   
   },
 };
 </script>
@@ -169,6 +205,4 @@ export default {
     font-weight: 600;
   }
 }
-
-
 </style>
