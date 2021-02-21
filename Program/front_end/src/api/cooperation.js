@@ -6,7 +6,7 @@ const api = {
 
 export function attendProjectAPI(params) {
     return axios({
-        url:`${api.cooperation}/attendProject/${params.projectID}`,
+        url:`${api.cooperation}/attendProject/${params.projectID}/${params.cooperationID}`,
         method: 'POST',
         params
     })
@@ -14,7 +14,7 @@ export function attendProjectAPI(params) {
 
 export function quitProjectAPI(params) {
     return axios({
-        url:`${api.cooperation}/quitProject/${params.projectID}`,
+        url:`${api.cooperation}/quitProject/${params.projectID}/${params.cooperationID}`,
         method: 'POST',
         params
     })
