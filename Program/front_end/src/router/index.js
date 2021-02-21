@@ -29,7 +29,7 @@ const routes = [
     component: () => import('@/views/register')
   },
   {
-    path: 'user/info/:userId',
+    path: '/user/info/:userId',
     name: 'userInfo',
     component: () => import('@/views/user/info')
   },
