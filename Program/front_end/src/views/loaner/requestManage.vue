@@ -58,16 +58,19 @@
             scopedSlots: {
                 customRender: 'bank'
             },
+            align: 'center',
         },
         {
             title: '意愿贷款金额',
             dataIndex: 'amount',
             key: 'amount',
+            align: 'center',
         },
         {
             title: '意愿贷款利息',
             dataIndex: 'interestRate',
             key: 'interestRate',
+            align: 'center',
         },
         {
             title: '操作',
@@ -75,6 +78,7 @@
             scopedSlots: {
                 customRender: 'action'
             },
+            align: 'center',
         },
     ];
 

@@ -22,8 +22,7 @@ import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-    private final static String ACCOUNT_EXIST = "账号已存在";
-    private final static String UPDATE_ERROR = "修改失败";
+    private final static String EMAIL_EXIST = "该邮箱已注册";
     private final static String ACCOUNT_INFO_ERROR = "用户名或密码错误";
     private final static String OTHER_ERROR = "其他错误";
     private final static String AUTHORIZED_ALREADY = "该用户已完成审核";
@@ -46,6 +45,9 @@ public class AccountServiceImpl implements AccountService {
         User user = new User();
         BeanUtils.copyProperties(userRegisterForm,user);
         try {
+            if(accountMapper.getAccountByEmail(user.getEmail())!=null){
+                return ResponseVO.buildFailure(EMAIL_EXIST);
+            }
             accountMapper.createNewAccount(user);
         }
         catch (Exception e) {
