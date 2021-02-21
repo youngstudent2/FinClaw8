@@ -13,7 +13,7 @@ import {
     getAllDataManagersAPI,
     deleteUserAPI
 } from '@/api/account'
-import {getUnauthorizedUsersAPI, reviewUserAPI} from "../../api/account";
+import {getUnauthorizedUsersAPI, rejectUserAPI, reviewUserAPI} from "../../api/account";
 
 const getDefaultState = () => {
     return {
@@ -145,17 +145,29 @@ const user = {
             }
         },
         deleteUser: async({dispatch},userID) => {
-            const res = await deleteUserAPI(userID)
+            const res = await deleteUserAPI(userID);
             if(res){
-                dispatch('getAllDataManagers')
+                dispatch('getAllUserInfo');
                 message.success('删除成功')
             }
-            // else{
-            //     message.error('删除失败')
-            // }
+            else{
+                message.error('删除失败')
+            }
         },
         reviewUser: async({commit,dispatch},userID)=>{
             const res = await reviewUserAPI(userID);
+            console.log(res);
+            if(res){
+                dispatch('getUnauthorizedUsers');
+                message.success('操作成功');
+            }
+            else{
+                message.error('操作失败');
+            }
+        },
+        rejectUser: async({commit,dispatch},userID)=>{
+            const res = await rejectUserAPI(userID);
+            console.log(res);
             if(res){
                 dispatch('getUnauthorizedUsers');
                 message.success('操作成功');

@@ -14,6 +14,8 @@ const getters = {
   uploadedFileList: state => state.file.uploadedFileList,
   metadataVisible: state => state.file.metadataVisible,
   metadata: state => state.file.metadata,
+  userFiles: state => state.file.userFiles,
+
   // monitor
   monitorInfo: state => state.monitor.monitorInfo,
   // data

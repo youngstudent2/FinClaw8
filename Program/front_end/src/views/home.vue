@@ -14,16 +14,12 @@
             >
               <div>
                 <router-link tag='detail' :to="{name:'detail',params:{projectId:0}}">
-                <a-card hoverable style="width: 300px; margin: 10px; padding: 10px">
-                  <img
-                    slot="cover"
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  />
-                  <a-card-meta title="Europe Street beat">
-                    <template slot="description"> 花旗餐饮行业信用预测项目 </template>
-                  </a-card-meta>
-                </a-card>
+                  <a-card hoverable="true" title="花旗餐饮行业训练项目" style="width: 380px">
+                    <a slot="extra" href="#">more</a>
+                    <a-icon type="line-chart" style="float: right"></a-icon>
+                    <a-card-meta title="花旗银行" description="花旗银行的餐饮信用贷是花旗银行为广大中小微餐饮企业提供的线上流动资金贷款服务。企业从申请至提款全部在线完成，无需抵质押，额度立等可见，资金分钟到账，按日计息，随借随还，以科技金融为中小微企业提供高效编写的融资服务">
+                    </a-card-meta>
+                  </a-card>
                 </router-link>
               </div>
             </a-col>
