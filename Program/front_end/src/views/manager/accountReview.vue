@@ -62,7 +62,7 @@
         },
         async mounted() {
             await this.getUnauthorizedUsers();
-            console.log(this.unauthorizedUsers);
+            //console.log(this.unauthorizedUsers);
         },
         methods: {
             ...mapMutations([
@@ -75,7 +75,7 @@
             showModal(record){
                 this.set_temp(record);
                 this.set_accountModalVisible(true);
-                console.log(this.temp);
+                //console.log(this.temp);
             }
         }
     }

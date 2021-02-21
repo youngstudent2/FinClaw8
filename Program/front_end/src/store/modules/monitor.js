@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import { message } from 'ant-design-vue'
 
-import {
-    getProjectMonitorInfoAPI,
-} from '@/api/monitor'
+import {getAllOperationAPI} from "../../api/monitor";
 
 const monitor = {
     state: {
@@ -17,13 +15,14 @@ const monitor = {
     },
 
     actions: {
-        getMonitorInfo: async ({ commit }, data) => {
-            const res = await getProjectMonitorInfoAPI(data)
+        getAllOperation: async ({ commit }, data) => {
+            const res = await getAllOperationAPI(data);
             if (res) {
-                commit('set_monitorInfo', res)
+                commit('set_monitorInfo', res);
             }
         },
+
     }
-}
+};
 
 export default monitor

@@ -5,9 +5,9 @@ import { message } from 'ant-design-vue'
 import {
     uploadAPI,
     downloadAPI,
-    viewAllFileAPI,
-    getFileMetadataAPI
+    getUserFilesAPI,
 } from '@/api/file'
+
 
 const file = {
     state: {
@@ -15,7 +15,8 @@ const file = {
         uploadState: false,
         downloadState: false,
         metadataVisible: false,
-        metadata: []
+        metadata: [],
+        userFiles: [],
     },
 
     mutations: {
@@ -28,12 +29,9 @@ const file = {
         set_downloadState: function(state, data) {
             state.downloadState = data
         },
-        set_metadataVisible: function(state, data) {
-            state.metadataVisible = data
-        },
-        set_metadata: function(state, data) {
-            state.metadata = data
-        },
+        set_userFiles: function (state, data) {
+            state.userFiles = data;
+        }
     },
 
     actions: {
@@ -52,9 +50,9 @@ const file = {
             }
             commit('set_uploadState', false)
         },
-        downloadFile: async ({ dispatch, commit }, data) => {
-            commit('set_downloadState', true)
-            const res = await downloadAPI(data)
+        downloadFile: async ({ dispatch, commit }, fileID) => {
+            commit('set_downloadState', true);
+            const res = await downloadAPI(fileID);
             if (res != null) {
                 message.success("文件下载成功")
             } else {
@@ -62,21 +60,17 @@ const file = {
             }
             commit('set_downloadState', false)
         },
-        getAllFiles: async ({ commit, state }, data) => {
-            const res = await viewAllFileAPI(data)
-            if (res) {
-                commit('set_uploadedFileList', res)
+        getUserFiles: async ({commit}, userID) => {
+            console.log(userID);
+            const res = await getUserFilesAPI(userID);
+            console.log(res);
+            if(res){
+                commit('set_userFiles', res);
             }
-        },
-        getMetadata: async ({ commit }, data) => {
-            const res = await getFileMetadataAPI(data)
-            if (res) {
-                commit('set_metadata', res)
-            } else {
-                commit('set_metadata', null)
-                message.error("查看失败")
+            else{
+                message.error("获取文件列表失败");
             }
-        },
+        }
     }
 }
 

@@ -4,11 +4,26 @@ const api = {
     monitorPre: '/api/monitor'
 }
 
-export function getProjectMonitorInfoAPI(params) {
+export function getAllOperationAPI() {
     return axios({
-        url:`${api.monitorPre}/getProjectMonitorInfo`,
+        url:`${api.monitorPre}/getAllOperation`,
         method: 'GET',
-        params
+    })
+}
+
+export function getProjectOperationAPI(projectID){
+    return axios({
+        url:`${api.monitorPre}/getProjectOperation`,
+        method: 'GET',
+        projectID,
+    })
+}
+
+export function getUserOperationAPI(userID) {
+    return axios({
+        url:`${api.monitorPre}/getUserOperation`,
+        method: 'GET',
+        userID,
     })
 }
 

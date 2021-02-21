@@ -70,7 +70,15 @@ export function deleteUserAPI(params) {
 
 export function reviewUserAPI(userID){
     return axios({
-        url: `${api.accountPre}/reviewUser/${userID}`,
+        url: `${api.accountPre}/verifyAuthentication/${userID}`,
+        method: `POST`,
+        userID
+    })
+}
+
+export function rejectUserAPI(userID){
+    return axios({
+        url: `${api.accountPre}/rejectAuthentication/${userID}`,
         method: `POST`,
         userID
     })

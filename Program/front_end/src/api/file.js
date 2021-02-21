@@ -13,26 +13,16 @@ export function uploadAPI(params) {
     })
 }
 
-export function downloadAPI(params) {
+export function downloadAPI(fileID) {
     return axios({
-        url: `${api.filePre}/download/${params.operatorID}`,
+        url: `${api.filePre}/download/${fileID}`,
         method: 'GET',
-        params
     })
 }
 
-export function viewAllFileAPI(params) {
+export function getUserFilesAPI(userID) {
     return axios({
-        url: `${api.filePre}/viewAllFile/${params.operatorID}`,
+        url: `${api.filePre}/getUserFiles/${userID}`,
         method: 'GET',
-        params
-    })
-}
-
-export function getFileMetadataAPI(params) {
-    return axios({
-        url: `${api.dataPre}/getFileMetadata/${params.operatorID}`,
-        method: 'GET',
-        params
     })
 }

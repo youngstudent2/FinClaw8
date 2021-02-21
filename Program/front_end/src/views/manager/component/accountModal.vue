@@ -28,22 +28,64 @@
             <span class="l">角色：</span>
             <span class="r">{{temp.role}}</span>
         </div>
-
+        <a-table :columns="fileColumns" :data-source="userFiles">
+            <span slot="uploadTime" slot-scope="text">
+                <span>{{text.substring(0, 19).replace('T', ' ')}}</span>
+            </span>
+            <span slot="action" slot-scope="record">
+                <a-button type="primary" size="small" @click="download(record)">下载</a-button>
+            </span>
+        </a-table>
     </a-modal>
 </template>
 
 <script>
     import {mapGetters, mapMutations, mapActions} from 'vuex'
+    const fileColumns =[
+        {
+            title: '文件编号',
+            dataIndex: 'fileID',
+        },
+        {
+            title: '用户编号',
+            dataIndex: 'userID',
+        },
+        {
+            title: '文件名',
+            dataIndex: 'fileName',
+        },
+        {
+            title: '文件路径',
+            dataIndex: 'filePath',
+        },
+        {
+            title: '上传时间',
+            dataIndex: 'uploadTime',
+            scopedSlots: {customRender: 'uploadTime'},
+        },
+        {
+            title: '操作',
+            key: 'action',
+            scopedSlots: {customRender: 'action'},
+        },
+    ];
     export default {
         name: "accountModal",
+        data(){
+            return {
+                fileColumns,
+            }
+        },
         computed: {
             ...mapGetters([
                 'temp',
                 'accountModalVisible',
+                'userFiles',
             ])
         },
-        mounted() {
-            console.log(this.temp);
+        async mounted() {
+            //console.log(this.temp);
+            await this.getUserFiles(this.temp.userID);
         },
         methods: {
             ...mapMutations([
@@ -51,14 +93,21 @@
             ]),
             ...mapActions([
                 'reviewUser',
+                'rejectUser',
+                'getUserFiles',
+                'downloadFile',
             ]),
             cancel(){
+                //this.rejectUser(this.temp.userID);
                 this.set_accountModalVisible(false);
             },
             handleOk(){
                 this.reviewUser(this.temp.userID);
                 this.set_accountModalVisible(false);
             },
+            download(record){
+                this.downloadFile(record.fileID);
+            }
         },
     }
 
