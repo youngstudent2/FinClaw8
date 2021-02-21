@@ -29,9 +29,9 @@
                 },
               ]"
             >
-              <a-select-option value="Bank">银行</a-select-option>
-              <a-select-option value="DataProvider">数据提供方</a-select-option>
-              <a-select-option value="Company">企业</a-select-option>
+              <a-select-option value="UnauthorizedBank">银行</a-select-option>
+              <a-select-option value="UnauthorizedDataProvider">数据提供方</a-select-option>
+              <a-select-option value="UnauthorizedCompany">企业</a-select-option>
             </a-select>
           </a-form-item>
           <a-form-item>
@@ -141,7 +141,7 @@
               />
             </a-input>
           </a-form-item>
-          <a-form-item label="审核材料">
+          <!--a-form-item label="审核材料">
             <a-upload
               :file-list="fileList"
               :multiple="false"
@@ -150,7 +150,7 @@
             >
               <a-button> 选择文件 </a-button>
             </a-upload>
-          </a-form-item>
+          </a-form-item-->
           <a-form-item style="margin-top: 24px">
             <a-button
               size="large"
@@ -268,7 +268,7 @@ export default {
               email: this.form.getFieldValue("registerUserMail"),
               password: this.form.getFieldValue("registerPassword"),
               phoneNumber: this.form.getFieldValue("registerPhoneNumber"),
-              userName: this.form.getFieldValue(
+              username: this.form.getFieldValue(
                 "registerUserName"
               ),
               //file: this.fileList

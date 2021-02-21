@@ -115,7 +115,7 @@
       </div>
     </div>
     <div class="add">
-      <el-button type="primary" @click="attendProject"
+      <el-button type="primary" @click="attend"
         >加入<i class="el-icon-bottom-right el-icon--right"></i
       ></el-button>
     </div>
@@ -124,8 +124,11 @@
 
 <script>
 import Header from "@/components/detail-header";
-
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["userId", "userInfo"]),
+  },
   components: {
     Header,
   },
@@ -134,14 +137,20 @@ export default {
   },
   mounted() {},
   methods:{
-    attendProject() {
+    ...mapActions(["attendProject"]),
+    attend() {
       let r = this.userInfo.role
       console.log("attend the project")
-      if (r == "bank"){
+      if (r == "Bank"){
 
       }
-      else if (r == "cooperator") {
-
+      else if (r == "DataProvider") {
+        const params = {
+          projectID:this.$route.params.projectId,
+          cooperationID:this.userId
+        }
+        console.log(params)
+        this.attendProject(params)
       }
       else {
         alert("权限不足")

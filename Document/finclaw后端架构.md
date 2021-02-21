@@ -274,7 +274,7 @@ public class UserLoginForm {
 public class UserRegisterForm {
     private String email;
     private String password;
-    private String userName;
+    private String username;
     private String phoneNumber;
     private UserType role;//希望以什么身份注册
 }

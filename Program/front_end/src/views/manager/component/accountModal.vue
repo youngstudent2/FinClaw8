@@ -2,6 +2,8 @@
     <a-modal
             :visible="accountModalVisible"
             width="600px"
+            okText="通过"
+            cancelText="取消"
             @ok="handleOk"
             @cancel="cancel">
         <div class="a">
@@ -93,12 +95,10 @@
             ]),
             ...mapActions([
                 'reviewUser',
-                'rejectUser',
                 'getUserFiles',
                 'downloadFile',
             ]),
             cancel(){
-                //this.rejectUser(this.temp.userID);
                 this.set_accountModalVisible(false);
             },
             handleOk(){

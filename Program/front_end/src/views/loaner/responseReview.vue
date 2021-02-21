@@ -40,16 +40,19 @@ const columns = [
         scopedSlots: {
             customRender: 'bank'
         },
+        align: 'center',
     },
     {
         title: '贷款金额',
         dataIndex: 'amount',
         key: 'amount',
+        align: 'center',
     },
     {
         title: '贷款利息',
         dataIndex: 'interestRate',
         key: 'interestRate',
+        align: 'center',
     },
     {
         title: '贷款时间',
@@ -57,12 +60,14 @@ const columns = [
         key: 'createTime',
         scopedSlots: {
             customRender: 'createTime'
-        }
+        },
+        align: 'center',
     },
     {
         title: '申请人',
         dataIndex: 'person',
         key: 'person',
+        align: 'center',
     },
 ];
 

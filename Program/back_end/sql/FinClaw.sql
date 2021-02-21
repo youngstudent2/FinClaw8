@@ -360,7 +360,7 @@ BEGIN;
 /*!40000 ALTER TABLE `File`
     DISABLE KEYS */;
 INSERT INTO `File`
-VALUES (1, 'test.csv', NOW(), 1, 'D:/user');
+VALUES (1, 'test.csv', NOW(), 8, 'D:/user');
 /*!40000 ALTER TABLE `File`
     ENABLE KEYS */;
 COMMIT;
