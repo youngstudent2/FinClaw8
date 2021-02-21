@@ -1,6 +1,6 @@
 <template>
   <a-layout>
-    <Header></Header>
+    <myHeader></myHeader>
 
     <a-layout-content style="align: center">
       <div id="info">
@@ -70,7 +70,7 @@
 </template>
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
-import Header from "@/components/header";
+import myHeader from "@/components/header";
 export default {
   name: "info",
   data() {
@@ -84,7 +84,7 @@ export default {
     };
   },
   components: {
-    Header,
+    myHeader,
   },
   computed: {
     ...mapGetters(["userId", "userInfo","uploadState"]),
