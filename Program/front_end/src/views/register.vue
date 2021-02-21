@@ -29,9 +29,9 @@
                 },
               ]"
             >
-              <a-select-option value="Bank">银行</a-select-option>
-              <a-select-option value="DataProvider">数据提供方</a-select-option>
-              <a-select-option value="Company">企业</a-select-option>
+              <a-select-option value="UnauthorizedBank">银行</a-select-option>
+              <a-select-option value="UnauthorizedDataProvider">数据提供方</a-select-option>
+              <a-select-option value="UnauthorizedCompany">企业</a-select-option>
             </a-select>
           </a-form-item>
           <a-form-item>

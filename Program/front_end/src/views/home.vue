@@ -13,7 +13,7 @@
               :span="24 / colCount"
             >
               <div>
-                <router-link tag='detail' :to="{name:'detail',params:{projectId:0}}">
+                <router-link tag='detail' :to="{name:'detail',params:{projectId:1}}">
                   <a-card hoverable="true" title="花旗餐饮行业训练项目" style="width: 380px">
                     <a slot="extra" href="#">more</a>
                     <a-icon type="line-chart" style="float: right"></a-icon>
