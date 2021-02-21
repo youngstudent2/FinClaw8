@@ -3,6 +3,8 @@
         <a-table :columns="accountColumns" :data-source="unauthorizedUsers">
             <span slot="action" slot-scope="record">
                 <a-button type="primary" size="small" @click="showModal(record)">审核</a-button>
+                <a-divider type="vertical"></a-divider>
+                <a-button type="danger" size="small" @click="reject(record)">拒绝</a-button>
             </span>
         </a-table>
     <AccountModal></AccountModal>
@@ -71,11 +73,15 @@
             ]),
             ...mapActions([
                 'getUnauthorizedUsers',
+                'rejectUser',
             ]),
             showModal(record){
                 this.set_temp(record);
                 this.set_accountModalVisible(true);
                 //console.log(this.temp);
+            },
+            reject(record){
+                this.rejectUser(record.userID);
             }
         }
     }

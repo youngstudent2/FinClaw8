@@ -36,14 +36,14 @@ const file = {
 
     actions: {
         uploadFile: async ({ dispatch, commit }, data) => {
-            commit('set_uploadState', true)
-            const res = await uploadAPI(data)
+            commit('set_uploadState', true);
+            const res = await uploadAPI(data);
             if (res) {
                 var temp = {
                     operatorID: data.get("operatorID"),
                     projectID: data.get("projectID")
-                }
-                dispatch("getAllFiles", temp)
+                };
+                dispatch("getAllFiles", temp);
                 message.success("文件上传成功")
             } else {
                 message.error("文件上传失败")

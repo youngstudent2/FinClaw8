@@ -168,7 +168,7 @@ public class AccountServiceImpl implements AccountService {
             System.out.println(e.getMessage());
             return ResponseVO.buildFailure(OTHER_ERROR);
         }
-        return ResponseVO.buildSuccess();
+        return ResponseVO.buildSuccess("操作成功");
     }
 
     /**

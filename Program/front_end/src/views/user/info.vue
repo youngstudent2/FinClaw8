@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <Myheader></Myheader>
     <div class="info-wrapper">
         <a-tabs>
             <a-tab-pane tab="我的信息" key="1">
@@ -35,9 +37,13 @@
             </a-tab-pane>
         </a-tabs>
     </div>
+        <Footer></Footer>
+    </div>
 </template>
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex';
+import Myheader from "../../components/header";
+import Footer from "@/components/footer";
 export default {
     name: 'info',
     data(){
@@ -50,6 +56,7 @@ export default {
         }
     },
     components: {
+        Myheader
     },
     computed: {
         ...mapGetters([
