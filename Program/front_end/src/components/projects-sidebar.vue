@@ -11,25 +11,25 @@
           ><a-icon type="appstore" /><span>已参加项目</span></span
         >
 
-        <a-sub-menu v-for="item in attendedProjects" :key="item.projectID">
+        <a-sub-menu v-for="(item,index) in attendedProjects" :key="index">
           <span slot="title">
             <span>{{ item.projectName }}</span>
           </span>
-          <a-menu-item v-bind:key="item.projectID+'_1'">
+          <a-menu-item v-bind:key="index+'_1'">
             <router-link
               :to="{ name: 'config', params: { projectID: item.projectID } }"
             >
               <a-icon type="database" />配置
             </router-link>
           </a-menu-item>
-          <a-menu-item v-bind:key="item.projectID+'_2'">
+          <a-menu-item v-bind:key="index+'_2'">
             <router-link
               :to="{ name: 'ready', params: { projectID: item.projectID } }"
             >
               <a-icon type="build" />准备
             </router-link>
           </a-menu-item>
-          <a-menu-item v-bind:key="item.projectID+'_3'">
+          <a-menu-item v-bind:key="index+'_3'">
             <router-link
               :to="{
                 name: 'projectManage',
@@ -46,7 +46,7 @@
           ><a-icon type="appstore" /><span>未参加项目</span></span
         >
 
-        <a-menu-item v-for="item in unattendedProjects" :key="item.projectID">
+        <a-menu-item v-for="(item,index) in unattendedProjects" :key="index">
           <router-link
             :to="{
               name: 'signup',
@@ -83,8 +83,8 @@ export default {
   },
   async mounted(){
     await this.getUserInfo()
-    await this.getAllAttendedProjects({cooperationID:this.userInfo.cooperationID})
-    await this.getAllUnattendedProjects({cooperationID:this.userInfo.cooperationID})
+    await this.getAllAttendedProjects({cooperationID:this.userInfo.userID})
+    await this.getAllUnattendedProjects({cooperationID:this.userInfo.userID})
   },
   methods: {
     ...mapActions([
