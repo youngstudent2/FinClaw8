@@ -53,6 +53,7 @@ const file = {
         downloadFile: async ({ dispatch, commit }, fileID) => {
             commit('set_downloadState', true);
             const res = await downloadAPI(fileID);
+            console.log(res)
             if (res != null) {
                 message.success("文件下载成功")
             } else {

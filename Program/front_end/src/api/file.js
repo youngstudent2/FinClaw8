@@ -16,7 +16,8 @@ export function uploadAPI(params) {
 export function downloadAPI(fileID) {
     return axios({
         url: `${api.filePre}/download/${fileID}`,
-        method: 'GET',
+        method: 'POST',
+        responseType: 'blob'
     })
 }
 
