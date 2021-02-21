@@ -30,7 +30,7 @@ public class FileController {
         return ResponseVO.buildSuccess(fileService.getUserFiles(userID));
     }
 
-    @GetMapping("/download/{fileID}")
+    @PostMapping("/download/{fileID}")
     public void download(@PathVariable Integer fileID) throws UnsupportedEncodingException {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse httpResponse = requestAttributes.getResponse();

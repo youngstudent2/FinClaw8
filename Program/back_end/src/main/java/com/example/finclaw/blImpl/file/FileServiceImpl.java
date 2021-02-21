@@ -3,6 +3,7 @@ package com.example.finclaw.blImpl.file;
 import com.example.finclaw.bl.file.FileService;
 import com.example.finclaw.data.file.FileMapper;
 import com.example.finclaw.data.project.ProjectMapper;
+import com.example.finclaw.enums.FileType;
 import com.example.finclaw.po.FileInfo;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.file.FileInfoVO;
@@ -84,14 +85,18 @@ public class FileServiceImpl implements FileService {
         //获取文件路径
         FileInfo fileInfo = fileMapper.getFileByID(fileID);
         String filePath = fileInfo.getFilePath();
+        String fileName = fileInfo.getFileName();
         System.out.println(filePath);
         File file = new File(filePath);
         if (file.exists()) {
             //配置文件下载
+            //httpResponse.setHeader("content-type","application/vnd.ms-excel;charset=UTF-8");
+            //httpResponse.setContentType("application/vnd.ms-excel;charset=UTF-8");
             httpResponse.setHeader("content-type", "application/octet-stream");
             httpResponse.setContentType("application/octet-stream");
             // 下载文件能正常显示中文
-            httpResponse.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileInfo.getFileName(), "UTF-8"));
+            System.out.println("filename is "+fileName);
+            httpResponse.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName.split("\\.")[0] + "." + getFileType(fileName.split("\\.")[1]), "UTF-8"));
             // 实现文件下载
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;
@@ -142,5 +147,24 @@ public class FileServiceImpl implements FileService {
             res.add(fileInfoVO);
         }
         return res;
+    }
+
+    private String getFileType(String fileType){
+        switch (fileType){
+            case "pdf":
+                return FileType.pdf.toString();
+            case "doc":
+                return FileType.doc.toString();
+            case "docx":
+                return FileType.docx.toString();
+            case "csv":
+                return FileType.csv.toString();
+            case "xlsx":
+                return FileType.xlsx.toString();
+            case "md":
+                return FileType.md.toString();
+            default:
+                return FileType.txt.toString();
+        }
     }
 }
