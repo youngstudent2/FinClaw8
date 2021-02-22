@@ -1,5 +1,6 @@
 package com.example.finclaw.controller.loan;
 
+import com.example.finclaw.bl.citiAPI.CitiAPIService;
 import com.example.finclaw.bl.loan.LoanService;
 import com.example.finclaw.vo.loan.LoanApplicationForm;
 import com.example.finclaw.vo.ResponseVO;
@@ -17,6 +18,9 @@ public class LoanController {
 
     @Autowired
     private LoanService loanService;
+
+    @Autowired
+    private CitiAPIService citiAPIService;
 
     @PostMapping("/addLoanApplication")
     public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplicationForm){

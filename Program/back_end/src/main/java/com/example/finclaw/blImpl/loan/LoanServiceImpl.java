@@ -8,7 +8,6 @@ import com.example.finclaw.vo.loan.LoanApplicationForm;
 import com.example.finclaw.vo.loan.LoanApplicationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +102,10 @@ public class LoanServiceImpl implements LoanService {
     }
 
 
+    /**
+     * 获取所有的借贷申请
+     * @return
+     */
     @Override
     public ResponseVO getAllLoanApplication(){
         List<LoanApplicationVO> loanApplicationsVOS = new ArrayList<>();
@@ -159,7 +162,6 @@ public class LoanServiceImpl implements LoanService {
         List<LoanApplicationVO> loanApplicationVOS = new ArrayList<>();
 
         try{
-            //todo 调用花旗API
             for (LoanApplication loanApplication:
                     loanMapper.getUserLoanHistory(userID)) {
 
@@ -218,4 +220,5 @@ public class LoanServiceImpl implements LoanService {
             setCreateTime(loanApplication.getCreateTime());
         }};
     }
+
 }
