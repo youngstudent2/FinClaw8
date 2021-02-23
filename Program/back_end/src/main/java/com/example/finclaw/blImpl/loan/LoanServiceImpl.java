@@ -38,7 +38,6 @@ public class LoanServiceImpl implements LoanService {
         }};
 
         try {
-            //todo 调用花旗API
             loanMapper.createNewLoanApplication(loanApplication);
 
         }catch (Exception e){
@@ -61,7 +60,6 @@ public class LoanServiceImpl implements LoanService {
     public ResponseVO deleteLoanApplication(Integer loanApplicationID){
 
         try{
-            //todo 调用花旗API
             loanMapper.deleteLoanApplication(loanApplicationID);
 
         }catch (Exception e){
@@ -187,7 +185,6 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public ResponseVO setDealt(Integer loanApplicationID){
         try {
-            //todo 调用花旗API
             loanMapper.setDealt(loanApplicationID);
 
         }catch (Exception e){

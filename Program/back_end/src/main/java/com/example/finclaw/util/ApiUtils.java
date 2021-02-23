@@ -313,7 +313,7 @@ public class ApiUtils {
                 .addHeader("authorization", citiRequestBody.getAuthorization())
                 .addHeader("uuid", citiRequestBody.getUuid())
                 .addHeader("client_id", citiRequestBody.getClient_id())
-                .addHeader("clientdetails", "")
+                .addHeader("clientdetails", citiRequestBody.getClientdetails())
                 .addHeader("accept-language", citiRequestBody.getAccept_Language())
                 .addHeader("content-type", citiRequestBody.getContent_Type())
                 .addHeader("accept", citiRequestBody.getAccept())
@@ -344,34 +344,4 @@ public class ApiUtils {
         return client.newCall(request).execute();
     }
 
-
-    /**
-     * 进行鉴权
-     * 本次项目中未使用
-     * 由于参数缺失，暂时无法调用
-     * 如果使用自己的账户，则需要通过这个方法拿到token
-     *
-     * @param citiRequestBody
-     * @return
-     */
-    public static Response authorize(CitiRequestBody citiRequestBody){
-
-        OkHttpClient client = new OkHttpClient();
-
-        Response response = null;
-
-        Request request = new Request.Builder()
-                .url("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type="+citiRequestBody.getResponse_Type()+"&client_id="+citiRequestBody.getClient_id()+"&scope=REPLACE_THIS_VALUE&countryCode=REPLACE_THIS_VALUE&businessCode=REPLACE_THIS_VALUE&locale=REPLACE_THIS_VALUE&state=REPLACE_THIS_VALUE&redirect_uri=REPLACE_THIS_VALUE")
-                .get()
-                .addHeader("accept", "application/json")
-                .build();
-
-        try {
-            response = client.newCall(request).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return response;
-    }
 }

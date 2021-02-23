@@ -38,7 +38,6 @@ public class LendingServiceImpl implements LendingService{
             setPhoneNumber(lendingForm.getPhoneNumber());
         }};
         try{
-            //todo 花旗API
             lendingMapper.createLendingHistory(lendingHistory);
         }catch (Exception e){
             return ResponseVO.buildFailure("Error 201 :  Can't create new lendingHistory! Exam your information and try again.\n");
@@ -126,7 +125,6 @@ public class LendingServiceImpl implements LendingService{
     @Override
     public ResponseVO setDealt(Integer lendingHistoryID){
         try{
-            //todo 花旗API
             lendingMapper.setDealt(lendingHistoryID);
         }catch (Exception e){
             return ResponseVO.buildFailure("Error 205 : Can't set this lendingHistory DEALT! Please input correct lendingHistory ID and try again.\n");
