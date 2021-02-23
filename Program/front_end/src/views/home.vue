@@ -154,6 +154,7 @@ export default {
         "https://finclaw.oss-cn-shenzhen.aliyuncs.com/img/finclaw_logo.png",
       colCount: 4,
       projects: [],
+      shuffleTime : 0,
     };
   },
   mounted() {
@@ -181,10 +182,11 @@ export default {
         "https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/ac34744af238437e941dbb4b9302fa6c.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/3fb4a6b5dcc24940aea83f23a3cccce7.jpg@!hotNews_f_273x171",
-        "https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/521dd0e0891d49938cae2986d468afb0.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/fae09e7374f44f40865bebfe6ef59a01.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/e4234fc1e6bd49c8a6c8ddf6fbb27d72.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/265428e96b1e400986f58d0c492aef72.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/29479646109a4d489be6817824e6c740.jpg@!hotNews_f_273x171",
       ]
       const projectNum = 8
       var tmpProjects = []
@@ -197,9 +199,10 @@ export default {
         tmpProject.createdAt = this.getRandomDate() 
         tmpProject.description = "为中小微企业提供高效、便携的融资服务"
         tmpProject.title = tmpProject.creator.substring(0,2) +tmpProject.industry+"行业训练项目"
-        tmpProject.image = this.randomChoice(imageUrls)
+        tmpProject.image = imageUrls[i+8*this.shuffleTime]
         tmpProjects.push(tmpProject)
       }
+      this.shuffleTime++
       this.projects = tmpProjects
       // may need force to update
     },
