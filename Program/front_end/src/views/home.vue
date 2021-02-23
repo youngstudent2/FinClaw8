@@ -177,6 +177,8 @@ export default {
       const industries = ["餐饮","自动化","印刷业","新能源","互联网","服装","自媒体"]
       const imageUrls = [
         "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+        "https://image.tianyancha.com/462d55f16d254aba84e9e759e699b087.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/265428e96b1e400986f58d0c492aef72.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/4e05cfc4c6254569a6a219d455ce794d.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/3b49a87d9bf74884b9e7b739bb3b5f6e.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171",
@@ -185,7 +187,6 @@ export default {
         "https://image.tianyancha.com/521dd0e0891d49938cae2986d468afb0.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/fae09e7374f44f40865bebfe6ef59a01.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/e4234fc1e6bd49c8a6c8ddf6fbb27d72.jpg@!hotNews_f_273x171",
-        "https://image.tianyancha.com/265428e96b1e400986f58d0c492aef72.jpg@!hotNews_f_273x171",
         "https://image.tianyancha.com/29479646109a4d489be6817824e6c740.jpg@!hotNews_f_273x171",
       ]
       const projectNum = 8
@@ -199,7 +200,7 @@ export default {
         tmpProject.createdAt = this.getRandomDate() 
         tmpProject.description = "为中小微企业提供高效、便携的融资服务"
         tmpProject.title = tmpProject.creator.substring(0,2) +tmpProject.industry+"行业训练项目"
-        tmpProject.image = imageUrls[i+8*this.shuffleTime]
+        tmpProject.image = imageUrls[(i+8*this.shuffleTime)%imageUrls.length]
         tmpProjects.push(tmpProject)
       }
       this.shuffleTime++
@@ -210,7 +211,6 @@ export default {
       let minDate = new Date(2020,9,20,8).getTime()
       let maxDate = new Date().getTime()
       let randomDate = this.getRandom(minDate,maxDate)
-      console.log(randomDate)
       return this.$moment(randomDate).format("YYYY-MM-DD")
     },
     getRandom(min,max) {
