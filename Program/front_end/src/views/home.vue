@@ -18,10 +18,10 @@
               <h2>目前已有<em>323</em>个训练项目</h2>
             </a-col>
             <a-col :span="2" :offset="9">
-              <router-link to="home" style="line-height: 40px"
+              <a style="line-height: 40px" @click="shuffleProjects"
                 >查看更多
                 <a-icon type="right" />
-              </router-link>
+              </a>
             </a-col>
           </a-row>
 
@@ -178,14 +178,14 @@ export default {
       ]
       const projectNum = 8
       var tmpProjects = []
-      var tmpProject = {}
       for (let i=0;i<projectNum;++i) {
+        let tmpProject = {}
         let o = this.randomChoice(orgs)
         tmpProject.creator = o.name
         tmpProject.color = o.color
         tmpProject.industry = this.randomChoice(industries)
         tmpProject.createdAt = this.getRandomDate() 
-        tmpProject.description = "以科技金融为中小微企业提供高效编写的融资服务"
+        tmpProject.description = "为中小微企业提供高效、便携的融资服务"
         tmpProject.title = tmpProject.creator.substring(0,2) +tmpProject.industry+"行业训练项目"
         tmpProject.image = this.randomChoice(imageUrls)
         tmpProjects.push(tmpProject)
