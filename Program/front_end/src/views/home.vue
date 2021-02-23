@@ -175,6 +175,15 @@ export default {
       const industries = ["餐饮","自动化","印刷业","新能源","互联网","服装","自媒体"]
       const imageUrls = [
         "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+        "https://image.tianyancha.com/4e05cfc4c6254569a6a219d455ce794d.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/3b49a87d9bf74884b9e7b739bb3b5f6e.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/ac34744af238437e941dbb4b9302fa6c.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/3fb4a6b5dcc24940aea83f23a3cccce7.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/521dd0e0891d49938cae2986d468afb0.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/fae09e7374f44f40865bebfe6ef59a01.jpg@!hotNews_f_273x171",
+        "https://image.tianyancha.com/e4234fc1e6bd49c8a6c8ddf6fbb27d72.jpg@!hotNews_f_273x171",
       ]
       const projectNum = 8
       var tmpProjects = []
@@ -241,7 +250,7 @@ export default {
 .el-main {
   /* background-color: #E9EEF3; */
   color: #606266;
-  height: 5200px;
+
 }
 
 #header {

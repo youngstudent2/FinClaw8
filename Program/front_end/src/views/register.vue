@@ -23,7 +23,6 @@
               v-decorator="[
                 'registerUserRole',
                 {
-                  initialValue: 'Bank',
                   rules: [{ required: true, message: '请选择用户类型' }],
                   validateTrigger: 'blur',
                 },
