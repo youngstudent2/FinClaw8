@@ -6,10 +6,12 @@ import ElementUI from 'element-ui';
 import dataV from '@jiaminghi/data-view'
 import 'element-ui/lib/theme-chalk/index.css';
 import 'ant-design-vue/dist/antd.css'
+import moment from 'moment'
 import store from './store'
 
 import '@/permission'
 Vue.config.productionTip = false
+Vue.prototype.$moment = moment
 const options = {
   namespace: 'pro__',
   name: 'ls',
