@@ -42,6 +42,7 @@
                       alt="example"
                       :src="p.image"
                     />
+                    <div class="mask"><em>@FinClaw8</em></div>
                     <a-icon type="line-chart" style="float: right"></a-icon>
                     <a-card-meta
                       :title="p.title"
@@ -230,6 +231,17 @@ export default {
 
 
 <style scoped>
+.mask{
+  width: 75px;
+  height: 30px;
+  line-height: 30px; 
+  background-color:rgba(255, 255, 255, 0.54);
+  border-radius: 30px;
+  position: absolute;
+  margin-top: -60px;
+  margin-left:199px;
+  font-weight: bold; 
+}
 .el-header {
   /* background-color: #a191fc; */
   color: rgb(255, 255, 255);
