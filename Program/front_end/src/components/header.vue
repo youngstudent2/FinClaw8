@@ -122,6 +122,7 @@ export default {
         r == "UnauthorizedDataProvider"
       ) {
         this.isAuthorized = false;
+        alert("未授权")
       }
       if (r == "rejected") {
         this.isRejected = true
