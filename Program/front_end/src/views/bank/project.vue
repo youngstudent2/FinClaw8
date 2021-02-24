@@ -41,6 +41,7 @@ export default {
         ['authorityManage','权限管理','lock'],
         ['projectConfig','项目配置','setting'],
         ['predict','信用预测','stock'],
+        ['strategyRecommend','信贷策略推荐','like'],
       ]
     }
   }

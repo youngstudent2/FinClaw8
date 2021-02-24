@@ -3,7 +3,7 @@
       <a-row :gutter="[12, 18]" style="width: 100%">
           <a-col :span="6">
               <div>
-                  <a-card hoverable style="width: 100%; border:2px dashed #eaeaea" @click="addProject">
+                  <a-card hoverable style="width: 100%; border:1px dashed #cccccc" @click="addProject">
                       <img
                           slot="cover"
                           alt="example"
@@ -30,8 +30,9 @@
                       <img
                           slot="cover"
                           alt="example"
-                          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                          :src="imageUrls[item.projectID % imageUrls.length]"
                       />
+                      <div class="mask"><em>@FinClaw8</em></div>
                       <a-card-meta :title="item.projectName">
                           <template slot="description">{{item.description}}</template>
                       </a-card-meta>
@@ -70,7 +71,17 @@ export default {
     name: 'review',
     data(){
         return {
-            modifyData: {}
+            modifyData: {},
+            imageUrls: [
+                'https://image.tianyancha.com/2de12f1756eb457b85755c69313e8007.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/521dd0e0891d49938cae2986d468afb0.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/ac34744af238437e941dbb4b9302fa6c.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/fdd85d9ae7194cc79b34a1020c629b54.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/3d6b1e3578ab4cc484d21464dab96b77.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/4957e956ec8e4c36927879efb407e15a.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/6d0d305d68d94c36a8345e57319188d0.jpg@!hotNews_f_273x171',
+                'https://image.tianyancha.com/4886cf4361054ff1a71ebb2b9c62c1db.jpg@!hotNews_f_273x171',
+            ]
         };
     },
     components: {
@@ -113,5 +124,15 @@ export default {
 </script>
 
 <style>
-
+.mask {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    position: absolute;
+    margin-top: -60px;
+    margin-left: 225px;
+    font-weight: bold;
+}
 </style>

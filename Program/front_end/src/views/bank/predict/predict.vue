@@ -2,20 +2,35 @@
     <div>
         <dv-border-box13 style="height: 500px">
             <a-row :gutter="10">
-                <a-col :span="12"
+                <a-col :span="8"
                        style="height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center">
-                    <a-button size="large" @click="doBind" style="width: 100px; margin-bottom: 50px">
-                        绑定模型
-                    </a-button>
-                    <a-button type="primary" size="large" @click="startPredict" style="width: 100px; margin-bottom: 50px">
+                    <div style="display: flex; flex-direction: row">
+                        <h4 style="padding-top: 5px">预测对象：</h4>
+                        <a-input v-model="predictName" placeholder="请输入需要预测的企业名" style="width: 200px; margin-bottom: 40px"></a-input>
+                    </div>
+                    <div style="display: flex; flex-direction: row">
+                        <h4 style="padding-top: 5px">绑定模型：</h4>
+                        <a-button @click="doBind" style="width: 100px; margin-bottom: 50px">
+                            绑定模型
+                        </a-button>
+                    </div>
+                    <a-button type="primary" size="large" @click="startPredict" style="width: 100px; margin-bottom: 40px">
                         预测
                     </a-button>
                     <a-button type="primary" size="large" ghost @click="reset" style="width: 100px">
                         重置
                     </a-button>
                 </a-col>
-                <a-col :span="12" style="height: 500px; padding-top: 50px">
-                    <dv-charts :option="option" style="height: 450px"></dv-charts>
+                <a-col :span="8" style="height: 500px; padding-top: 90px">
+                    <dv-charts :option="option" style="height: 410px"></dv-charts>
+                </a-col>
+                <a-col :span="8" style="height: 500px; padding-top: 120px">
+                    <h2><b>策略推荐</b></h2>
+                    <h3 style="padding-top: 10px">评级：</h3>
+                    <h3>年利率：</h3>
+                    <h3>还款期限：</h3>
+                    <h3>贷款类型：</h3>
+                    <h3>收益率：</h3>
                 </a-col>
             </a-row>
         </dv-border-box13>
@@ -30,6 +45,7 @@
         name: 'predict',
         data() {
             return {
+                predictName: '',
                 option: {
                     title: {
                         text: '预测信用值'
@@ -82,6 +98,9 @@
             startPredict() {
                 if (!this.bindStatus) {
                     message.info("尚未绑定模型")
+                }
+                else if (this.predictName === '') {
+                    message.error("尚未填写信息")
                 }
                 else {
                     this.predict()

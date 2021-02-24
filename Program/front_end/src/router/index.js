@@ -148,6 +148,11 @@ const routes = [
         path: 'config/config',
         name: 'projectConfig',
         component: () => import('@/views/bank/config/config')
+      },
+      {
+        path: 'recommend/recommend',
+        name: 'strategyRecommend',
+        component: () => import('@/views/bank/recommend/recommend')
       }
     ]
   },
