@@ -1,12 +1,17 @@
 package com.example.finclaw.controller.loan;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.finclaw.bl.citiAPI.CitiAPIService;
 import com.example.finclaw.bl.loan.LoanService;
+import com.example.finclaw.vo.CitiAPI.CitiRequestBody;
 import com.example.finclaw.vo.loan.LoanApplicationForm;
 import com.example.finclaw.vo.ResponseVO;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @Author: HX
@@ -22,15 +27,33 @@ public class LoanController {
     @Autowired
     private CitiAPIService citiAPIService;
 
+
     @PostMapping("/addLoanApplication")
-    public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplicationForm){
+    public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplicationForm, @RequestParam String code){
         //提交贷款申请
+        CitiRequestBody citiRequestBody = new CitiRequestBody();
+        Response response = null;
+        try {
+            System.out.println(citiAPIService.authorize(citiRequestBody,code));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            response = citiAPIService.createApplication(citiRequestBody);
+            System.out.println(response);
+            JSONObject jsonObject = JSONObject.parseObject(Objects.requireNonNull(response.body()).toString());
+            System.out.println(citiAPIService.submission(citiRequestBody,jsonObject.getString("applicationId")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return loanService.addLoanApplication(loanApplicationForm);
     }
 
     @PostMapping("/deleteLoanApplication/{loanApplicationID}")
-    public ResponseVO deleteLoanApplication(@PathVariable Integer loanApplicationID){
+    public ResponseVO deleteLoanApplication(@PathVariable Integer loanApplicationID, @PathVariable String applicationId){
         //取消贷款申请
+        CitiRequestBody citiRequestBody = new CitiRequestBody();
+        System.out.println(citiAPIService.updateApplication(citiRequestBody,applicationId));
         return loanService.deleteLoanApplication(loanApplicationID);
     }
 
@@ -55,6 +78,8 @@ public class LoanController {
     @PostMapping("/setDealt/{loanApplicationID}")
     public ResponseVO setDealt(@PathVariable Integer loanApplicationID){
         //设置某贷款申请为已处理
+        CitiRequestBody citiRequestBody = new CitiRequestBody();
+        citiAPIService.confirmation(citiRequestBody);
         return loanService.setDealt(loanApplicationID);
     }
 
