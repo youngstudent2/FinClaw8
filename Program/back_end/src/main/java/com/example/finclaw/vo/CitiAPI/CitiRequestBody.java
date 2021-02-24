@@ -150,9 +150,9 @@ public class CitiRequestBody {
 
     /**
      * Unique ID created for an Application
-     * 暂时没有的情况下，用了官网的一个
+     * 在提交贷款申请后取得的标识码
      */
-    private String applicationId = "647W7T959648";
+    private String applicationId = "";
 
 
     /**
