@@ -39,6 +39,7 @@ public class LendingServiceImpl implements LendingService{
             setPhoneNumber(lendingForm.getPhoneNumber());
             setHasDealt(false);
         }};
+
         try{
             lendingMapper.createLendingHistory(lendingHistory);
         }catch (Exception e){

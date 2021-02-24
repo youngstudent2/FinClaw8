@@ -194,7 +194,7 @@ CREATE TABLE `Monitor`
     `userID`      int(11)      NOT NULL,
     `projectID`   int(11)      NOT NULL,
     `operation`   varchar(255) NOT NULL,
-    `operateTime` timestamp,
+    `operateTime` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`monitorID`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -237,7 +237,7 @@ CREATE TABLE `lendingHistory` (
     `interestRate`      DOUBLE          NOT NULL,
     `phoneNumber`       varchar(255)    NOT NULL,
     `hasDealt`          int(11)         NOT NULL,
-    `createTime`        timestamp,
+    `createTime`        timestamp       NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`lendingHistoryID`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -312,7 +312,7 @@ CREATE TABLE `loanApplication`
     `companyName`       varchar(255) NOT NULL,
     `phoneNumber`       varchar(255) NOT NULL,
     `hasDealt`          int(11)      NOT NULL,
-    `createTime`        timestamp,
+    `createTime`        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     PRIMARY KEY (`loanApplicationID`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
