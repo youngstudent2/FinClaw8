@@ -9,7 +9,10 @@ export function addLoanApplicationAPI(data){
     return axios({
         url:`${api.loanPre}/addLoanApplication`,
         method: 'POST',
-        data
+        data,
+        params: {
+            code: '',
+        }
     })
 }
 
