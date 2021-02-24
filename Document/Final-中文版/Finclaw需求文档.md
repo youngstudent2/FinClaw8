@@ -341,7 +341,7 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
   3a. 数据提供方选择退出自己参与的某个项目
 
-  	4. 系统将其从项目参与者中排除
+    4. 系统将其从项目参与者中排除
 
   4a. 该数据提供方资质和权限不符合项目要求
 
@@ -674,29 +674,29 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 ###### 3.2.4.1.1 项目管理
 
-![系统顺序图-项目管理](E:\Competition\花旗杯\finclaw\Document\pic\用例\系统顺序图-项目管理.png)
+![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理.png)
 
 ###### 3.2.4.1.2 信用评级策略管理
 
-![系统顺序图](E:\Competition\花旗杯\finclaw\Document\pic\用例\系统顺序图-信用评级策略管理.png)
+![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理.png)
 
 ###### 3.2.4.1.3 浏览贷款申请
 
-![系统顺序图-浏览贷款申请](E:\Competition\花旗杯\finclaw\Document\pic\用例\系统顺序图-浏览贷款申请.png)
+![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请.png)
 
 ###### 3.2.4.1.4 发布贷款
 
-![系统顺序图-发放贷款](E:\Competition\花旗杯\finclaw\Document\pic\用例\系统顺序图-发放贷款.png)
+![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款.png)
 
 ##### 3.2.4.2 数据提供方
 
 ###### 3.2.4.2.1 服务器信息管理
 
-![服务器信息管理](E:\Competition\花旗杯\finclaw\Document\pic\用例\服务器信息管理.png)
+![服务器信息管理](..\pic\用例\服务器信息管理.png)
 
 ###### 3.2.4.2.2 项目管理
 
-![数据提供方项目管理](E:\Competition\花旗杯\finclaw\Document\pic\用例\数据提供方项目管理.png)
+![数据提供方项目管理](.\pic\用例\数据提供方项目管理.png)
 
 ##### 3.2.4.3 借款小微企业
 
@@ -704,35 +704,35 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 ![小微企业1](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业1.png)
 
-![小微企业11](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业11.png)
+![小微企业11](..\pic\用例\小微企业11.png)
 
 ###### 3.2.4.3.2 借贷情况查看
 
-![小微企业2](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业2.png)
+![小微企业2](..\pic\用例\小微企业2.png)
 
-![小微企业22](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业22.png)
+![小微企业22](..\pic\用例\小微企业22.png)
 
 ###### 3.2.4.3.3 接受贷款
 
-![小微企业3](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业3.png)
+![小微企业3](..\pic\用例\小微企业3.png)
 
-![小微企业33](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业33.png)
+![小微企业33](..\pic\用例\小微企业33.png)
 
 ##### 3.2.4.4 平台工作人员
 
 ###### 3.2.4.4.1 资料认证
 
-![](E:\Competition\花旗杯\finclaw\Document\pic\用例\资料认证.png)
+![](..\pic\用例\资料认证.png)
 
 ###### 3.2.4.4.2 使用监控
 
-![](E:\Competition\花旗杯\finclaw\Document\pic\用例\使用监控.png)
+![](..\pic\用例\使用监控.png)
 
 ##### 3.2.4.5 公共部分
 
 ###### 3.2.4.5.1 登录注册
 
- ![](E:\Competition\花旗杯\finclaw\Document\pic\用例\登录注册.png)
+ ![](..\pic\用例\登录注册.png)
 
 
 
@@ -740,13 +740,13 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 ###### 3.2.4.5.2 认证资料上传
 
-![](E:\Competition\花旗杯\finclaw\Document\pic\用例\认证资料上传.png)
+![](..\pic\用例\认证资料上传.png)
 
 
 
 ###### 3.2.4.5.3 账户管理 
 
-![](E:\Competition\花旗杯\finclaw\Document\pic\用例\账户管理.png)
+![](..\pic\用例\账户管理.png)
 
 ### 3.3 前后端接口
 
