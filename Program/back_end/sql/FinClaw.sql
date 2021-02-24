@@ -96,11 +96,15 @@ BEGIN;
 /*!40000 ALTER TABLE `Project`
     DISABLE KEYS */;
 INSERT INTO `Project`
-VALUES (1, 3, '南京市活动1', '企业信用预测', NOW(), date_add(NOW(), interval 10 day), 'Running', null);
+VALUES (1, 3, '测试用训练项目', '内部专用数据训练与测试', NOW(), date_add(NOW(), interval 10 day), 'Running', null);
 INSERT INTO `Project`
-VALUES (2, 3, '南京市活动2', '企业信用预测', NOW(), date_add(NOW(), interval 1 month), 'Running', null);
+VALUES (2, 3, '金融行业训练项目', '用于金融行业的企业信用预测', NOW(), date_add(NOW(), interval 1 month), 'Running', null);
 INSERT INTO `Project`
-VALUES (3, 3, '南京市活动3', '企业信用预测', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
+VALUES (3, 3, '智能设备行业训练项目', '为智能设备相关行业的小微企业提供服务', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
+INSERT INTO `Project`
+VALUES (4, 3, '新能源设备行业训练项目', '为新能源相关行业的小微企业提供服务', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
+INSERT INTO `Project`
+VALUES (5, 3, '影视业相关训练项目', '为影视业相关的小微企业提供服务', NOW(), date_add(NOW(), interval 2 month), 'Running', null);
 /*!40000 ALTER TABLE `Project`
     ENABLE KEYS */;
 COMMIT;

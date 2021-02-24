@@ -24,6 +24,12 @@ public class CitiRequestBody {
 
 
     /**
+     * 通行令牌的类型，一般为Bearer
+     */
+    private String token_type = "";
+
+
+    /**
      * 通行令牌，通过调用接口获得，组成 Authorization
      */
     private String access_token = "";
@@ -84,7 +90,7 @@ public class CitiRequestBody {
      * 2.根据RFC822规定，BASE64Encoder编码每76个字符，还需要加上一个回车换行
      * 3.
      */
-    private static String Authorization = "";
+    private String Authorization = "";
 
 
     /**
@@ -199,6 +205,39 @@ public class CitiRequestBody {
      */
     public CitiRequestBody(){
 
+        resetAuthorization();
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getContent_Type() {
+        return Content_Type;
+    }
+
+    public String getAuthorization() {
+        if(access_token.equals("")){
+            return Authorization;
+        }else{
+            return token_type+" "+access_token;
+        }
+    }
+
+    public void setAuthorization(String authorization) {
+        Authorization = authorization;
+    }
+
+
+    /**
+     * 设置初始的Authorization，用于进行鉴权获取token
+     */
+    public void resetAuthorization(){
+
         String auth = client_id + ":" + client_se;
 
         byte[] authByte = auth.getBytes(StandardCharsets.UTF_8);
@@ -210,18 +249,6 @@ public class CitiRequestBody {
         String Authorization = "Basic "+auth_base.replaceAll("[\\s*\t\n\r]", "");
 
         setAuthorization(Authorization);
-    }
-
-    public String getContent_Type() {
-        return Content_Type;
-    }
-
-    public String getAuthorization() {
-        return Authorization;
-    }
-
-    public void setAuthorization(String authorization) {
-        Authorization = authorization;
     }
 
     public String getUuid() {
@@ -330,5 +357,13 @@ public class CitiRequestBody {
 
     public String getRedirect_uri() {
         return redirect_uri;
+    }
+
+    public String getToken_type() {
+        return token_type;
+    }
+
+    public void setToken_type(String token_type) {
+        this.token_type = token_type;
     }
 }

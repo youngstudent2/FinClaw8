@@ -42,7 +42,8 @@ public class CitiAPIServiceImpl implements CitiAPIService {
 
         //重设Authorization
         JSONObject jsonObject = JSONObject.parseObject(Objects.requireNonNull(response.body()).toString());
-        citiRequestBody.setAuthorization(jsonObject.getString("token_type")+" "+jsonObject.getString("access_token"));
+        citiRequestBody.setToken_type(jsonObject.getString("token_type"));
+        citiRequestBody.setAccess_token(jsonObject.getString("access_token"));
 
         return response;
 
