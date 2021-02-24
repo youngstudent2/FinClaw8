@@ -29,6 +29,7 @@ public class LendingServiceImpl implements LendingService{
     @Override
     public ResponseVO addLendingForm(LendingForm lendingForm){
         LendingHistory lendingHistory = new LendingHistory(){{
+            setLoanApplicationID(lendingForm.getLoanApplicationID());
             setBankID(lendingForm.getBankID());
             setBankName(lendingForm.getBankName());
             setLenderID(lendingForm.getLenderID());
@@ -36,6 +37,7 @@ public class LendingServiceImpl implements LendingService{
             setAmount(lendingForm.getAmount());
             setInterestRate(lendingForm.getInterestRate());
             setPhoneNumber(lendingForm.getPhoneNumber());
+            setHasDealt(false);
         }};
         try{
             //todo 花旗API
