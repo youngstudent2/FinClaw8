@@ -26,6 +26,26 @@ public class CitiAPIServiceImpl implements CitiAPIService {
 
         OkHttpClient client = new OkHttpClient();
 
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+        RequestBody body = RequestBody.create(mediaType, "grant_type=client_credentials&scope=%2Fapi");
+
+        Request request = new Request.Builder()
+                .url("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/token/hk/gcb")
+                .post(body)
+                .addHeader("accept",citiRequestBody.getAccept())
+                .addHeader("authorization",citiRequestBody.getAuthorization())
+                .addHeader("content-type","application/x-www-form-urlencoded")
+                .build();
+
+
+        Response response = client.newCall(request).execute();
+
+        //重设Authorization
+        JSONObject jsonObject = JSONObject.parseObject(Objects.requireNonNull(response.body()).toString());
+        citiRequestBody.setAuthorization(jsonObject.getString("token_type")+" "+jsonObject.getString("access_token"));
+
+        return response;
+
         /*
         Request request = new Request.Builder()
                 .url("https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&scope=pay_with_points%20accounts_details_transactions%20customers_profiles%20payees%20personal_domestic_transfers%20internal_domestic_transfers%20external_domestic_transfers%20bill_payments%20cards%20onboarding%20reference_data%20meta_data%20insurance_purchase%20stock%20partner_customers_profiles&countryCode=hk&businessCode=gcb&locale=en_US&state=7fa6d325-4ee5-4ffa-36e8-66e5fcaaaf01&redirect_uri="+citiRequestBody.getRedirect_uri()+"%2Fapi-authorize&client_id="+citiRequestBody.getClient_id())
@@ -36,7 +56,6 @@ public class CitiAPIServiceImpl implements CitiAPIService {
 
         JSONObject jsonObject = JSONObject.parseObject(Objects.requireNonNull(response.body()).toString());
 
-         */
 
         citiRequestBody.setData("grant_type=authorization_code&redirect_uri="+citiRequestBody.getRedirect_uri()+"/api-authorize=&"+code+"&redirect_uri="+citiRequestBody.getRedirect_uri()+"%2Fapi-authorize&client_id="+citiRequestBody.getClient_id());
 
@@ -52,10 +71,9 @@ public class CitiAPIServiceImpl implements CitiAPIService {
                 .addHeader("cross-domain","true")
                 .build();
 
-        Response response = client.newCall(request).execute();
-        JSONObject jsonObject = JSONObject.parseObject(Objects.requireNonNull(response.body()).toString());
-        citiRequestBody.setAuthorization("Bearer "+jsonObject.getString("access_token"));
         return client.newCall(request).execute();
+
+         */
     }
 
     /**
