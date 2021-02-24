@@ -37,7 +37,6 @@ public class LendingServiceImpl implements LendingService{
             setAmount(lendingForm.getAmount());
             setInterestRate(lendingForm.getInterestRate());
             setPhoneNumber(lendingForm.getPhoneNumber());
-            setHasDealt(false);
         }};
 
         try{
