@@ -29,6 +29,7 @@ public class LendingServiceImpl implements LendingService{
     @Override
     public ResponseVO addLendingForm(LendingForm lendingForm){
         LendingHistory lendingHistory = new LendingHistory(){{
+            setLoanApplicationID(lendingForm.getLoanApplicationID());
             setBankID(lendingForm.getBankID());
             setBankName(lendingForm.getBankName());
             setLenderID(lendingForm.getLenderID());
@@ -37,6 +38,7 @@ public class LendingServiceImpl implements LendingService{
             setInterestRate(lendingForm.getInterestRate());
             setPhoneNumber(lendingForm.getPhoneNumber());
         }};
+
         try{
             lendingMapper.createLendingHistory(lendingHistory);
         }catch (Exception e){
