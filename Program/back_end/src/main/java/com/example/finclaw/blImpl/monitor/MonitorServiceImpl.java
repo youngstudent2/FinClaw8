@@ -27,7 +27,7 @@ public class MonitorServiceImpl implements MonitorService {
     @Override
     public void recordInfo(int userID, int projectID, int operatorID) {
 
-        String operation = Objects.requireNonNull(Operation.getOperation(operatorID)).toString();
+        String operation = Operation.toString(Objects.requireNonNull(Operation.getOperation(operatorID)));
 
         monitorMapper.createNewRecord(userID, projectID,operation);
     }

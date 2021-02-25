@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.finclaw.data.monitor.MonitorMapper">
 
-    <insert id="createNewRecord" parameterType="com.example.finclaw.po.Monitor" useGeneratedKeys="true" keyProperty="monitorID">
+    <insert id="createNewRecord">
         insert into monitor(userID,projectID,operation)
         values (#{userID},#{projectID},#{operation})
     </insert>
