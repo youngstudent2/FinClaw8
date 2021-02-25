@@ -17,7 +17,7 @@ export default {
         return {
             backgroundStyle: {
                 height: '1200px',
-                backgroundImage: "url(" + require("../../../assets/test.png") + ")",
+                backgroundImage: "url(" + require("../../../assets/projectData.png") + ")",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'top',
                 backgroundSize: '1200px, 1000px'
