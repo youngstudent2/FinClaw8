@@ -3,7 +3,7 @@
 <mapper namespace="com.example.finclaw.data.model.ModelMapper">
 
     <insert id="createNewModel" parameterType="com.example.finclaw.po.Model" useGeneratedKeys="true" keyProperty="modelID">
-        insert into Model(mid, jib, modelVersion)
+        insert into Model(mid, jid, modelVersion)
         values(#{mid},#{jid},#{modelVersion})
     </insert>
 
