@@ -3,8 +3,8 @@
 <mapper namespace="com.example.finclaw.data.attendance.ServerInfoMapper">
 
     <insert id="updateServerInfo" parameterType="com.example.finclaw.po.ServerInfo" useGeneratedKeys="true" keyProperty="serverInfoID">
-        insert into ServerInfo(userID,projectID,ipAddress,serverName,serverPassword,filepath)
-        values(#{userID},#{projectID},#{ipAddress},#{serverName},#{serverPassword},#{filepath})
+        insert into ServerInfo(userID,projectID,ipAddress,serverName,serverPassword,filePath)
+        values(#{userID},#{projectID},#{ipAddress},#{serverName},#{serverPassword},#{filePath})
     </insert>
 
     <select id="getServerInfo" resultMap="ServerInfo" >
