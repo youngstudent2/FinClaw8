@@ -1,81 +1,81 @@
-# Finclaw需求文档
+# Finclaw Requirement Document
 
-## 1. 引言
+## 1. Introduction
 
-### 1.1 目的
+### 1.1 Objective
 
-​		本文档描述了Finclaw平台系统的功能需求和非功能需求。Finclaw平台是一个基于联邦学习的小微企业信用风险管理系统，核心目标是为金融机构客户提供去中心化的联邦学习数据加密共享框架、高效先进的小微企业信用评级算法预测和最优化信贷策略，并为贷款小微企业提供集成的信用评级服务和基于花旗API的借款服务。
+​	This document describes the functional and non functional requirements of Finclaw platform system. Finclaw platform is a credit risk management system for small and micro enterprises based on federal learning. Its core goal is to provide decentralized federal learning data encryption sharing framework, efficient and advanced credit rating algorithm prediction and optimization of credit strategy for small and micro enterprises, and to provide integrated credit rating services and loan services based on Citi API for small and micro enterprises.
 
-​		此文档将作为开发团队后续进行开发实现与验证工作的依据。
+​	This document will be used as the basis for the subsequent development and verification work of the development team.
 
-### 1.2 范围 ==TODO：待完善==
+### 1.2 Range
 
-​		本文档描述了Finclaw平台系统的需求说明，涉及的功能包括各个身份的用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款，同时使用花旗API为花旗银行接入了借款服务；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
+​		本文档描述了Finclaw平台系统的需求说明，涉及的功能包括用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
 
-### 1.3 参考文献
+### 1.3 Reference
 
-1. 丁二玉,刘钦.《计算与软件工程(卷二)》
-2. 骆斌.《需求工程软件建模与分析》
-3. IEEE标准
+1. ErYuDing, QinLiu.  *Computing and Software Engineering (Volume 2)*
+2. BinLuo.  *Modeling and Analysis of Requirements Engineering Software*
+3. IEEE Standard
 
-### 1.4 文档组织
+### 1.4 Document Organization
 
-​		本文档按照用户类别进行组织，共列出了四类用户（银行工作人员、数据提供方、小微企业、平台工作人员）的用户需求、用例描述以及各自模块所涉及的前后端交互接口，并对开发中的对外接口以及性能需求、约束、质量属性等做出了规定。
+​	This document is organized according to the user category, and lists the user requirements, use case descriptions and front-end and back-end interaction interfaces involved in each module of four types of users (bank staff, data providers, small and micro enterprises, platform staff), and specifies the external interface, performance requirements, constraints, quality attributes and so on in the development.
 
-## 2. 总体描述
+## 2. General Description
 
-### 2.1 业务需求
+### 2.1 Business Requirements
 
-BR1：结合最新联邦学习算法研究，实现多个金融机构和数据机构加密共享数据训练模型的全过程以及小微企业的信用评级全过程。
+BR1：Combined with the latest federal learning algorithm, the whole process of encrypting and sharing data training model of multiple financial institutions and data institutions and the whole process of credit rating of small and micro enterprises are realized.
 
-BR2：实现银行在同样的金额下，以不同投资方式为小微企业进行贷款的风险评级+收益评级，为银行提供选择。
+BR2：Under the same amount of money, banks can make loan risk rating + income rating for small and micro enterprises in different investment ways, so as to provide choices for banks.
 
-BR3：研究在新冠疫情下，小微企业通过花旗API 进行贷款业务的方法。
+BR3：Study the way COVID-19 small and micro businesses make loans through Citigroup API.
 
-BR4：研究减少小微企业融资成本困境，提高自身信用评级的方法。
+BR4：This paper studies the methods to reduce the financing cost dilemma of small and micro enterprises and improve their own credit rating.
 
-BR5：针对大数据情况下的系统设计优化。
+BR5：System design optimization in the case of big data.
 
-### 2.2 项目功能
+### 2.2 Project Function
 
-Finclaw平台主要实现的功能有：
+The main functions of the Finclaw platform are as follows：
 
-FE1：不同角色的用户可以在平台上进行注册并由平台管理人员进行相应的身份认证。
+FE1：Users with different roles can register on the platform and be authenticated by the platform administrator.
 
-FE2：银行工作人员可以在平台上创建、修改与管理联邦学习项目。
+FE2：Bank staff can create, modify and manage federal learning projects on the platform.
 
-FE3：数据提供方可自由加入不同的联邦学习项目中为训练项目提供数据。
+FE3：Data providers are free to join different federal learning programs to provide data for training programs.
 
-FE4：小微企业主可以在平台上进行贷款申请，银行可以通过平台看到各个小微企业的贷款。
+FE4：Small and micro business owners can apply for loans on the platform, and banks can see the loans of various small and micro businesses through the platform.
 
-FE5：平台工作人员可以查看各用户在平台上的使用情况并对存在可疑行为的用户进行账号封禁。
+FE5：Platform staff can view the usage of each user on the platform and block the accounts of users with suspicious behaviors.
 
-### 2.3 用户特征 ==TODO==
+### 2.3 User Characteristics
 
-|     用户     | 特征 |
-| :----------: | ---- |
-|     银行     |      |
-|  数据提供方  |      |
-|   小微企业   |      |
-| 平台工作人员 |      |
+|     User     | Characteristics |
+| :----------: | --------------- |
+|     银行     |                 |
+|  数据提供方  |                 |
+|   小微企业   |                 |
+| 平台工作人员 |                 |
 
-### 2.4 约束
+### 2.4 Constraint
 
-CON1：系统需要有web端界面。
+CON1：The system needs a web interface.
 
-CON2：在开发中，开发人员要提交酒店预定系统用例文档、软件需求规格说明文档、软件体系结构描述文档、软件详细设计描述文档以及测试报告。
+CON2：In the development, the developer should submit the use case document, software requirement specification document, software architecture description document, software detailed design description document and test report of hotel reservation system.
 
-CON3：项目使用持续集成的方式进行开发。
+CON3：The project is developed in a way of continuous integration.
 
-CON4：项目将使用Spring Boot和MyBatis作为后端框架，使用Vue进行前端开发。
+CON4：The project will use Spring Boot and MyBatis as the back-end framework and Vue as the front-end development.
 
-### 2.5 假设与依赖
+### 2.5 Hypothesis and Dependence
 
-AE1：超出本系统范围产生的异常将由人工介入处理。
+AE1：The exception beyond the scope of the system will be handled by manual intervention.
 
-AE2：我们的服务器能够处理所有潜在用户的请求，并能够存储所有进行过埋点的数据。
+AE2：Our server can handle all the requests of potential users and store all the data of buried points.
 
-AE3：网络畅通，客户端与服务器通信时，不会发生连接断开等网络异常。
+AE3：The network is smooth, when the client communicates with the server, there will be no network abnormalities such as disconnection.
 
 ## 3. 详细需求描述
 
@@ -541,232 +541,227 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
   4. 系统显示在所选时间范围内的操作记录
 
 
-##### 3.2.3.5 公共部分
+##### 3.2.3.5 Common part
 
-###### 3.2.3.5.1 登录注册
+###### 3.2.3.5.1 Sign In/Up
 
-- ID：1
+- ID: 1
 
-- 名称：登录注册
+- Name: Sign In/Up
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行、数据提供方、借款小微企业
+- Participant: Bank、Data Provider、Small and micro enterprises
 
-- 触发条件：使用者选择登录注册
+- Triggering Conditions: User chooses to sign in or sign up
 
-- 前置条件：无
+- Preconditions: none
 
-- 后置条件：系统记录用户的登录注册信息
+- Postconditions: The system records the user's information
 
-- 正常流程：
+- Normal Process：
 
-  1. 使用者选择登录注册
-  2. 使用者注册，选择自己想要注册的账户的类型
-  3. 使用者输入注册信息
-  4. 使用者进行认证资料的上传
-  5. 使用者认证成功，注册完成
-  6. 使用者登录
-  7. 使用者登录成功，进入主界面
+  1. User chooses to sign in or sign up
+  2. User chooses to sign up and choose one type of account.
+  3. User enters registration information
+  4. User uploads some files for authentication
+  5. Signing up will be completed when the user passes the authentication
+  6. User choose to sign in
+  7. User will see the main page when signs in successfully 
 
-- 扩展流程：
+- Extra Process：
 
-  2a. 使用者已经注册
+  2a. The user has signed up
 
-  1. 跳转到正常流程6
+  1. Jump to Normal Process 6
 
-  5a. 使用者认证失败
+  5a. The user failed to pass the authentication
 
-  1. 跳转到正常流程4，重新进行认证资料的上传
+  1. Jump to Normal Process 4
 
-  7a. 使用者登录失败
+  7a. The user failed to sign in
 
-  1. 跳转到正常流程6，重新进行登录
+  1. Jump to Normal Process 6
 
-- 业务规则：
+- Business Rules：
 
-  BR1：登录和注册均需要验证码
+  BR1: Both signing in and signing up require verification code
 
-  BR2：注册的账户类型包括银行、数据提供方、借款小微企业
+  BR2: The types of accounts include banks, data providers, and small and micro borrowing companies
 
-- 特殊需求：无
+- Special Requirements: none
 
-###### 3.2.3.5.2 认证资料上传
+###### 3.2.3.5.2 Upload files for authentication
 
-- ID：2
+- ID: 2
 
-- 名称：认证资料上传
+- Name: Upload files for authentication
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行、数据提供方、借款小微企业、平台工作人员
+- Participant: Bank、Data Provider、Small and micro enterprises、platform staff
 
-- 触发条件：使用者选择上传认证资料
+- Triggering Conditions: User chooses to upload files for authentication
 
-- 前置条件：无
+- Preconditions: none
 
-- 后置条件：系统记录认证资料
+- Postconditions: The system saves the files
 
-- 正常流程：
+- Normal Process：
 
-  1. 使用者选择上传认证资料
-  2. 使用者上传对应所需的认证资料
-  3. 审核工作人员对使用者上传的认证资料进行审核
-  4. 审核通过，认证成功，使用者完成认证资料上传
+  1. User chooses to upload files for authentication
+  2. User uploads files
+  3. Platform staff review the files uploaded by the user
+  4. The user passes the authentication
 
-- 扩展流程：
+- Extra Process：
 
-  4a. 审核未通过
+  4a. The user failed to pass the authentication
 
-  1. 跳转到正常流程2，使用者重新上传认证资料
+  1. Jump to Normal Process 2, the user needs to upload proper files
 
-- 业务规则：
+- Business Rules: none
 
-  BR1：认证资料包括
+- Special Requirements: none
 
-- 特殊需求：无
+###### 3.2.3.5.3 Account Management
 
-###### 3.2.3.5.3 账户管理
+- ID: 3
 
-- ID：3
+- Name: Account Management
 
-- 名称：账户管理
+- Priority: High
 
-- 优先级：高
+- Participant: Bank、Data Provider、Small and micro enterprises
 
-- 参与者：银行、数据提供方、借款小微企业
+- Triggering Conditions: User chooses to modify account information
 
-- 触发条件：使用者选择账户管理
+- Preconditions: none
 
-- 前置条件：无
+- Postconditions: The system saves the new information
 
-- 后置条件：系统记录使用者对账户信息的修改
+- Normal Process：
 
-- 正常流程：
+  1. User chooses to modify account information
+  2. User modifies account information
+  3. The system saves the new information
 
-  1. 使用者选择账户管理
-  2. 使用者选择自己想要进行修改的内容进行管理
-  3. 系统保存使用者对信息的修改
+- Extra Process：
 
-- 扩展流程：
+  2a. User chooses to change password
 
-  2a. 使用者选择修改密码
+  1. User enters the old password
 
-  1. 使用者输入旧密码
+  2. If the old password is correct, the user needs to enter new password and confirm it
 
-  2. 旧密码验证成功，使用者输入新密码并二次确认
+     2i. The old password is not correct
 
-     2i. 输入的旧密码不正确
+     1. Jump to Extra Process 2a
 
-     1. 跳转到扩展流程2a，使用者重新进行密码的修改
+  2b. User choose to modify contact information
 
-  2b. 使用者选择修改联系方式
+  1. User enters new contact information and confirm it
 
-  1. 使用者输入新的联系方式并确认
+- Business Rules: none
 
-- 业务规则：无
+- Special Requirements: none
 
-- 特殊需求：无
+#### 3.2.4 System sequence diagram 
 
-#### 3.2.4 系统顺序图 ==TODO 转英文==
+##### 3.2.4.1 Bank
 
-##### 3.2.4.1 银行
-
-###### 3.2.4.1.1 项目管理
+###### 3.2.4.1.1 Project management
 
 ![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理.png)
 
-###### 3.2.4.1.2 信用评级策略管理
+###### 3.2.4.1.2 Credit rating strategy management
 
 ![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理.png)
 
-###### 3.2.4.1.3 浏览贷款申请
+###### 3.2.4.1.3 Browse loan applications
 
 ![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请.png)
 
-###### 3.2.4.1.4 发布贷款
+###### 3.2.4.1.4 Release loan![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款.png)
 
-![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款.png)
+##### 3.2.4.2 Data provider
 
-##### 3.2.4.2 数据提供方
-
-###### 3.2.4.2.1 服务器信息管理
+###### 3.2.4.2.1 Server information management
 
 ![服务器信息管理](..\pic\用例\服务器信息管理.png)
 
-###### 3.2.4.2.2 项目管理
+###### 3.2.4.2.2 Project management
 
-![数据提供方项目管理](..\pic\用例\数据提供方项目管理.png)
+![数据提供方项目管理](.\pic\用例\数据提供方项目管理.png)
 
-##### 3.2.4.3 借款小微企业
+##### 3.2.4.3 Small and micro enterprises
 
-###### 3.2.4.3.1 申请贷款
+###### 3.2.4.3.1 Apply for a loan
 
 ![小微企业1](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业1.png)
 
 ![小微企业11](..\pic\用例\小微企业11.png)
 
-###### 3.2.4.3.2 借贷情况查看
+###### 3.2.4.3.2 Checking the status of the loan application
 
 ![小微企业2](..\pic\用例\小微企业2.png)
 
 ![小微企业22](..\pic\用例\小微企业22.png)
 
-###### 3.2.4.3.3 接受贷款
+###### 3.2.4.3.3 Accept the loan
 
 ![小微企业3](..\pic\用例\小微企业3.png)
 
 ![小微企业33](..\pic\用例\小微企业33.png)
 
-##### 3.2.4.4 平台工作人员
+##### 3.2.4.4 Platform staff
 
-###### 3.2.4.4.1 资料认证
+###### 3.2.4.4.1 Authentication
 
 ![](..\pic\用例\资料认证.png)
 
-###### 3.2.4.4.2 使用监控
+###### 3.2.4.4.2 Usage monitoring
 
 ![](..\pic\用例\使用监控.png)
 
-##### 3.2.4.5 公共部分
+##### 3.2.4.5 Common part
 
-###### 3.2.4.5.1 登录注册
+###### 3.2.4.5.1 Sign in/up
 
- ![](..\pic\用例\登录注册.png)
-
-
+ ![](..\pic\用例\登录注册-E.png)
 
 
 
-###### 3.2.4.5.2 认证资料上传
-
-![](..\pic\用例\认证资料上传.png)
 
 
+###### 3.2.4.5.2 Upload files for authentication
 
-###### 3.2.4.5.3 账户管理 
+###### ![](..\pic\用例\认证资料上传-E.png)
 
-![](..\pic\用例\账户管理.png)
 
-### 3.3 前后端接口
+###### 3.2.4.5.3 Account management 
 
-#### 3.3.1 VO&PO包
+![](..\pic\用例\账户管理-E.png)
 
-**特别说明：**
+### 3.3 Interfaces between front end and back end
 
-- *Form 用于填写表单的对象，例如注册或提交信息
-- *VO 用于返回某个对象的信息
-- *PO用于与数据库交互
+#### 3.3.1 VO&PO
 
-##### 3.3.1.1 银行用例
+**Note：**
 
-###### 3.3.1.1.1 项目管理相关
+- *Form Objects used to fill out forms, such as registration information
+- *VO used to return information of an object
+- *PO used to interact with the database
+
+##### 3.3.1.1 Bank cases
+
+###### 3.3.1.1.1 Project management related
 
 **ProjectForm**
 
 ```java
 public class ProjectForm{
-	private Integer userID;//创建者的ID
+	private Integer userID;//ID of the user 
     private String projectName;
     private String description;
     private Timestamp startTime;
@@ -779,7 +774,7 @@ public class ProjectForm{
 ```java
 public class ProjectVO{
 	private Integer projectID;
-	private Integer userID;//创建者的ID
+	private Integer userID;//ID of the user 
     private String projectName;
     private String description;
     private ProjectStatus status;
@@ -793,8 +788,8 @@ public class ProjectVO{
 ```java
 public class Project{
 	private Integer projectID;
-	private Integer userID;//创建者的ID
-	private Integer modelID;//一个项目对应一个模型
+	private Integer userID;//ID of the user 
+	private Integer modelID;//The model of the project
     private String projectName;
     private String description;
     private ProjectStatus status;
@@ -806,12 +801,11 @@ public class Project{
 **AttendanceVO**
 
 ```java
-//记录一条项目参与记录
 public class AttendanceVO{
-	private Integer userID;//因为现在默认一个银行/数据提供方只有一个账号，就直接用userID来标识一个数据提供方了
+	private Integer userID;
 	private Integer projectID;
-	private boolean isChosen;//银行是否选择这个数据提供方的数据训练
-	private boolean isReady;//数据提供方是否准备好数据
+	private boolean isChosen;//Whether the bank chooses this data provider's data for training
+	private boolean isReady;//Whether the data provider has prepared the data
 }
 ```
 
@@ -826,7 +820,7 @@ public class Attendance{
 }
 ```
 
-###### 3.3.1.1.2 联邦学习相关
+###### 3.3.1.1.2 Federal learning related
 
 **Model**
 
@@ -834,28 +828,28 @@ public class Attendance{
 public class Model{
 	private Integer modelID;
 	private String mid;
-	private String modelVerion;//和mid一起标识当前版本模型
-	private String modelName;//在load_bind时需要指明，predict时是使用mname来进行标识
+	private String modelVerion;//Identify the current version of the model together with mid
+	private String modelName;//Need to be indicated when load_bind
 }
 ```
 
-###### 3.3.1.1.3 浏览贷款申请相关
+###### 3.3.1.1.3 Browse loan application related
 
-见3.3.1.1.1
+See 3.3.1.3.1
 
-###### 3.3.1.1.4 放贷相关
+###### 3.3.1.1.4  Lending related
 
 **LendingForm**
 
 ```java
 public class LendingForm{
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//The userID of the bank
+	private Integer lenderID；//The userID of the lender
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
-	private String phoneNumber;//银行经理联系方式
-	private String description;//贷款说明
+	private double amount;//Willing loan amount
+	private double interestRate;
+	private String phoneNumber;//Bank manager contact information
+	private String description;//Loan description
 }
 ```
 
@@ -864,13 +858,13 @@ public class LendingForm{
 ```java
 public class LendingHistoryVO{
 	private Integer lendingHistoryID;
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//The userID of the bank
+	private Integer lenderID；//The userID of the lender
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
+	private double amount;//Willing loan amount
+	private double interestRate;
 	private String phoneNumber;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
@@ -879,31 +873,31 @@ public class LendingHistoryVO{
 ```java
 public class LendingHistory{
 	private Integer lendingHistoryID;
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//The userID of the bank
+	private Integer lenderID；//The userID of the lender
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
+	private double amount;//Willing loan amount
+	private double interestRate;
 	private String phoneNumber;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
-##### 3.3.1.2 数据提供方用例
+##### 3.3.1.2 Data provider cases
 
-###### 3.3.1.2.1 服务器信息相关
+###### 3.3.1.2.1 Server information related
 
 **serverInfoForm**
 
 ```java
-//每次参加项目都要填写服务器信息，因为一个用户可能用不同服务器参加不同项目
+//Each time you participate in a project, you must fill in the server information, because a user may use different servers to participate in different projects
 public class serverInfoForm{
 	private Integer userID;
 	private Integer projectID;
 	private String ipAddress;
     private String serverName;
     private String serverPassword;
-    private String filePath;//数据提供方数据存放位置
+    private String filePath;//File path of the data
 }
 ```
 
@@ -924,7 +918,8 @@ public class serverInfoVO{
 
 ```java
 public class serverInfo{
-    private Integer serverInfoID;//一台服务器只能用一个ID参与一个项目，所以要用serverInfoID来标识
+    //A server can only use one ID to participate in one project, so use serverInfoID to identify
+    private Integer serverInfoID;
 	private Integer userID;
 	private Integer projectID;
 	private String ipAddress;
@@ -934,19 +929,19 @@ public class serverInfo{
 }
 ```
 
-##### 3.3.1.3 小微企业用例
+##### 3.3.1.3 Small and micro business cases
 
-###### 3.3.1.3.1 借贷相关
+###### 3.3.1.3.1 Loan related
 
 **LoanApplicationForm**
 
 ```java
 public class LoanApplicationForm{
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;
+	private String phoneNumber;//Phonenumber of the lender
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;
 	private String companyName;
 }
 ```
@@ -957,12 +952,12 @@ public class LoanApplicationForm{
 public class LoanApplicationVO{
 	private Integer loanApplicationID;
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;
+	private String phoneNumber;//Phonenumber of the lender
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;
 	private String companyName;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
@@ -972,32 +967,32 @@ public class LoanApplicationVO{
 public class LoanApplication{
 	private Integer loanApplicationID;
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;
+	private String phoneNumber;//Phonenumber of the lender
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;
 	private String companyName;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
-###### 3.3.1.3.2 放贷情况查看相关
+###### 3.3.1.3.2 Checking lending process related
 
-与1.1.4相同
+See 3.3.1.1.4
 
-###### 3.3.1.3.3 接受贷款
+###### 3.3.1.3.3 Accept loan
 
-与1.1.4相同
+See 3.3.1.1.4
 
-##### 3.3.1.4 平台工作人员用例
+##### 3.3.1.4 Platform staff cases
 
-###### 3.3.1.4.1 资料认证相关
+###### 3.3.1.4.1 Data certification related
 
-参考文件处理和登录功能
+Reference file processing and login function
 
-##### 3.3.1.5 公共部分用例
+##### 3.3.1.5 Common part cases
 
-###### 3.3.1.5.1 登录注册相关
+###### 3.3.1.5.1 Sign in/up realted
 
 **UserLoginForm**
 
@@ -1016,7 +1011,7 @@ public class UserRegisterForm {
     private String password;
     private String username;
     private String phoneNumber;
-    private UserType role;//希望以什么身份注册
+    private UserType role;//account type
 }
 ```
 
@@ -1046,7 +1041,7 @@ public class User {
 }
 ```
 
-###### 3.3.1.5.2 账户管理相关
+###### 3.3.1.5.2 Account management related
 
 **UserForm**
 
@@ -1058,17 +1053,17 @@ public class UserForm {
 }
 ```
 
-#### 3.3.2 Controller包设计
+#### 3.3.2 Design of controller package 
 
-**统一说明**
+**Notes**
 
-- 建议键值放在路径中传参，且放在路径最后；
-  - 示例：**url:** /api/account/getUserInfo/{userID}
-- 其余信息通过RequestParam和RequestBody等传递
+- It is recommended that the key value be placed in the path to pass parameters, and placed at the end of the path;
+  - eg：**url:** /api/account/getUserInfo/{userID}
+- The rest of the information is passed through RequestParam and RequestBody, etc.
 
 ##### 3.3.2.1 AccountController
 
-###### 3.3.2.1.1 登陆
+###### 3.3.2.1.1 login
 
 **url:** /api/account/login
 
@@ -1076,7 +1071,7 @@ public class UserForm {
 public ResponseVO login(@RequestBody UserLoginForm userLoginForm);
 ```
 
-###### 3.3.2.1.2 注册
+###### 3.3.2.1.2 Register
 
 **url:** /api/account/register
 
@@ -1084,7 +1079,7 @@ public ResponseVO login(@RequestBody UserLoginForm userLoginForm);
 public ResponseVO register(@RequestBody UserRegisterForm userRegisterForm);
 ```
 
-###### 3.3.2.1.3 获取个人信息
+###### 3.3.2.1.3 Get personal information
 
 **url:** /api/account/getUserInfo/{userID}
 
@@ -1092,7 +1087,7 @@ public ResponseVO register(@RequestBody UserRegisterForm userRegisterForm);
 public ResponseVO getUserInfo(@PathVariable int userID);
 ```
 
-###### 3.3.2.1.4 修改个人信息
+###### 3.3.2.1.4 Modify Personal Information
 
 **url:** /api/account/updateUserInfo/{usreID}
 
@@ -1100,7 +1095,7 @@ public ResponseVO getUserInfo(@PathVariable int userID);
 public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm userForm);
 ```
 
-###### 3.3.2.1.5 修改个人密码
+###### 3.3.2.1.5 Change password
 
 **url:** /api/account/udpatePassword/{userID}
 
@@ -1108,9 +1103,7 @@ public ResponseVO updateUserInfo(@PathVariable int userID,@RequestBody UserForm 
 public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String oldPassword, @RequestParam String newPassword);
 ```
 
-###### 3.3.2.1.6 认证身份
-
-用户注册后是非认证状态，只能使用最基本功能，上传资料管理员认证通过后授予身份认证
+###### 3.3.2.1.6 Authentication
 
 **url:** /api/account/registerIdentity/{userID}
 
@@ -1118,7 +1111,7 @@ public ResponseVO updatePassword(@PathVariable int userID, @RequestParam String 
 public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int role);
 ```
 
-###### 3.3.2.1.7 获取所有用户
+###### 3.3.2.1.7 Get all users
 
 **url:** /api/account/getAllUsers
 
@@ -1126,7 +1119,7 @@ public ResponseVO registerIdentity(@PathVariable int userID,@RequestParam int ro
 public ResponseVO getAllUsers();
 ```
 
-###### 3.3.2.1.8 获取所有未注册用户
+###### 3.3.2.1.8 Get all unregistered users
 
 **url:** /api/account/getUnauthorizedUsers
 
@@ -1136,7 +1129,7 @@ public ResponseVO getUnauthorizedUsers();
 
 ##### 3.3.2.2 ProjectController
 
-###### 3.3.2.2.1 添加项目
+###### 3.3.2.2.1 Add a new project
 
 **url:** /api/project/addProject
 
@@ -1144,7 +1137,7 @@ public ResponseVO getUnauthorizedUsers();
 public ResponseVO addProject(@RequestBody ProjectForm projectForm);
 ```
 
-###### 3.3.2.2.2 删除项目(不变)
+###### 3.3.2.2.2 Delete a project
 
 **url:** /api/project/deleteProject
 
@@ -1152,9 +1145,9 @@ public ResponseVO addProject(@RequestBody ProjectForm projectForm);
 public ResponseVO deleteProject(@RequestParam Integer projectID);
 ```
 
-根据项目的ID来删除某一个项目
+Delete a project based on the project ID.
 
-###### 3.3.2.2.3 修改项目信息
+###### 3.3.2.2.3 
 
 **url:** /api/project/modifyProject/{projectID}
 
@@ -1162,7 +1155,7 @@ public ResponseVO deleteProject(@RequestParam Integer projectID);
 public ResponseVO modifyProject(@PathVariable int projectID, @RequestBody ProjectForm projectForm);
 ```
 
-###### 3.3.2.2.4 查看所有项目
+###### 3.3.2.2.4 Modify project information
 
 **url:** /api/project/getAllProjectInfo
 
@@ -1170,7 +1163,7 @@ public ResponseVO modifyProject(@PathVariable int projectID, @RequestBody Projec
 public ResponseVO getAllProject();
 ```
 
-###### 3.3.2.2.5 查看某个项目的信息
+###### 3.3.2.2.5 View information about a project
 
 **url:** /api/project/getProjectInfo/{projectID}
 
@@ -1180,7 +1173,7 @@ public ResponseVO getProjectInfo(@PathVariable Integer projectID);
 
 ##### 3.3.2.3 AttendanceController
 
-###### 3.3.2.3.1 加入项目 
+###### 3.3.2.3.1 Attend a project
 
 **url:** /api/cooperation/attendProject/{projectID}/{cooperationID}
 
@@ -1188,7 +1181,7 @@ public ResponseVO getProjectInfo(@PathVariable Integer projectID);
 public ResponseVO attendProject(@PathVariable Integer projectID, @PathVariable Integer cooperationID) 
 ```
 
-###### 3.3.2.3.2 退出项目 
+###### 3.3.2.3.2 Exit a project
 
 **url:** /api/cooperation/quitProject/{projectID}/{cooperationID}
 
@@ -1196,7 +1189,7 @@ public ResponseVO attendProject(@PathVariable Integer projectID, @PathVariable I
 public ResponseVO quitProject(@PathVariable Integer projectID, @PathVariable Integer cooperationID)
 ```
 
-###### 3.3.2.3.3 更改服务器信息
+###### 3.3.2.3.3 Change server information
 
 **url:** /api/cooperation/updateServerInfo
 
@@ -1204,9 +1197,9 @@ public ResponseVO quitProject(@PathVariable Integer projectID, @PathVariable Int
 public ResponseVO updateServerInfo(@RequestBody ServerInfoForm serverInfoForm )
 ```
 
-数据提供方填好表单后上传服务器的相关信息，包括ip地址，root账户名，密码，文件存储地址
+The data provider uploads the relevant information of the server after filling out the form, including ip address, root account name, password and file path.
 
-###### 3.3.2.3.4 数据提供方设置自己信息准备状态
+###### 3.3.2.3.4 The data provider sets its own information readiness status
 
 **url:** /api/cooperation/setReadyStatus/{projectID}/{cooperationID}
 
@@ -1214,9 +1207,9 @@ public ResponseVO updateServerInfo(@RequestBody ServerInfoForm serverInfoForm )
 public ResponseVO setReadyStatus(@PathVariable Integer projectID, @PathVariable Integer cooperationID，@RequestParam boolean isReady )
 ```
 
-数据提供方确认自己的数据已经准备好后就设置attendance中相关记录isReady为true
+After the data provider confirms that its data is ready, it sets the relevant record in the attendance isReady to true
 
-###### 3.3.2.3.5 查看某个数据提供方参加的所有项目
+###### 3.3.2.3.5 View all projects participated by a data provider
 
 **url:** /api/cooperation/getAllAttendedProjects/{cooperationID}
 
@@ -1224,7 +1217,7 @@ public ResponseVO setReadyStatus(@PathVariable Integer projectID, @PathVariable 
 public ResponseVO getAllAttendedProjects(@PathVariable Integer cooperaitonID);
 ```
 
-###### 3.3.2.3.6 查看某个数据提供方参与某项目的服务器信息
+###### 3.3.2.3.6 View server information of a data provider participating in a project
 
 **url:** /api/cooperation/getServerInfo/{projectID}/{cooperationID}
 
@@ -1232,9 +1225,7 @@ public ResponseVO getAllAttendedProjects(@PathVariable Integer cooperaitonID);
 public ResponseVO getServerInfo(@PathVariable Integer projectID, @PathVariable Integer cooperationID);
 ```
 
-返回值包裹的是ServerInfoVo
-
-###### 3.3.2.3.7 查看某个项目的所有数据提供方
+###### 3.3.2.3.7 View all data providers for a project
 
 **url:** /api/cooperation/getProjectCooperation/{projectID}
 
@@ -1242,7 +1233,7 @@ public ResponseVO getServerInfo(@PathVariable Integer projectID, @PathVariable I
 public ResponseVO getProjectCooperation(@PathVariable Integer projectID);
 ```
 
-###### 3.3.2.3.8 设置是否采用某数据提供方的数据
+###### 3.3.2.3.8 Set whether to use data from a data provider
 
 **url:** /api/cooperation/setChosenStatus/{projectID}/{cooperationID}
 
@@ -1252,9 +1243,9 @@ public ResponseVO setChosenStatus(@PathVariable Integer projectID, @PathVariable
 
 ##### 3.3.2.4 LendingController
 
-###### 3.3.2.4.1 提交贷款意愿
+###### 3.3.2.4.1 Submit loan intention
 
-银行可以浏览到在平台上借款的小微企业的借款列表，然后可以为某个借款请求提交贷款意愿，需要填写的信息见LendingForm
+The bank can browse the list of small and micro enterprises's applications on the platform, and then submit the loan willingness for a loan request. The information to be filled in is shown in LendingForm
 
 **url:** /api/lending/addLendingForm
 
@@ -1262,16 +1253,15 @@ public ResponseVO setChosenStatus(@PathVariable Integer projectID, @PathVariable
 public ResponseVO addLendingForm(@RequestBody LendingForm lendingForm);
 ```
 
-###### 3.3.2.4.2 查看某银行在平台的所有贷款记录
+###### 3.3.2.4.2 View all lending records of a bank on the platform
 
 **url:** /api/lending/getBankLendingHistory/{bankID}
 
 ```java
 public ResponseVO getBankLendingHistory(@PathVariable Integer bankID);
-//bankID就是银行的userID
 ```
 
-###### 3.3.2.4.3 查看某条贷款记录
+###### 3.3.2.4.3 View a certain lending record
 
 **url:** /api/lending/getLendingHistory/{lendingHistoryID}
 
@@ -1279,9 +1269,9 @@ public ResponseVO getBankLendingHistory(@PathVariable Integer bankID);
 public ResponseVO getLendingHistory(@PathVariable Integer lendingHistoryID);
 ```
 
-###### 3.3.2.4.4 设置某贷款记录的处理情况为已处理
+###### 3.3.2.4.4 Set the processing status of a lending record as processed
 
-银行发布的贷款意愿被用户采纳后置为将hasDealt置为true
+hasDealt is set to true after the user adopts the loan intention issued by the bank.
 
 **url:** /api/lending/setDealt/{lendingHistoryID}
 
@@ -1291,7 +1281,7 @@ public ResponseVO setDealt(@PathVariable Integer lendingHistoryID);
 
 ##### 3.3.2.5 LoanController
 
-###### 3.3.2.5.1 提交贷款申请
+###### 3.3.2.5.1 Submit loan application
 
 **url:** /api/loan/addLoanApplication
 
@@ -1299,7 +1289,7 @@ public ResponseVO setDealt(@PathVariable Integer lendingHistoryID);
 public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplicationForm);
 ```
 
-###### 3.3.2.5.2 取消贷款申请
+###### 3.3.2.5.2 Cancel loan application
 
 **url:** /api/loan/deleteLoanApplication/{loanApplicationID}
 
@@ -1307,7 +1297,7 @@ public ResponseVO addLoanApplication(@RequestBody LoanApplicationForm loanApplic
 public ResponseVO deleteLoanApplication(@PathVariable Integer loanApplicationID);
 ```
 
-###### 3.3.2.5.3 查看所有贷款申请记录
+###### 3.3.2.5.3 View all loan application records
 
 **url:** /api/loan/getAllLoanApplication/{userID}
 
@@ -1315,7 +1305,7 @@ public ResponseVO deleteLoanApplication(@PathVariable Integer loanApplicationID)
 public ResponseVO getAllLoanApplication(@PathVariable Integer userID);
 ```
 
-###### 3.3.2.5.4 查看某条贷款申请记录
+###### 3.3.2.5.4  View a record of a certain loan application
 
 **url:** /api/loan/getLoanApplication/{loanApplicationID}
 
@@ -1323,7 +1313,7 @@ public ResponseVO getAllLoanApplication(@PathVariable Integer userID);
 public ResponseVO getLoanApplication(@PathVariable Integer loanApplicationID);
 ```
 
-###### 3.3.2.5.5 设置某贷款申请为已处理
+###### 3.3.2.5.5 Set a loan application as processed
 
 **url:** /api/loan/setDealt/{loanApplicationID}
 
@@ -1331,13 +1321,11 @@ public ResponseVO getLoanApplication(@PathVariable Integer loanApplicationID);
 public ResponseVO setDealt(@PathVariable Integer loanApplicationID);
 ```
 
-###### 3.3.2.5.6 查看某小微企业获得的所有贷款记录
+###### 3.3.2.5.6 View all loan records obtained by a small and micro enterprise
 
 **url:** /api/loan/getUserLoanHistory/{userID}
 
 ```java
 public ResponseVO getUserLoanHistory(@PathVariable Integer userID);
 ```
-
-##### 3.3.2.6 FileController
 
