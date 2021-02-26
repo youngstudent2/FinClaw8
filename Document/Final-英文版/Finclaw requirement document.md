@@ -1,81 +1,81 @@
-# Finclaw需求文档
+# Finclaw Requirement Document
 
-## 1. 引言
+## 1. Introduction
 
-### 1.1 目的
+### 1.1 Objective
 
-​		本文档描述了Finclaw平台系统的功能需求和非功能需求。Finclaw平台是一个基于联邦学习的小微企业信用风险管理系统，核心目标是为金融机构客户提供去中心化的联邦学习数据加密共享框架、高效先进的小微企业信用评级算法预测和最优化信贷策略，并为贷款小微企业提供集成的信用评级服务和基于花旗API的借款服务。
+​	This document describes the functional and non functional requirements of Finclaw platform system. Finclaw platform is a credit risk management system for small and micro enterprises based on federal learning. Its core goal is to provide decentralized federal learning data encryption sharing framework, efficient and advanced credit rating algorithm prediction and optimization of credit strategy for small and micro enterprises, and to provide integrated credit rating services and loan services based on Citi API for small and micro enterprises.
 
-​		此文档将作为开发团队后续进行开发实现与验证工作的依据。
+​	This document will be used as the basis for the subsequent development and verification work of the development team.
 
-### 1.2 范围 ==TODO：待完善==
+### 1.2 Range
 
-​		本文档描述了FInclaw平台系统的需求说明，涉及的功能包括用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
+​		本文档描述了Finclaw平台系统的需求说明，涉及的功能包括用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
 
-### 1.3 参考文献
+### 1.3 Reference
 
-1. 丁二玉,刘钦.《计算与软件工程(卷二)》
-2. 骆斌.《需求工程软件建模与分析》
-3. IEEE标准
+1. ErYuDing, QinLiu.  *Computing and Software Engineering (Volume 2)*
+2. BinLuo.  *Modeling and Analysis of Requirements Engineering Software*
+3. IEEE Standard
 
-### 1.4 文档组织
+### 1.4 Document Organization
 
-​		本文档按照用户类别进行组织，共列出了四类用户（银行工作人员、数据提供方、小微企业、平台工作人员）的用户需求、用例描述以及各自模块所涉及的前后端交互接口，并对开发中的对外接口以及性能需求、约束、质量属性等做出了规定。
+​	This document is organized according to the user category, and lists the user requirements, use case descriptions and front-end and back-end interaction interfaces involved in each module of four types of users (bank staff, data providers, small and micro enterprises, platform staff), and specifies the external interface, performance requirements, constraints, quality attributes and so on in the development.
 
-## 2. 总体描述
+## 2. General Description
 
-### 2.1 业务需求
+### 2.1 Business Requirements
 
-BR1：结合最新联邦学习算法研究，实现多个金融机构和数据机构加密共享数据训练模型的全过程以及小微企业的信用评级全过程。
+BR1：Combined with the latest federal learning algorithm, the whole process of encrypting and sharing data training model of multiple financial institutions and data institutions and the whole process of credit rating of small and micro enterprises are realized.
 
-BR2：实现银行在同样的金额下，以不同投资方式为小微企业进行贷款的风险评级+收益评级，为银行提供选择。
+BR2：Under the same amount of money, banks can make loan risk rating + income rating for small and micro enterprises in different investment ways, so as to provide choices for banks.
 
-BR3：研究在新冠疫情下，小微企业通过花旗API 进行贷款业务的方法。
+BR3：Study the way COVID-19 small and micro businesses make loans through Citigroup API.
 
-BR4：研究减少小微企业融资成本困境，提高自身信用评级的方法。
+BR4：This paper studies the methods to reduce the financing cost dilemma of small and micro enterprises and improve their own credit rating.
 
-BR5：针对大数据情况下的系统设计优化。
+BR5：System design optimization in the case of big data.
 
-### 2.2 项目功能
+### 2.2 Project Function
 
-FInclaw平台主要实现的功能有：
+The main functions of the Finclaw platform are as follows：
 
-FE1：不同角色的用户可以在平台上进行注册并由平台管理人员进行相应的身份认证。
+FE1：Users with different roles can register on the platform and be authenticated by the platform administrator.
 
-FE2：银行工作人员可以在平台上创建、修改与管理联邦学习项目。
+FE2：Bank staff can create, modify and manage federal learning projects on the platform.
 
-FE3：数据提供方可自由加入不同的联邦学习项目中为训练项目提供数据。
+FE3：Data providers are free to join different federal learning programs to provide data for training programs.
 
 FE4：小微企业主可以在平台上进行贷款申请，平台将贷款申请转发至。
 
-FE5：平台工作人员可以查看各用户在平台上的使用情况并对存在可疑行为的用户进行账号封禁。
+FE5：Platform staff can view the usage of each user on the platform and block the accounts of users with suspicious behaviors.
 
-### 2.3 用户特征 ==TODO==
+### 2.3 User Characteristics
 
-|     用户     | 特征 |
-| :----------: | ---- |
-|     银行     |      |
-|  数据提供方  |      |
-|   小微企业   |      |
-| 平台工作人员 |      |
+|     User     | Characteristics |
+| :----------: | --------------- |
+|     银行     |                 |
+|  数据提供方  |                 |
+|   小微企业   |                 |
+| 平台工作人员 |                 |
 
-### 2.4 约束
+### 2.4 Constraint
 
-CON1：系统需要有web端界面。
+CON1：The system needs a web interface.
 
-CON2：在开发中，开发人员要提交酒店预定系统用例文档、软件需求规格说明文档、软件体系结构描述文档、软件详细设计描述文档以及测试报告。
+CON2：In the development, the developer should submit the use case document, software requirement specification document, software architecture description document, software detailed design description document and test report of hotel reservation system.
 
-CON3：项目使用持续集成的方式进行开发。
+CON3：The project is developed in a way of continuous integration.
 
-CON4：项目将使用Spring Boot和MyBatis作为后端框架，使用Vue进行前端开发。
+CON4：The project will use Spring Boot and MyBatis as the back-end framework and Vue as the front-end development.
 
-### 2.5 假设与依赖
+### 2.5 Hypothesis and Dependence
 
-AE1：超出本系统范围产生的异常将由人工介入处理。
+AE1：The exception beyond the scope of the system will be handled by manual intervention.
 
-AE2：我们的服务器能够处理所有潜在用户的请求，并能够存储所有进行过埋点的数据。
+AE2：Our server can handle all the requests of potential users and store all the data of buried points.
 
-AE3：网络畅通，客户端与服务器通信时，不会发生连接断开等网络异常。
+AE3：The network is smooth, when the client communicates with the server, there will be no network abnormalities such as disconnection.
 
 ## 3. 详细需求描述
 
@@ -728,7 +728,7 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 ###### 3.2.4.5.1 Sign in/up
 
- ![](..\pic\用例\登录注册.png)
+ ![](..\pic\用例\登录注册-E.png)
 
 
 
@@ -737,10 +737,9 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 ###### 3.2.4.5.2 Upload files for authentication![](..\pic\用例\认证资料上传.png)
 
 
-
 ###### 3.2.4.5.3 Account management 
 
-![](..\pic\用例\账户管理.png)
+![](..\pic\用例\账户管理-E.png)
 
 ### 3.3 Interfaces between front end and back end
 
