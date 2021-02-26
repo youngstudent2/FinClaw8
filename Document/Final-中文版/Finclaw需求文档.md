@@ -1341,4 +1341,3 @@ public ResponseVO getUserLoanHistory(@PathVariable Integer userID);
 
 ##### 3.3.2.6 FileController
 
-##### 3.3.2.7 ModelController
