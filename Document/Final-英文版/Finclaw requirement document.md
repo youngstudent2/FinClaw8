@@ -734,7 +734,9 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 
 
-###### 3.2.4.5.2 Upload files for authentication![](..\pic\用例\认证资料上传.png)
+###### 3.2.4.5.2 Upload files for authentication
+
+###### ![](..\pic\用例\认证资料上传-E.png)
 
 
 ###### 3.2.4.5.3 Account management 
