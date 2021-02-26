@@ -46,7 +46,7 @@ FE2：Bank staff can create, modify and manage federal learning projects on the 
 
 FE3：Data providers are free to join different federal learning programs to provide data for training programs.
 
-FE4：小微企业主可以在平台上进行贷款申请，平台将贷款申请转发至。
+FE4：Small and micro business owners can apply for loans on the platform, and banks can see the loans of various small and micro businesses through the platform.
 
 FE5：Platform staff can view the usage of each user on the platform and block the accounts of users with suspicious behaviors.
 
