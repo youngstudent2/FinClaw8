@@ -89,7 +89,7 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 #### 3.2.1 Use Case Diagram
 
-![](..\pic\用例\Finclaw用例图.png)
+![](..\pic\用例\用例图-E.png)
 
 #### 3.2.2 Use Case List
 
@@ -669,7 +669,7 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 - Special Requirements: none
 
-#### 3.2.4 System sequence diagram 
+#### 3.2.4 System Sequence Diagram 
 
 ##### 3.2.4.1 Bank
 
@@ -721,11 +721,11 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 ###### 3.2.4.4.1 Authentication
 
-![](..\pic\用例\资料认证.png)
+![](..\pic\用例\资料认证-E.png)
 
 ###### 3.2.4.4.2 Usage monitoring
 
-![](..\pic\用例\使用监控.png)
+![](..\pic\用例\使用监控-E.png)
 
 ##### 3.2.4.5 Common part
 
