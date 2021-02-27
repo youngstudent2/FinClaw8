@@ -10,7 +10,7 @@
 
 ### 1.2 Range
 
-​		本文档描述了Finclaw平台系统的需求说明，涉及的功能包括用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
+​	This document describes the requirements of Finclaw platform system, including the login and registration of users with various identities, authentication data upload, account management; project management of bank staff, credit rating strategy management, browsing loan applications, issuing loans, and using Citi API to access the loan service for Citibank; server information management of data providers , project management; small and micro enterprises to apply for loans, view the loan situation, accept loans; as well as information authentication, personnel management and use monitoring of platform staff.
 
 ### 1.3 Reference
 
@@ -21,6 +21,8 @@
 ### 1.4 Document Organization
 
 ​	This document is organized according to the user category, and lists the user requirements, use case descriptions and front-end and back-end interaction interfaces involved in each module of four types of users (bank staff, data providers, small and micro enterprises, platform staff), and specifies the external interface, performance requirements, constraints, quality attributes and so on in the development.
+
+
 
 ## 2. General Description
 
@@ -52,12 +54,12 @@ FE5：Platform staff can view the usage of each user on the platform and block t
 
 ### 2.3 User Characteristics
 
-|     User     | Characteristics |
-| :----------: | --------------- |
-|     银行     |                 |
-|  数据提供方  |                 |
-|   小微企业   |                 |
-| 平台工作人员 |                 |
+|      User      | Characteristics                                              |
+| :------------: | ------------------------------------------------------------ |
+|      Bank      | Carry out efficient loan risk rating and income rating for small and micro enterprises, complete loan issuance, and broaden the channel of loan business. |
+| Data Provider  | At the same time of providing data, it can protect its own data from being exposed and solve the problem of data island. |
+| Small Company  | With their own credit as efficient as possible to apply for enough loans. |
+| Platform Staff | Auditing the authentication data uploaded by users with different identities, and Usage monitoring and management of platform users |
 
 ### 2.4 Constraint
 
@@ -69,13 +71,15 @@ CON3：The project is developed in a way of continuous integration.
 
 CON4：The project will use Spring Boot and MyBatis as the back-end framework and Vue as the front-end development.
 
-### 2.5 Hypothesis and Dependence
+### 2.5 Assumption and Dependence
 
 AE1：The exception beyond the scope of the system will be handled by manual intervention.
 
 AE2：Our server can handle all the requests of potential users and store all the data of buried points.
 
 AE3：The network is smooth, when the client communicates with the server, there will be no network abnormalities such as disconnection.
+
+
 
 ## 3. Detailed Requirement Description
 
