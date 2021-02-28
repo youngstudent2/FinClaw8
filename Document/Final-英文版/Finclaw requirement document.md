@@ -10,7 +10,7 @@
 
 ### 1.2 Range
 
-​		本文档描述了Finclaw平台系统的需求说明，涉及的功能包括用户的登录注册，认证资料上传，账户管理；银行工作人员的项目管理，信用评级策略管理，浏览贷款申请，发放贷款；数据提供方的服务器信息管理，项目管理；小微企业的申请借款，借贷情况查看，接受贷款；以及平台工作人员的资料认证和使用监控。
+​	This document describes the requirements of Finclaw platform system, including the login and registration of users with various identities, authentication data upload, account management; project management of bank staff, credit rating strategy management, browsing loan applications, issuing loans, and using Citi API to access the loan service for Citibank; server information management of data providers , project management; small and micro enterprises to apply for loans, view the loan situation, accept loans; as well as information authentication, personnel management and use monitoring of platform staff.
 
 ### 1.3 Reference
 
@@ -21,6 +21,8 @@
 ### 1.4 Document Organization
 
 ​	This document is organized according to the user category, and lists the user requirements, use case descriptions and front-end and back-end interaction interfaces involved in each module of four types of users (bank staff, data providers, small and micro enterprises, platform staff), and specifies the external interface, performance requirements, constraints, quality attributes and so on in the development.
+
+
 
 ## 2. General Description
 
@@ -52,12 +54,12 @@ FE5：Platform staff can view the usage of each user on the platform and block t
 
 ### 2.3 User Characteristics
 
-|     User     | Characteristics |
-| :----------: | --------------- |
-|     银行     |                 |
-|  数据提供方  |                 |
-|   小微企业   |                 |
-| 平台工作人员 |                 |
+|      User      | Characteristics                                              |
+| :------------: | ------------------------------------------------------------ |
+|      Bank      | Carry out efficient loan risk rating and income rating for small and micro enterprises, complete loan issuance, and broaden the channel of loan business. |
+| Data Provider  | At the same time of providing data, it can protect its own data from being exposed and solve the problem of data island. |
+| Small Company  | With their own credit as efficient as possible to apply for enough loans. |
+| Platform Staff | Auditing the authentication data uploaded by users with different identities, and Usage monitoring and management of platform users |
 
 ### 2.4 Constraint
 
@@ -69,7 +71,7 @@ CON3：The project is developed in a way of continuous integration.
 
 CON4：The project will use Spring Boot and MyBatis as the back-end framework and Vue as the front-end development.
 
-### 2.5 Hypothesis and Dependence
+### 2.5 Assumption and Dependence
 
 AE1：The exception beyond the scope of the system will be handled by manual intervention.
 
@@ -77,469 +79,548 @@ AE2：Our server can handle all the requests of potential users and store all th
 
 AE3：The network is smooth, when the client communicates with the server, there will be no network abnormalities such as disconnection.
 
-## 3. 详细需求描述
+## 3. Detailed Requirement Description
 
-### 3.1 对外接口
-
-#### 3.1.1 用户界面 ==TODO：放截图==
+### 3.1 External Interface
 
 
+#### 3.1.1 Platform Home Page
 
-### 3.2 用例描述
+##### 3.1.1.1 Home Page
+![](../pic/用户手册/首页.jpeg)
 
-#### 3.2.1 用例图
+##### 3.1.1.2 Project Detail
+![](../pic/用户手册/detail.jpg)
 
-![](..\pic\用例\Finclaw用例图.png)
+##### 3.1.1.3 Register
 
-#### 3.2.2 用例列表
+![](../pic/用户手册/register.png)
 
-##### 3.2.2.1 银行
+##### 3.1.1.4 Login
+![](../pic/用户手册/login.png)
 
-1. 项目管理
-2. 信用评级策略管理
-3. 浏览贷款申请
-4. 发放贷款
+##### 3.1.1.5 Submit Certification File
+![](../pic/用户手册/uploadUserFile.jpeg)
 
-##### 3.2.2.2 数据提供方
+#### 3.1.2 Platform Staff
 
-1. 服务器信息管理
-2. 项目管理
+##### 3.1.2.1 Account Registration Audit
+![](../pic/用户手册/accountReview.png)
+##### 3.1.2.2 Account Manage
+![](../pic/用户手册/accountManage.jpg)
+##### 3.1.2.3 Monitor
+![](../pic/用户手册/model.jpg)
 
-##### 3.2.2.3 借款小微企业
+#### 3.1.3 Bank
+##### 3.1.3.1 View Project
+![](../pic/用户手册/projectReview.png)
+##### 3.1.3.2 Create Project
 
-1. 申请借款
-2. 借贷情况查看
-3. 接受贷款
+![](../pic/用户手册/create.png)
 
-##### 3.2.2.4 平台工作人员
+##### 3.1.3.3 Modify Project
 
-1. 资料认证
-2. 使用监控
+##### ![](../pic/用户手册/modify.png)
 
-##### 3.2.2.5 公共部分
+##### 3.1.3.4 Delete Project
+![](../pic/用户手册/deleteProject.png)
+##### 3.1.3.5 Deal Loan Application
+![](../pic/用户手册/helpLoaner.png)
+![](../pic/用户手册/helpLoaner2.png)
+##### 3.1.3.6 View Willingness Record
+![](../pic/用户手册/helpHistory.png)
+##### 3.1.3.7 Project Data Present
+![](../pic/用户手册/projectHome.png)
+##### 3.1.3.8 Project Jurisdiction Manage
+![](../pic/用户手册/projectAuthority.png)
+![](../pic/用户手册/projectAuthority2.png)
+##### 3.1.3.9 Deploy, Upload and Train
+![](../pic/用户手册/bankConfig.png)
+![](../pic/用户手册/bankConfig2.png)
+![](../pic/用户手册/bankConfig3.png)
+##### 3.1.3.10 Predict and lending Strategy
+![](../pic/用户手册/predict.png)
+##### 3.1.3.11 Bank Lending Strategy Recommendation
+![](../pic/用户手册/strategy.png)
+#### 3.1.4 Data Provider
 
-1. 登录注册
-2. 认证资料上传
-3. 账户管理
+##### 3.1.4.1 Attend Project
+![](../pic/用户手册/attendProject.png)
+![](../pic/用户手册/detail.jpg)
+##### 3.1.4.2 Upload Server Information
+![](../pic/用户手册/config.jpg)
+##### 3.1.4.3 Set Ready
+![](../pic/用户手册/ready.jpg)
+##### 3.1.4.4 Quit Project
+![](../pic/用户手册/quitProject.jpg)
 
-#### 3.2.3 详细用例描述
+#### 3.1.5 Micro and Small Company
 
-##### 3.2.3.1 银行
+##### 3.1.5.1 Loan Application
+![](../pic/用户手册/request.png)
+##### 3.1.5.2 Application Manage
+![](../pic/用户手册/requestManage.png)
+##### 3.1.5.3 Loan Result
+![](../pic/用户手册/responseReview.png)
 
-###### 3.2.3.1.1 项目管理
+### 3.2 Use Case Description
+
+#### 3.2.1 Use Case Diagram
+
+![](..\pic\用例\用例图-E.png)
+
+#### 3.2.2 Use Case List
+
+##### 3.2.2.1 Bank
+
+1. Project Management
+2. Credit Rating Strategy Management
+3. Browse Loan Applications
+4. Loan Issuance
+
+##### 3.2.2.2 Data Provider
+
+1. Server Information Management
+2. Project Management
+
+##### 3.2.2.3 Small and Micro Enterprises Borrowing
+
+1. Apply for a Loan
+2. Check Loan Status
+3. Accept the Loan
+
+##### 3.2.2.4 Platform Staff
+
+1. Data Authentication
+2. Use Monitoring
+
+##### 3.2.2.5 Common Part
+
+1. Sign In/Up
+2. Upload Files for Authentication
+3. Account Management
+
+#### 3.2.3 Detailed Use Case Description
+
+##### 3.2.3.1 Bank
+
+###### 3.2.3.1.1 Project Management
 
 - ID：AUR1
 
-- 名称：项目管理
+- Name: Project Management
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行工作人员
+- Participants: Bank staff
 
-- 触发条件：银行工作人员选择进行项目管理
+- Trigger Condition: bank staff choose to conduct project management
 
-- 前置条件：银行工作人员已经登录并被授权
+- Precondition: Bank staff has logged in and been authorized
 
-- 后置条件：系统记录项目更新后的情况，并在平台上进行更新
+- Post-condition: The system records the situation after the project is updated and updates it on the platform
 
-- 正常流程：
+- Normal Process:
 
-  1. 银行工作人员选择进行项目管理
-  2. 系统展示所有已有的项目
-  3. 银行工作人员选择创建新的项目
-  4. 系统跳转至创建项目页面
-  5. 银行工作人员填写项目基本信息，并提交
-  6. 系统审核信息完整性，存储并在平台发布创建的项目
+  1. Bank staff choose project management
+  2. The system displays all existing projects
+  3. The bank staff chooses to create a new project
+  4. The system jumps to the create project page
+  5. The bank staff fills in the basic information of the project and submits it
+  6. The system audits the integrity of the information, stores and publishes the created project on the platform
 
-- 扩展流程：
+- Extra Process:
 
-  1a. 银行工作人员选择进行项目信息修改
-  	1. 系统展示选择修改的项目的原有信息
-  	2. 银行工作人员修改项目信息并提交
-  	3. 跳转至正常流程6
+  1a. Bank staff choose to modify project information
+    1. The system displays the original information of the selected item
+    2. Bank staff modify the project information and submit it
+    3. Jump to normal process 6
 
-  1b. 银行工作人员选择删除某个项目
+  1b. The bank staff chooses to delete an item
 
-  1. 系统将项目从平台中删除，并通知所有已经参与该项目的合作方
+    1. The system deletes the project from the platform and informs all partners that have participated in the project
 
-  6a. 工作人员填写的信息不完整
+  6a. The information filled in by the staff is incomplete
 
-  1. 系统提示信息缺失，并要求用户继续填写，跳转至正常流程5
+    1. The system prompts that the information is missing and asks the user to continue to fill in, skip to the normal process 5
 
-- 业务规则：
+- Business Rules:
 
-  BR1：创建项目需要填写的基本信息包含项目名称、项目描述、报名截止时间
+  BR1: The basic information that needs to be filled in to create a project includes the project name, project description, and deadline for registration
 
-- 特殊需求：无
+- Special Requirements: none
 
-###### 3.2.3.1.2 信用评级策略管理
+###### 3.2.3.1.2 Credit Rating Strategy Management
 
 - ID：AUR2
 
-- 名称：信用评级策略管理
+- Name: Credit Rating Strategy Management
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行工作人员
+- Participants: Bank staff
 
-- 触发条件：银行工作人员选择进行信用评级策略管理
+- Trigger Condition: Bank staff choose to manage credit rating strategy
 
-- 前置条件：银行工作人员已经登录并被授权
+- Precondition: Bank staff has logged in and been authorized
 
-- 后置条件：系统保存更新后的信用评级策略
+- Post-condition: The system saves the updated credit rating strategy
 
-- 正常流程：
+- Normal Process:
 
-  1. 银行工作人员选择进行信用评级策略管理
-  2. 系统展示已有的信用评级策略
-  3. 银行工作人员修改信用评级策略具体信息并提交
-  4. 系统保存修改后的信用评级策略
+  1. Bank staff choose to manage credit rating strategies
+  2. The system displays existing credit rating strategies
+  3. Bank staff revise and submit specific information on credit rating strategy
+  4. The system saves the revised credit rating strategy
 
-- 扩展流程：
+- Extra Process:
 
-  1a. 银行工作人员选择的是创建新的信用评级策略
+  1a. The bank staff chose to create a new credit rating strategy
 
-  1. 系统展示一个新的信用评级策略表单，回到正常流程3
+    1. The system displays a new credit rating strategy form and returns to the normal process 3
 
-  4a. 银行工作人员填写的信息不完整
+  4a. The information filled in by the bank staff is incomplete
 
-  1. 系统提示信息不完整并要求银行工作人员重新填写，回到正常流程3
+    1. The system prompts that the information is incomplete and requires the bank staff to fill in again and return to the normal process 3
 
-- 业务规则：无
+- Business Rules: none
 
-- 特殊需求：无
+- Special Requirements: none
 
-###### 3.2.3.1.3 浏览贷款申请
+###### 3.2.3.1.3 Browse Loan Applications
 
-- ID：AUR3
+- ID: AUR3
 
-- 名称：浏览贷款申请
+- Name: Browse Loan Application
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行工作人员
+- Participants: Bank staff
 
-- 触发条件：银行工作人员选择浏览所有贷款申请
+- Trigger Condition: Bank staff choose to browse all loan applications
 
-- 前置条件：银行工作人员已经登录并被授权
+- Precondition: Bank staff has logged in and been authorized
 
-- 后置条件：无
+- Post-condition: None
 
-- 正常流程：
+- Normal Process:
 
-  1. 银行工作人员选择进行贷款申请
-  2. 系统展示平台上的所有贷款申请以及申请贷款的小微企业的信用评分
-  3. 银行工作人员选择查看某个贷款申请的小微企业的情况
-  4. 系统展示该小微企业的具体情况
+  1. Bank staff choose to apply for loan
+  2. The system displays all loan applications on the platform and the credit scores of small and micro enterprises applying for loans
+  3. The bank staff chooses to view the status of a small and micro enterprise that has applied for a loan
+  4. The system displays the specific situation of the small and micro enterprise
 
-- 扩展流程：
+- Extra Process:
 
-  1a. 银行工作人员选择按照申请贷款的小微企业的信用评分的高低进行排序
+  1a. Bank staff choose to sort according to the credit scores of small and micro enterprises applying for loans
 
-  1. 系统将申请按照小微企业的信用评分排序进行展示
+    1. The system will display the applications according to the credit scores of small and micro enterprises
 
-  1b. 银行工作人员选择按照申请贷款的金额数目进行排序
+  1b. Bank staff choose to sort according to the amount of loan application
 
-  1. 系统将申请按照贷款额度进行排序后展示
+    1. The system sorts the applications according to the loan amount and displays them
 
-- 业务规则：无
+- Business Rules: none
 
-- 特殊需求：无
+- Special Requirements: none
 
-###### 3.2.3.1.4 发布贷款
+###### 3.2.3.1.4 Loan Issuance
 
-- ID：AUR4
+- ID: AUR4
 
-- 名称：发布贷款
+- Name: Loan Issuance
 
-- 优先级：高
+- Priority: High
 
-- 参与者：银行工作人员
+- Participants: Bank staff
 
-- 触发条件：银行工作人员选择进行贷款发布
+- Trigger Condition: bank staff choose to issue loan
 
-- 前置条件：银行工作人员已经登录并被授权
+- Precondition: Bank staff has logged in and been authorized
 
-- 后置条件：系统将银行发放贷款的信息发送给申请贷款的小微企业
+- Post-condition: The system sends the information about the bank loan to the small and micro enterprises applying for the loan
 
-- 正常流程：
+- Normal Process:
 
-  1. 银行工作人员选择为某个贷款申请发放贷款
-  2. 系统提示银行工作人员输入密码进行身份验证
-  3. 银行工作人员输入密码
-  4. 系统验证成功后，将发放贷款的信息发送给申请贷款的小微企业
+   1. The bank staff chooses to grant a loan for a certain loan application
+   2. The system prompts the bank staff to enter a password for identity verification
+   3. The bank staff enters the password
+   4. After the system is successfully verified, the loan issuance information will be sent to the small and micro enterprises applying for the loan
 
-- 扩展流程：
+- Extra Process:
 
-  4a. 若银行工作人员输入的密码错误
+  4a. If the password entered by the bank staff is wrong
 
-  1. 系统提示密码错误，并要求银行工作人员重新输入，若错误超过5次，则冻结账号
+    1. The system prompts that the password is incorrect and asks the bank staff to re-enter it. If the error exceeds 5 times, the account will be frozen
 
-- 业务规则：无
+- Business Rules: none
 
-- 特殊需求：无
+- Special Requirements: none
 
-##### 3.2.3.2 数据提供方
+##### 3.2.3.2 Data Provider
 
-###### 3.2.3.2.1 服务器信息管理
+###### 3.2.3.2.1 Server Information Management
 
-- ID：BUR1
+- ID: BUR1
 
-- 名称：服务器信息管理
+- Name: Server Information Management
 
-- 优先级：高
+- Priority: High
 
-- 参与者：各个数据提供方
+- Participants: Various data providers
 
-- 触发条件：数据提供方进入服务器信息管理界面
+- Trigger Condition: The data provider enters the server information management interface
 
-- 前置条件：该数据提供方已经通过了资料认证
+- Precondition: The data provider has passed the data certification
 
-- 后置条件：更新该数据提供方的服务器信息
+- Post-condition: update the server information of the data provider
 
-- 正常流程：
+- Normal Process:
 
-  1. 数据提供方进入服务器信息管理界面
-  2. 系统显示该数据提供方填写的服务器资料 
-  3. 数据提供方重新编辑自己的服务器信息，并点击确认
-  4. 保存并更新该数据提供方的服务器信息
+  1. The data provider enters the server information management interface
+  2. The system displays the server information filled in by the data provider
+  3. The data provider edits its own server information again and clicks OK
+  4. Save and update the server information of the data provider
 
-- 扩展流程：
+- Extra Process:
 
-  3a. 填写的服务器信息不符合数据规范
-	4. 系统提示修改失败，要求重新规范填写
-3b. 服务器信息必填项未填写
-	4. 系统提示修改失败，提示填写必要的服务器信息
+  3a. The entered server information does not meet the data specification
+    4. The system prompts that the modification has failed, and it is required to re-standardize the filling
+  3b. The required server information is not filled in
+    4. The system prompts that the modification failed, and prompts to fill in the necessary server information
 
-- 业务规则：无
-- 特殊需求：无
+- Business Rules: none
+- Special Requirements: none
 
-###### 3.2.3.2.2 项目管理
+###### 3.2.3.2.2 Project Management
 
-- ID：BUR2
+- ID: BUR2
 
-- 名称：项目管理
+- Name: Project Management
 
-- 优先级：高
+- Priority: High
 
-- 参与者：数据提供方
+- Participant: Data Provider
 
-- 触发条件：数据提供方进入项目管理界面
+- Trigger Condition: The data provider enters the project management interface
 
-- 前置条件：该数据提供方已经通过了资料认证
+- Precondition: The data provider has passed the data certification
 
-- 后置条件：系统更新该数据提供方参与项目的情况
+- Post-condition: the system updates the data provider’s participation in the project
 
-- 正常流程：
+- Normal Process:
 
-  1. 数据提供方进入项目管理界面
-  2. 系统显示平台上银行发起的各个训练项目的信息
-  3. 数据提供方选择自己要参与的项目并确认参加
-  4. 系统检查该数据提供方的资质和权限，将其纳入项目参与者，自动进入服务器信息管理
+  1. The data provider enters the project management interface
+  2. The system displays the information of each training project initiated by the bank on the platform
+  3. The data provider chooses the project he wants to participate in and confirms to participate
+  4. The system checks the qualification and authority of the data provider, includes it as a project participant, and automatically enters the server information management
 
-- 扩展流程：
+- Extra Process:
 
-  3a. 数据提供方选择退出自己参与的某个项目
+  3a. The data provider opts out of a project in which it participates
 
-    4. 系统将其从项目参与者中排除
+    4. The system excludes them from project participants
 
-  4a. 该数据提供方资质和权限不符合项目要求
+  4a. The qualifications and permissions of the data provider do not meet the project requirements
 
-  ​	5. 系统提示数据提供方不符合相关资质，项目参与失败
+    5. The system prompts that the data provider does not meet the relevant qualifications, and the project has failed to participate
 
+- Business Rules: none
+- Special Requirements: none
 
-##### 3.2.3.3 借款小微企业
+##### 3.2.3.3 Small and Micro Enterprises Borrowing
 
-###### 3.2.3.3.1 申请借款
+###### 3.2.3.3.1 Apply for a Loan
 
-- ID：CUR1
+- ID: CUR1
 
-- 名称：申请借款
+- Name: Apply for a Loan
 
-- 优先级：高
+- Priority: High
 
-- 参与者：借款小微企业、银行
+- Participants: Borrowing small and micro enterprises, banks
 
-- 触发条件：小微企业用户申请借款
+- Trigger Condition: small and micro enterprise users apply for loans
 
-- 前置条件：小微企业用户已经注册并登陆，且身份认证通过了平台审核
+- Precondition: Small and micro enterprise users have registered and logged in, and their identity authentication has passed the platform audit
 
-- 后置条件：系统保存企业的申请记录
+- Post-condition: The system saves the application records of the enterprise
 
-- 正常流程：
+- Normal Process:
 
-  1. 小微企业用户在[主页]点击[借款]
-  2. 系统进入可借款银行页面
-  3. 小微企业用户选择要借款的银行
-  4. 系统进入银行的借贷详情页面
-  5. 小微企业查看详情后，选择借款额度
-  6. 系统提交借款申请给目标银行
+  1. Small and micro enterprise users click [Borrow] on [Homepage]
+  2. The system enters the loan bank page
+  3. Small and micro enterprise users choose the bank to borrow
+  4. The system enters the bank's loan details page
+  5. After checking the details, small and micro enterprises select the loan amount
+  6. The system submits the loan application to the target bank
 
-- 扩展流程：
+- Extra Process:
 
-  ​		5a.小微企业用户了解详情后放弃在此银行借贷
+  5a. Small and micro enterprise users give up borrowing from this bank after understanding the details
 
-  ​			1.系统返回可借款银行页面
+    1. The system returns to the borrowable bank page
 
-- 业务规则：
+- Business Rules:
 
-  BR1：如果小微企业的信用评分低于银行要求，则不能向该银行发起借款申请。
+  BR1: If the credit score of a small and micro enterprise is lower than the bank's requirement, it cannot initiate a loan application to the bank.
 
-  BR2：小微企业的借款申请需要在15日内处理，逾期未处理的视为过期申请，状态变为无效。
+  BR2: The loan application of small and micro enterprises needs to be processed within 15 days, and the application that is not processed overdue is regarded as an expired application, and the status becomes invalid.
 
-- 特殊需求：无
+- Special Requirements: none
 
-###### 3.2.3.3.2 借贷情况查看
+###### 3.2.3.3.2 Check Loan Status
 
-- ID：CUR2
+- ID: CUR2
 
-- 名称：借贷情况查看
+- Name: Check Loan Status
 
-- 优先级：高
+- Priority: High
 
-- 参与者：借款小微企业
+- Participants: Borrowing small and micro enterprises
 
-- 触发条件：小微企业用户查看自身贷款情况
+- Trigger Condition: Small and micro enterprise users check their loan status
 
-- 前置条件：小微企业用户已经登陆
+- Precondition: Small and micro enterprise users have logged in
 
-- 后置条件：无
+- Post-condition: None
 
-- 正常流程：
+- Normal Process:
 
-  1. 小微企业用户在[我的]页面点击[借贷情况]
-  2. 系统进入借贷情况页面
-  3. 小微企业用户查看某次借贷详细情况
-  4. 系统返回借贷详情
-  5. 小微企业用户选择[返回]或关闭窗口
-  6. 系统返回上一级页面或退出
+   1. Small and micro enterprise users click on [Loan Status] on the [My] page
+   2. The system enters the loan status page
+   3. Small and micro enterprise users view the details of a certain loan
+   4. The system returns loan details
+   5. Small and micro enterprise users select [Return] or close the window
+   6. The system returns to the previous page or exits
 
-- 扩展流程：
+- Extra Process: None
 
-  ​		无
+- Business Rules:
 
-- 业务规则：
+   BR1: All the field information required by the business should be kept in the loan record
 
-  BR1：借贷记录中应保持业务所需要的所有字段信息
+- Special Requirements:
 
-- 特殊需求：
+   SR1: Small and micro enterprise users need to see the status of loans and repayments in the records
 
-  SR1：小微企业用户需要看到记录中借贷、还款的状态
+###### 3.2.3.3.3 Accept ths Loan
 
-###### 3.2.3.3.3 接受贷款
+- ID: CUR3
 
-- ID：CUR3
+- Name: Accept the Loan
 
-- 名称：接受贷款
+- Priority: High
 
-- 优先级：高
+- Participants: Borrowing small and micro enterprises, banks
 
-- 参与者：借款小微企业、银行
+- Trigger Condition: the bank agrees to the loan application of small and micro enterprises
 
-- 触发条件：银行同意小微企业的贷款申请
+- Precondition: Small and micro enterprise users have logged in
 
-- 前置条件：小微企业用户已经登陆
+- Post-condition: The system records this loan operation
 
-- 后置条件：系统记录此次贷款操作
+- Normal Process:
 
-- 正常流程：
+  1. Small and micro enterprise users view loan applications
+  2. The system enters the loan application details page
+  3. Small and micro enterprise users confirm acceptance of loans
+  4. The system pops up a window for secondary confirmation
+  5. Small and micro enterprise users click to confirm
+  6. The system executes the loan operation, and sends reminders of loan success to small and micro enterprise users and banks, and the system records the loan
 
-  1. 小微企业用户查看贷款申请
-  2. 系统进入贷款申请详情页
-  3. 小微企业用户确认接受贷款
-  4. 系统弹出窗口进行二次确认
-  5. 小微企业用户点击确认
-  6. 系统执行贷款操作，并向小微企业用户和银行发送贷款成功提醒，系统记录此次贷款
+- Extra Process:
 
-- 扩展流程：
+  3a. Small and micro enterprise users refuse to accept loans
 
-  ​		3a.小微企业用户拒绝接受贷款
+    1. The system pops up a window for secondary confirmation
 
-  ​			1.系统弹出窗口进行二次确认
+  2. Small and micro enterprise users click [OK]
 
-  ​			2.小微企业用户点击[确定]
+    3. The system executes the loan cancellation operation and sends a loan cancellation reminder to small and micro enterprise users and banks
 
-  ​			3.系统执行取消贷款操作，并向小微企业用户和银行发送				取消贷款提醒
+  5a. Small and micro enterprise users click to cancel
 
-  ​		5a.小微企业用户点击取消
+    1. The system returns to the loan application details page
 
-  ​			1.系统回到贷款申请详情页
+- Business Rules:
 
-- 业务规则：
+  BR1: After accepting the loan, the bank needs to transfer the funds to the user's account within 3 working days
 
-  BR1：接受贷款后，银行需要在3个工作日内将资金打到用户的账号中
+  BR2: The user needs to repay the loan before the specified date, otherwise an overdue fine of 1% of the total loan amount will be charged daily
 
-  BR2：用户需在规定日期前归还贷款，否则每日需要加收贷款总额1%的超期罚款
+- Special Requirements:
 
-- 特殊需求：
+  SR1: The system automatically calculates the amount that needs to be repaid in the current loan
 
-  SR1：系统自动计算当前借贷项中需要还款的金额
+##### 3.2.3.4 Platform Staff
 
-##### 3.2.3.4 平台工作人员
+###### 3.2.3.4.1 Data Authentication
 
-###### 3.2.3.4.1 资料认证
+- ID: DUR1
 
-- ID：DUR1
+- Name: Data Certification
 
-- 名称：资料认证
+- Priority: High
 
-- 优先级：高
+- Participants: platform staff
 
-- 参与者：平台工作人员
+- Trigger Condition: platform staff enter the data authentication interface
 
-- 触发条件：平台工作人员进入资料认证界面
+- Precondition: Bank information has been submitted
 
-- 前置条件：银行资料已提交
+- Post-condition: update the verification status of the bank account
 
-- 后置条件：更新银行账号的认证状态
+- Normal Process:
 
-- 正常流程：
+   1. Platform staff enter the data authentication interface
+   2. The system displays a list of bank information to be verified
+   3. Platform staff verify certification information
+   4. The platform staff changes the bank's certification status to "certified"
+   5. The system saves the changes and updates the list of bank information to be verified
 
-  1. 平台工作人员进入资料认证界面
-  2. 系统显示待认证的银行信息列表
-  3. 平台工作人员核实认证信息
-  4. 平台工作人员更改银行的认证状态为“已认证”
-  5. 系统保存修改并更新显示待认证的银行信息列表
+- Extra Process:
 
-- 扩展流程：
+  3a. The authentication information provided by the bank does not meet the requirements
 
-  3a. 银行提供的认证信息不符合要求
+    4. The platform staff changes the bank's certification status to "authentication failed"
 
-  4. 平台工作人员更改银行的认证状态为“认证失败”
+- Business Rules: none
 
-- 业务规则：无
+- Special Requirements: none
 
-- 特殊需求：无
+###### 3.2.3.4.2 Usage Monitoring
 
-###### 3.2.3.4.2 使用监控
+- ID: DUR2
 
-- ID：DUR2
+- Name: Usage Monitoring
 
-- 名称：使用监控
+- Participants: platform staff
 
-- 参与者：平台工作人员
+- Trigger Condition: platform staff enter the use monitoring interface
 
-- 触发条件：平台工作人员进入使用监控界面
+- Precondition: None
 
-- 前置条件：无
+- Post-condition: the system displays user operation records
 
-- 后置条件：系统显示用户操作记录
+- Normal Process:
 
-- 正常流程：
+   1. Platform staff enter the use monitoring interface
+   2. The system displays a list of operation records
 
-  1. 平台工作人员进入使用监控界面
-  2. 系统显示操作记录列表
+- Extra Process:
 
-- 扩展流程：
+  3a. Platform staff screening operation types
 
-  3a. 平台工作人员筛选操作类型
+    4. The system displays the operation records belonging to the corresponding type
 
-  4. 系统显示属于对应类型的操作记录
+  3b. Platform staff screened the date of operation
 
-  3b. 平台工作人员筛选操作日期
+    4. The system displays the operation records in the selected time range
 
-  4. 系统显示在所选时间范围内的操作记录
+- Business Rules: none
 
+- Special Requirements: none
 
 ##### 3.2.3.5 Common part
 
@@ -557,7 +638,7 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 - Preconditions: none
 
-- Postconditions: The system records the user's information
+- Post-conditions: The system records the user's information
 
 - Normal Process：
 
@@ -605,7 +686,7 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 - Preconditions: none
 
-- Postconditions: The system saves the files
+- Post-conditions: The system saves the files
 
 - Normal Process：
 
@@ -638,7 +719,7 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 - Preconditions: none
 
-- Postconditions: The system saves the new information
+- Post-conditions: The system saves the new information
 
 - Normal Process：
 
@@ -666,23 +747,25 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 - Special Requirements: none
 
-#### 3.2.4 System sequence diagram 
+#### 3.2.4 System Sequence Diagram 
 
 ##### 3.2.4.1 Bank
 
 ###### 3.2.4.1.1 Project management
 
-![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理.png)
+![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理-E.png)
 
 ###### 3.2.4.1.2 Credit rating strategy management
 
-![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理.png)
+![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理-E.png)
 
 ###### 3.2.4.1.3 Browse loan applications
 
-![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请.png)
+![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请-E.png)
 
-###### 3.2.4.1.4 Release loan![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款.png)
+###### 3.2.4.1.4 Release loan
+
+###### ![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款-E.png)
 
 ##### 3.2.4.2 Data provider
 
@@ -698,19 +781,13 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 ###### 3.2.4.3.1 Apply for a loan
 
-![小微企业1](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业1.png)
-
 ![小微企业11](..\pic\用例\小微企业11.png)
 
 ###### 3.2.4.3.2 Checking the status of the loan application
 
-![小微企业2](..\pic\用例\小微企业2.png)
-
 ![小微企业22](..\pic\用例\小微企业22.png)
 
 ###### 3.2.4.3.3 Accept the loan
-
-![小微企业3](..\pic\用例\小微企业3.png)
 
 ![小微企业33](..\pic\用例\小微企业33.png)
 
@@ -718,11 +795,11 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 ###### 3.2.4.4.1 Authentication
 
-![](..\pic\用例\资料认证.png)
+![](..\pic\用例\资料认证-E.png)
 
 ###### 3.2.4.4.2 Usage monitoring
 
-![](..\pic\用例\使用监控.png)
+![](..\pic\用例\使用监控-E.png)
 
 ##### 3.2.4.5 Common part
 

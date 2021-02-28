@@ -20,8 +20,6 @@
 
 《Software Testing》：Ron Patton著，2005.08.05，Sams Publishing出版社。
 
-
-
 ### 2.测试
 
 #### 2.1 Account
@@ -118,8 +116,6 @@
         <td> </td>
     </tr>
 </table>
-
-
 #### 2.2 Attendance
 
 <table>
@@ -184,11 +180,28 @@
         <td> </td>
     </tr>
 </table>
-
-
 #### 2.3 Kubefate
 
-
+<table>
+    <tr>
+        <th>测试方法</th>
+        <th>测试情景</th>
+        <th>测试结果</th>
+        <th>测试失败原因</th>
+    </tr>
+    <tr>
+        <td rowspan = "1">开始训练</td>
+        <td> 成功</td>
+        <td> pass</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td rowspan = "1">预测信用评级</td>
+        <td> 成功</td>
+        <td> pass</td>
+        <td> </td>
+    </tr>
+</table>
 
 #### 2.4 Lending
 
@@ -239,8 +252,6 @@
         <td> pass</td>
         <td> </td>
     </tr>
-
-
 #### 2.5 Loan
 
 <table>
@@ -314,8 +325,6 @@
         <td> </td>
     </tr>
 </table>
-
-
 #### 2.6 Project
 
 <table>
@@ -372,11 +381,34 @@
         <td> </td>
     </tr>
 </table>
-
-
 #### 2.7 File
 
-
+<table>
+    <tr>
+        <th>测试方法</th>
+        <th>测试情景</th>
+        <th>测试结果</th>
+        <th>测试失败原因</th>
+    </tr>
+    <tr>
+        <td rowspan = "1">上传文件</td>
+        <td> 成功</td>
+        <td> pass</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td rowspan = "1">浏览已上传文件列表</td>
+        <td> 成功</td>
+        <td> pass</td>
+        <td> </td>
+    </tr>
+    <tr>
+    	<td rowspan="1">下载文件</td>
+        <td> 成功</td>
+        <td> pass</td>
+        <td> </td>
+    </tr>
+</table>
 
 
 ### 3.总结

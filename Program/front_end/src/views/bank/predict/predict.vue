@@ -26,11 +26,9 @@
                 </a-col>
                 <a-col :span="8" style="height: 500px; padding-top: 120px">
                     <h2><b>放贷方案推荐</b></h2>
-                    <h3 style="padding-top: 10px">评级：A</h3>
-                    <h3>年利率：2%</h3>
-                    <h3>还款期限：12个月</h3>
-                    <h3>贷款类型：短期</h3>
-                    <h3>年收益率：15%</h3>
+                    <h3 style="padding-top: 10px">信用评级：优</h3>
+                    <h3>贷款年利率：3.85%</h3>
+                    <h3>贷款比例：1</h3>
                 </a-col>
             </a-row>
         </dv-border-box13>
