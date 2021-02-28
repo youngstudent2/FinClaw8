@@ -79,15 +79,89 @@ AE2：Our server can handle all the requests of potential users and store all th
 
 AE3：The network is smooth, when the client communicates with the server, there will be no network abnormalities such as disconnection.
 
-
-
 ## 3. Detailed Requirement Description
 
 ### 3.1 External Interface
 
-#### 3.1.1 User Interface ==TODO：放截图==
 
+#### 3.1.1 Platform Home Page
 
+##### 3.1.1.1 Home Page
+![](../pic/用户手册/首页.jpeg)
+
+##### 3.1.1.2 Project Detail
+![](../pic/用户手册/detail.jpg)
+
+##### 3.1.1.3 Register
+
+![](../pic/用户手册/register.png)
+
+##### 3.1.1.4 Login
+![](../pic/用户手册/login.png)
+
+##### 3.1.1.5 Submit Certification File
+![](../pic/用户手册/uploadUserFile.jpeg)
+
+#### 3.1.2 Platform Staff
+
+##### 3.1.2.1 Account Registration Audit
+![](../pic/用户手册/accountReview.png)
+##### 3.1.2.2 Account Manage
+![](../pic/用户手册/accountManage.jpg)
+##### 3.1.2.3 Monitor
+![](../pic/用户手册/model.jpg)
+
+#### 3.1.3 Bank
+##### 3.1.3.1 View Project
+![](../pic/用户手册/projectReview.png)
+##### 3.1.3.2 Create Project
+
+![](../pic/用户手册/create.png)
+
+##### 3.1.3.3 Modify Project
+
+##### ![](../pic/用户手册/modify.png)
+
+##### 3.1.3.4 Delete Project
+![](../pic/用户手册/deleteProject.png)
+##### 3.1.3.5 Deal Loan Application
+![](../pic/用户手册/helpLoaner.png)
+![](../pic/用户手册/helpLoaner2.png)
+##### 3.1.3.6 View Willingness Record
+![](../pic/用户手册/helpHistory.png)
+##### 3.1.3.7 Project Data Present
+![](../pic/用户手册/projectHome.png)
+##### 3.1.3.8 Project Jurisdiction Manage
+![](../pic/用户手册/projectAuthority.png)
+![](../pic/用户手册/projectAuthority2.png)
+##### 3.1.3.9 Deploy, Upload and Train
+![](../pic/用户手册/bankConfig.png)
+![](../pic/用户手册/bankConfig2.png)
+![](../pic/用户手册/bankConfig3.png)
+##### 3.1.3.10 Predict and lending Strategy
+![](../pic/用户手册/predict.png)
+##### 3.1.3.11 Bank Lending Strategy Recommendation
+![](../pic/用户手册/strategy.png)
+#### 3.1.4 Data Provider
+
+##### 3.1.4.1 Attend Project
+![](../pic/用户手册/attendProject.png)
+![](../pic/用户手册/detail.jpg)
+##### 3.1.4.2 Upload Server Information
+![](../pic/用户手册/config.jpg)
+##### 3.1.4.3 Set Ready
+![](../pic/用户手册/ready.jpg)
+##### 3.1.4.4 Quit Project
+![](../pic/用户手册/quitProject.jpg)
+
+#### 3.1.5 Micro and Small Company
+
+##### 3.1.5.1 Loan Application
+![](../pic/用户手册/request.png)
+##### 3.1.5.2 Application Manage
+![](../pic/用户手册/requestManage.png)
+##### 3.1.5.3 Loan Result
+![](../pic/用户手册/responseReview.png)
 
 ### 3.2 Use Case Description
 
@@ -679,17 +753,19 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 ###### 3.2.4.1.1 Project management
 
-![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理.png)
+![系统顺序图-项目管理](..\pic\用例\系统顺序图-项目管理-E.png)
 
 ###### 3.2.4.1.2 Credit rating strategy management
 
-![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理.png)
+![系统顺序图](..\pic\用例\系统顺序图-信用评级策略管理-E.png)
 
 ###### 3.2.4.1.3 Browse loan applications
 
-![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请.png)
+![系统顺序图-浏览贷款申请](..\pic\用例\系统顺序图-浏览贷款申请-E.png)
 
-###### 3.2.4.1.4 Release loan![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款.png)
+###### 3.2.4.1.4 Release loan
+
+###### ![系统顺序图-发放贷款](..\pic\用例\系统顺序图-发放贷款-E.png)
 
 ##### 3.2.4.2 Data provider
 
@@ -705,19 +781,13 @@ AE3：The network is smooth, when the client communicates with the server, there
 
 ###### 3.2.4.3.1 Apply for a loan
 
-![小微企业1](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业1.png)
-
 ![小微企业11](..\pic\用例\小微企业11.png)
 
 ###### 3.2.4.3.2 Checking the status of the loan application
 
-![小微企业2](..\pic\用例\小微企业2.png)
-
 ![小微企业22](..\pic\用例\小微企业22.png)
 
 ###### 3.2.4.3.3 Accept the loan
-
-![小微企业3](..\pic\用例\小微企业3.png)
 
 ![小微企业33](..\pic\用例\小微企业33.png)
 
