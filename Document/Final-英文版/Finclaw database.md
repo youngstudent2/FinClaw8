@@ -1,24 +1,24 @@
-# finclaw数据库结构说明文档
+# finclaw database structure description document
 
 [toc]
 
-## 1. 后端数据对象说明
+## 1. Back-end data object description
 
-**特别说明：**
+**Special Note：**
 
-- *Form 用于填写表单的对象，例如注册或提交信息
-- *VO 用于返回某个对象的信息
-- *PO用于与数据库交互
+- *Form used to fill out form Objects, such as registration or submission of information
+- *VO used to return information about an object
+- *PO used to interact with the database
 
-### 1.1 银行用例
+### 1.1 Bank Usecase
 
-#### 1.1.1 项目管理相关
+#### 1.1.1 Project management related
 
 ##### 1.1.1.1 ProjectForm
 
 ```java
 public class ProjectForm{
-	private Integer userID;//创建者的ID
+	private Integer userID;//ID of the creator
     private String projectName;
     private String description;
     private Timestamp startTime;
@@ -31,7 +31,7 @@ public class ProjectForm{
 ```java
 public class ProjectVO{
 	private Integer projectID;
-	private Integer userID;//创建者的ID
+	private Integer userID;//ID of the creator
     private String projectName;
     private String description;
     private ProjectStatus status;
@@ -45,8 +45,8 @@ public class ProjectVO{
 ```java
 public class Project{
 	private Integer projectID;
-	private Integer userID;//创建者的ID
-	private Integer modelID;//一个项目对应一个模型
+	private Integer userID;//ID of the creator
+	private Integer modelID;//One project corresponds to one model
     private String projectName;
     private String description;
     private ProjectStatus status;
@@ -62,8 +62,8 @@ public class Project{
 public class AttendanceVO{
 	private Integer userID;
 	private Integer projectID;
-	private boolean isChosen;//银行是否选择这个数据提供方的数据训练
-	private boolean isReady;//数据提供方是否准备好数据
+	private boolean isChosen;//Whether the bank chooses this data provider's data training
+	private boolean isReady;//Is the data provider ready for the data
 }
 ```
 
@@ -78,7 +78,7 @@ public class Attendance{
 }
 ```
 
-#### 1.1.2 联邦学习相关
+#### 1.1.2 Federal learning related
 
 ##### 1.1.2.1 Model
 
@@ -87,24 +87,25 @@ public class Model{
 	private Integer modelID;
 	private String mid;
 	private String jid;
-	private String modelVerion;//和mid一起标识当前版本模型
-	private String modelName;//在load_bind时需要指明，predict时是使用mname来进行标识
+	private String modelVerion;//Identify the current version of the model together with mid
+
+	private String modelName;//Need to specify when load_bind, use mname to identify when predict
 }
 ```
 
-#### 1.1.3 放贷相关
+#### 1.1.3 Lending related
 
 ##### 1.1.3.1 LendingForm
 
 ```java
 public class LendingForm{
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//userID of bank
+	private Integer lenderID；//The userID of the small and micro enterprise loaned
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
-	private String phoneNumber;//银行经理联系方式
-	private String description;//贷款说明
+	private double amount;//Willing loan amount
+	private double interestRate;//Annual interest rate
+	private String phoneNumber;//Bank manager contact information
+	private String description;//Loan description
 }
 ```
 
@@ -113,13 +114,13 @@ public class LendingForm{
 ```java
 public class LendingHistoryVO{
 	private Integer lendingHistoryID;
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//userID of bank
+	private Integer lenderID；//The userID of the small and micro enterprise loaned
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
-	private String phoneNumber;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private double amount;//Willing loan amount
+	private double interestRate;//Annual interest rate
+	private String phoneNumber;//Bank manager contact information
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
@@ -128,31 +129,31 @@ public class LendingHistoryVO{
 ```java
 public class LendingHistory{
 	private Integer lendingHistoryID;
-	private Integer bankID;//银行的userID
-	private Integer lenderID；//贷款的小微企业的userID
+	private Integer bankID;//Bank userID
+	private Integer lenderID；//The userID of the small and micro enterprise loaned
 	private String bankName;
-	private double amount;//意愿贷款数额
-	private double interestRate;//年利率
+	private double amount;//Willing loan amount
+	private double interestRate;//Annual interest rate
 	private String phoneNumber;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
-### 1.2 数据提供方用例
+### 1.2 Data provider use case
 
-#### 1.2.1 服务器信息相关
+#### 1.2.1 Server information related
 
 ##### 1.2.1.1 serverInfoForm
 
 ```java
-//每次参加项目都要填写服务器信息，因为一个用户可能用不同服务器参加不同项目
+//Each time you participate in a project, you must fill in the server information, because a user may use different servers to participate in different projects
 public class serverInfoForm{
 	private Integer userID;
 	private Integer projectID;
 	private String ipAddress;
     private String serverName;
     private String serverPassword;
-    private String filePath;//数据提供方数据存放位置
+    private String filePath;//Data provider data storage location
 }
 ```
 
@@ -173,7 +174,7 @@ public class serverInfoVO{
 
 ```java
 public class serverInfo{
-    private Integer serverInfoID;//一台服务器只能用一个ID参与一个项目，所以要用serverInfoID来标识
+    private Integer serverInfoID;//A server can only use one ID to participate in one project, so use serverInfoID to identify
 	private Integer userID;
 	private Integer projectID;
 	private String ipAddress;
@@ -183,19 +184,19 @@ public class serverInfo{
 }
 ```
 
-### 1.3 小微企业用例
+### 1.3 Micro-enterprise use cases
 
-#### 1.3.1 借贷相关
+#### 1.3.1 Borrowing related
 
 ##### 1.3.1.1 LoanApplicationForm
 
 ```java
 public class LoanApplicationForm{
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;//Expected borrowing
+	private String phoneNumber;//Lender's phone number
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;//Registration Number
 	private String companyName;
 }
 ```
@@ -206,12 +207,12 @@ public class LoanApplicationForm{
 public class LoanApplicationVO{
 	private Integer loanApplicationID;
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;//Expected borrowing
+	private String phoneNumber;//Lender's phone number
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;//Registration Number
 	private String companyName;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
@@ -221,18 +222,18 @@ public class LoanApplicationVO{
 public class LoanApplication{
 	private Integer loanApplicationID;
 	private Integer userID;
-	private double amount;//预期借款额
-	private String phoneNumber;//贷款人联系电话
-	private String certificationCode;//社会统一认证代码
-	private String registrationCode;//注册号
+	private double amount;//Expected borrowing
+	private String phoneNumber;//Lender's phone number
+	private String certificationCode;//Social unified certification code
+	private String registrationCode;//Registration Number
 	private String companyName;
-	private boolean hasDealt;//借款人完成借款时置为true
+	private boolean hasDealt;//Set to true when the borrower completes the loan
 }
 ```
 
-### 1.4 平台工作人员用例
+### 1.4 Platform worker usecases
 
-#### 1.4.1 资料认证相关
+#### 1.4.1 Data certification related
 
 ##### 1.4.1.1 FileInfoVO
 
@@ -246,9 +247,9 @@ public class FileInfo {
 }
 ```
 
-### 1.5 公共部分用例
+### 1.5 Common part use case
 
-#### 1.5.1 登录注册相关
+#### 1.5.1 Login and registration related
 
 ##### 1.5.1.1 UserLoginForm
 
@@ -267,7 +268,7 @@ public class UserRegisterForm {
     private String password;
     private String userName;
     private String phoneNumber;
-    private UserType role;//希望以什么身份注册
+    private UserType role;//What identity do you want to register as
 }
 ```
 
@@ -297,7 +298,7 @@ public class User {
 }
 ```
 
-#### 1.5.2 账户管理相关
+#### 1.5.2 Account management related
 
 ##### 1.5.2.1 UserForm
 
@@ -309,108 +310,167 @@ public class UserForm {
 }
 ```
 
-##  2. 数据库设计
+### 1.6 Monitor usecases
 
-### 2.1 user表
+#### 1.6.1 Project monitoring related
 
-| field       | type         | 允许空 | 缺省值 | description                   |
-| ----------- | ------------ | ------ | ------ | ----------------------------- |
-| userID      | INT          | 否     | 自增   | 用户的ID号（唯一）            |
-| email       | varchar(255) | 否     | 无     | 用户邮箱                      |
-| password    | varchar(255) | 否     | 无     | 用户密码                      |
-| username    | varchar(255) | 否     | 无     | 用户名称                      |
-| phoneNumber | varchar(255) | 否     | 无     | 用户手机号                    |
-| role        | varchar(255) | 否     | 无     | 用户角色(4+1，还有未认证用户) |
+##### 1.6.1.1 MonitorVO
 
-### 2.2 project表
+```Java
+public class MonitorVO {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+}
+```
 
-| field       | type         | 允许空 | 缺省值 | description                            |
-| ----------- | ------------ | ------ | ------ | -------------------------------------- |
-| projectID   | INT          | 否     | 自增   | 项目编号                               |
-| userID      | INT          | 否     | 无     | 创建项目的用户                         |
-| projectName | varchar(255) | 否     | 无     | 项目名称                               |
-| description | varchar(255) | 是     | 无     | 项目描述                               |
-| startTime   | timestamp    | 是     | 无     | 项目的开始时间                         |
-| endTime     | timestamp    | 是     | 无     | 项目的结束时间                         |
-| status      | varchar(255) | 是     | 无     | 项目的状态，尚未开始or正在运行or已结束 |
-| modelID     | INT          | 是     | 无     | 一个项目对应一个model                  |
+##### 1.6.1.2 Monitor
 
-### 2.3 attendance表
+```Java
+public class Monitor {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+}
+```
 
-记录合作企业参加了哪些项目
+#### 1.6.2 Monitoring and management related
 
-| field     | type | 允许空 | 缺省值 | description                          |
-| --------- | ---- | ------ | ------ | ------------------------------------ |
-| userID    | INT  | 否     | 无     | 数据提供方的账号ID                   |
-| projectID | INT  | 否     | 无     | 项目代号                             |
-| isChosen  | INT  | 是     | 0      | 银行是否选择这个数据提供方的数据训练 |
-| isReady   | INT  | 是     | 0      | 数据提供方是否准备好数据             |
+##### 1.6.2.1 MonitorForm
 
-### 2.4 model表
+```Java
+public class MonitorForm {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+    private String userName;
+}
+```
 
-记录项目对应的模型的信息，主要记录的是submit后返回的model_id,model_version,job_id等信息，用于后续load_bind和predict操作
 
-| field        | type         | 允许空 | 缺省值 |                    description |
-| ------------ | ------------ | ------ | ------ | -----------------------------: |
-| modelID      | INT          | 否     | 自增   |                           主键 |
-| mid          | varchar(255) | 是     | 无     | 和modelVersion一起标识模型版本 |
-| jid          | varchar(255) | 是     | 无     |          用于query查询模型状态 |
-| modelVersion | varchar(255) | 是     | 无     |          和mid一起标识模型版本 |
-| modelName    | varchar(255) | 是     | 无     |        模型名称，predict时要用 |
 
-### 2.5 lendingHistory表
+##  2. Database Design
 
-| field            | type         | 允许空 | 缺省值 | description           |
-| ---------------- | ------------ | ------ | ------ | --------------------- |
-| lendingHistoryID | INT          | 否     | 自增   | 借款记录的标识        |
-| bankID           | INT          | 否     | 无     | 借款银行的userID      |
-| lenderID         | INT          | 否     | 无     | 借款方的userID        |
-| bankName         | varchar(255) | 否     | 无     | 借款银行的名称        |
-| amount           | DECIMAL      | 否     | 无     | 意愿借款数额          |
-| interestRate     | DECIMAL      | 否     | 无     | 年利率                |
-| phoneNumber      | varchar(255) | 否     | 无     | 银行联系电话          |
-| hasDealt         | INT          | 否     | 0      | 借款方完成贷款时置为1 |
+### 2.1 user table
 
-### 2.6 serverInfo表
+| field       | type         | Allow empty | Default value   | description                                      |
+| ----------- | ------------ | ----------- | --------------- | ------------------------------------------------ |
+| userID      | INT          | NO          | Self-increasing | User's ID number (unique)                        |
+| email       | varchar(255) | NO          | NULL            | User Email                                       |
+| password    | varchar(255) | NO          | NULL            | User Password                                    |
+| username    | varchar(255) | NO          | NULL            | User Name                                        |
+| phoneNumber | varchar(255) | NO          | NULL            | User phone number                                |
+| role        | varchar(255) | NO          | NULL            | User role (4+1, there are unauthenticated users) |
 
-| field          | type         | 允许空 | 缺省值 | description                            |
-| -------------- | ------------ | ------ | ------ | -------------------------------------- |
-| serverInfoID   | INT          | 否     | 自增   | 主键                                   |
-| userID         | INT          | 否     | 无     | 一个用户可能用不同的服务器参见不同项目 |
-| projectID      | INT          | 否     | 无     |                                        |
-| ipAddress      | varchar(255) | 否     | 无     |                                        |
-| serverName     | varchar(255) | 否     | 无     |                                        |
-| serverPassword | varchar(255) | 否     | 无     |                                        |
-| filePath       | varchar(255) | 否     | 无     | 数据文件路径                           |
+### 2.2 project table
 
-### 2.7 loanApplication
+| field       | type         | Allow empty | Default value   | description                                                  |
+| ----------- | ------------ | ----------- | --------------- | ------------------------------------------------------------ |
+| projectID   | INT          | NO          | Self-increasing | Item Number                                                  |
+| userID      | INT          | NO          | NULL            | The user who created the project                             |
+| projectName | varchar(255) | NO          | NULL            | Project name                                                 |
+| description | varchar(255) | YES         | NULL            | Project description                                          |
+| startTime   | timestamp    | YES         | NULL            | Project start time                                           |
+| endTime     | timestamp    | YES         | NULL            | Project end time                                             |
+| status      | varchar(255) | YES         | NULL            | The status of the project, not yet started or running or finished |
+| modelID     | INT          | YES         | NULL            | A project corresponds to a model                             |
 
-| field             | type         | 允许空 | 缺省值 | description           |
-| ----------------- | ------------ | ------ | ------ | --------------------- |
-| loanApplicationID | INT          | 否     | 自增   | 主键                  |
-| userID            | INT          | 否     | 无     |                       |
-| amount            | DECIMAL      | 否     | 无     | 意愿借款数额          |
-| certificationCode | varchar(255) | 否     | 无     | 社会统一认证代码      |
-| registrationCode  | varchar(255) | 否     | 无     | 注册码                |
-| companyName       | varchar(255) | 否     | 无     | 公司名称              |
-| phoneNumber       | varchar(255) | 否     | 无     | 贷款人联系电话        |
-| hasDealt          | INT          | 否     | 0      | 借款方完成贷款时置为1 |
+### 2.3 attendance table
 
-### 2.8 FileInfo
+Record which projects the partner company has participated in
 
-记录用户上传的文件信息
+| field     | type | Allow empty | Default value | description                                                 |
+| --------- | ---- | ----------- | ------------- | ----------------------------------------------------------- |
+| userID    | INT  | NO          | NULL          | The account ID of the data provider                         |
+| projectID | INT  | NO          | NULL          | Project code                                                |
+| isChosen  | INT  | NO          | 0             | Whether the bank chooses this data provider's data training |
+| isReady   | INT  | NO          | 0             | Is the data provider ready for the data                     |
 
-| field      | type         | 允许空 | 缺省值 |          description |
-| ---------- | ------------ | ------ | ------ | -------------------: |
-| fileID     | INT          | 否     | 自增   |                 主键 |
-| userID     | INT          | 否     | 无     |     上传该文件的用户 |
-| fileName   | varchar(255) | 否     | 无     |               文件名 |
-| filePath   | varchar(255) | 否     | 无     | 服务器存储文件的路径 |
-| uploadTime | varchar(255) | 否     | 无     |             上传时间 |
+### 2.4 model table
 
-## 3. 附录
+Record the information of the model corresponding to the project, mainly record the model_id, model_version, job_id and other information returned after submit for subsequent load_bind and predict operations
 
-### 3.1 数据库建表sql文件
+| field        | type         | Allow empty | Default value   |                                           description |
+| ------------ | ------------ | ----------- | --------------- | ----------------------------------------------------: |
+| modelID      | INT          | NO          | Self-increasing |                                           Primary key |
+| mid          | varchar(255) | YES         | NULL            | Identify the model version together with modelVersion |
+| jid          | varchar(255) | YES         | NULL            |                            Used to query model status |
+| modelVersion | varchar(255) | YES         | NULL            |                   Identify the model version with mid |
+| modelName    | varchar(255) | YES         | NULL            |                      Model name, used when predicting |
+
+### 2.5 lendingHistory table
+
+| field            | type         | Allow empty | Default value   | description                                   |
+| ---------------- | ------------ | ----------- | --------------- | --------------------------------------------- |
+| lendingHistoryID | INT          | NO          | Self-increasing | Identification of loan records                |
+| bankID           | INT          | NO          | NULL            | UserID of the borrowing bank                  |
+| lenderID         | INT          | NO          | NULL            | UserID of the borrower                        |
+| bankName         | varchar(255) | NO          | NULL            | The name of the borrowing bank                |
+| amount           | DECIMAL      | NO          | NULL            | Willingness to borrow                         |
+| interestRate     | DECIMAL      | NO          | NULL            | Annual interest rate                          |
+| phoneNumber      | varchar(255) | NO          | NULL            | Bank contact number                           |
+| hasDealt         | INT          | NO          | 0               | Set to 1 when the borrower completes the loan |
+
+### 2.6 serverInfo table
+
+| field          | type         | Allow empty | Default value   | description                                                  |
+| -------------- | ------------ | ----------- | --------------- | ------------------------------------------------------------ |
+| serverInfoID   | INT          | NO          | Self-increasing | Primary key                                                  |
+| userID         | INT          | NO          | NULL            | A user may use different servers to refer to different projects |
+| projectID      | INT          | NO          | NULL            |                                                              |
+| ipAddress      | varchar(255) | NO          | NULL            |                                                              |
+| serverName     | varchar(255) | NO          | NULL            |                                                              |
+| serverPassword | varchar(255) | NO          | NULL            |                                                              |
+| filePath       | varchar(255) | NO          | NULL            | Data file path                                               |
+
+### 2.7 loanApplication table
+
+| field             | type         | Allow empty | Default value   | description                                   |
+| ----------------- | ------------ | ----------- | --------------- | --------------------------------------------- |
+| loanApplicationID | INT          | NO          | Self-increasing | Primary key                                   |
+| userID            | INT          | NO          | NULL            | Account ID of the borrower                    |
+| amount            | DECIMAL      | NO          | NULL            | Willingness to borrow                         |
+| certificationCode | varchar(255) | NO          | NULL            | Social unified certification code             |
+| registrationCode  | varchar(255) | NO          | NULL            | Registration code                             |
+| companyName       | varchar(255) | NO          | NULL            | Company Name                                  |
+| phoneNumber       | varchar(255) | NO          | NULL            | Lender's phone number                         |
+| hasDealt          | INT          | NO          | 0               | Set to 1 when the borrower completes the loan |
+
+### 2.8 FileInfo table
+
+Record file information uploaded by users
+
+| field      | type         | Allow empty | Default value   |                               description |
+| ---------- | ------------ | ----------- | --------------- | ----------------------------------------: |
+| fileID     | INT          | NO          | Self-increasing |                               Primary key |
+| userID     | INT          | NO          | NULL            |            The user who uploaded the file |
+| fileName   | varchar(255) | NO          | NULL            |                                 file name |
+| filePath   | varchar(255) | NO          | NULL            | The path where the server stores the file |
+| uploadTime | varchar(255) | NO          | NULL            |                               Upload time |
+
+### 2.9 Monitor table
+
+Record project changes and user operations
+
+| field       | type         | Allow empty | Default value   |                             description |
+| ----------- | ------------ | ----------- | --------------- | --------------------------------------: |
+| monitorID   | INT          | NO          | Self-increasing |                             Primary key |
+| userID      | INT          | NO          | NULL            | ID of the user performing the operation |
+| projectID   | INT          | NO          | NULL            |                Corresponding project ID |
+| operation   | varchar(255) | NO          | NULL            |                          Operation type |
+| operateTime | timestamp    | NO          | Current time    |   Timestamp when the operation occurred |
+
+
+
+## 3. Appendix
+
+### 3.1 Database creation table sql file
 
 ```
 -- MySQL dump 10.13  Distrib 5.7.19, for macos10.12 (x86_64)

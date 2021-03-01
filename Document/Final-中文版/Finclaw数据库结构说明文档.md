@@ -309,6 +309,51 @@ public class UserForm {
 }
 ```
 
+### 1.6 监控部分用例
+
+#### 1.6.1 项目监控相关
+
+##### 1.6.1.1 MonitorVO
+
+```Java
+public class MonitorVO {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+}
+```
+
+##### 1.6.1.2 Monitor
+
+```Java
+public class Monitor {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+}
+```
+
+#### 1.6.2 监控管理相关
+
+##### 1.6.2.1 MonitorForm
+
+```Java
+public class MonitorForm {
+    private int monitorID;
+    private int userID;
+    private int projectID;
+    private String operation;
+    private Timestamp operateTime;
+    private String userName;
+}
+```
+
+
+
 ##  2. 数据库设计
 
 ### 2.1 user表
@@ -388,7 +433,7 @@ public class UserForm {
 | field             | type         | 允许空 | 缺省值 | description           |
 | ----------------- | ------------ | ------ | ------ | --------------------- |
 | loanApplicationID | INT          | 否     | 自增   | 主键                  |
-| userID            | INT          | 否     | 无     |                       |
+| userID            | INT          | 否     | 无     | 借贷方的账户ID        |
 | amount            | DECIMAL      | 否     | 无     | 意愿借款数额          |
 | certificationCode | varchar(255) | 否     | 无     | 社会统一认证代码      |
 | registrationCode  | varchar(255) | 否     | 无     | 注册码                |
@@ -407,6 +452,20 @@ public class UserForm {
 | fileName   | varchar(255) | 否     | 无     |               文件名 |
 | filePath   | varchar(255) | 否     | 无     | 服务器存储文件的路径 |
 | uploadTime | varchar(255) | 否     | 无     |             上传时间 |
+
+### 2.9 Monitor
+
+记录项目变更及用户操作
+
+| field       | type         | 允许空 | 缺省值   |        description |
+| ----------- | ------------ | ------ | -------- | -----------------: |
+| monitorID   | INT          | 否     | 自增     |               主键 |
+| userID      | INT          | 否     | 无       |   进行操作的用户ID |
+| projectID   | INT          | 否     | 无       |       对应的项目ID |
+| operation   | varchar(255) | 否     | 无       |           操作类型 |
+| operateTime | timestamp    | 否     | 当前时间 | 发生操作时的时间戳 |
+
+
 
 ## 3. 附录
 

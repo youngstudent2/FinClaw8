@@ -1,17 +1,23 @@
 package com.example.finclaw.bl.attendance;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.example.finclaw.bl.account.AccountService;
 import com.example.finclaw.enums.UserType;
 import com.example.finclaw.vo.ResponseVO;
 import com.example.finclaw.vo.account.UserRegisterForm;
+import com.example.finclaw.vo.account.UserVO;
+import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
+import com.example.finclaw.vo.server.ServerInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -68,7 +74,6 @@ public class AttendanceServiceTest {
         }
     }
 
-
     @Test
     public void updateServerInfoTest(){
         ServerInfoForm serverInfoForm = new ServerInfoForm();
@@ -79,8 +84,32 @@ public class AttendanceServiceTest {
         serverInfoForm.setServerName("wind");
         serverInfoForm.setServerPassword("123456");
         ResponseVO responseVO = attendService.updateServerInfo(serverInfoForm);
-        assertEquals(ResponseVO.buildSuccess().getSuccess(), responseVO.getSuccess());
+        ServerInfoVO serverInfoVO = attendService.getServerInfo(1, 9);
+        assertEquals("wind", serverInfoVO.getServerName());
     }
 
+    @Test
+    public void getCooperationProjectsTest(){
+        List<ProjectVO> projects = attendService.getCooperationProjects(4);
+        ProjectVO projectVO = projects.get(0);
+        assertEquals(Integer.valueOf(1), projectVO.getProjectID());
+    }
+
+    @Test
+    public void getProjectDataProducersTest(){
+        List<UserVO> userVOS = attendService.getProjectDataProducers(1);
+        for(int i=0;i<userVOS.size();i++){
+            UserVO userVO = userVOS.get(i);
+            assertTrue(listContained(userVO.getUserID()));
+        }
+    }
+
+    public boolean listContained(int i){
+        if(i==4 || i==5 || i==6){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 

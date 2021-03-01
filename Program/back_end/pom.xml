@@ -85,13 +85,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-        <!--文件上传-->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
-        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -125,6 +118,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.62</version>
         </dependency>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.4</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -147,9 +145,51 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
-                   <skipTests>true</skipTests>
+                    <skipTests>false</skipTests>
+                    <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
              </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+                <configuration>
+                    <destFile>target/coverage-reports/jacoco-unit.exec</destFile>
+                    <dataFile>target/coverage-reports/jacoco-unit.exec</dataFile>
+                    <includes>
+                        <include>com/example/finclaw/blImpl/account/**</include>
+                        <include>com/example/finclaw/blImpl/attendance/**</include>
+                        <include>com/example/finclaw/blImpl/lending/**</include>
+                        <include>com/example/finclaw/blImpl/loan/**</include>
+                        <include>com/example/finclaw/blImpl/monitor/**</include>
+                        <include>com/example/finclaw/blImpl/project/**</include>
+                    </includes>
+                    <!-- rules里面指定覆盖规则 -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!--这个check:对代码进行检测，控制项目构建成功还是失败-->
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                    <!--这个report:对代码进行检测，然后生成index.html在 target/site/index.html中可以查看检测的详细结果-->
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         
         <resources>
