@@ -743,7 +743,7 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 - 特殊需求：无
 
-#### 3.2.4 系统顺序图 ==TODO 转英文==
+#### 3.2.4 系统顺序图
 
 ##### 3.2.4.1 银行
 
@@ -779,19 +779,13 @@ AE3：网络畅通，客户端与服务器通信时，不会发生连接断开�
 
 ![小微企业1](E:\Competition\花旗杯\finclaw\Document\pic\用例\小微企业1.png)
 
-![小微企业11](..\pic\用例\小微企业11.png)
-
 ###### 3.2.4.3.2 借贷情况查看
 
 ![小微企业2](..\pic\用例\小微企业2.png)
 
-![小微企业22](..\pic\用例\小微企业22.png)
-
 ###### 3.2.4.3.3 接受贷款
 
 ![小微企业3](..\pic\用例\小微企业3.png)
-
-![小微企业33](..\pic\用例\小微企业33.png)
 
 ##### 3.2.4.4 平台工作人员
 
@@ -1413,6 +1407,3 @@ public ResponseVO setDealt(@PathVariable Integer loanApplicationID);
 ```java
 public ResponseVO getUserLoanHistory(@PathVariable Integer userID);
 ```
-
-##### 3.3.2.6 FileController
-

@@ -1,7 +1,5 @@
 # Finclaw Test Document
 
-[TOC]
-
 ### 1. Introduction
 
 #### 1.1 Target
@@ -412,8 +410,6 @@ This document contains the tests of all the modules of FinClaw System, including
         <td> </td>
     </tr>
 </table>
-
-
 ### 3. Summary
 
 
