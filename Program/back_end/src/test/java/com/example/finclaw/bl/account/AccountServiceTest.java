@@ -27,12 +27,13 @@ public class AccountServiceTest {
     private final static String EMAIL_EXIST = "该邮箱已注册";
 
     @Test
-    public void AccountServiceTest(){
+    public void AccountServiceTest1(){
         getAllUsersTest();
         getUnauthorizedUsersTest();
         registerTest();
         registerErrorTest();
         updateUserInfoTest();
+        updatePasswordErrorTest();
         updatePasswordTest();
         examineAuthenticationTest();
         deleteUserTest();
@@ -63,6 +64,11 @@ public class AccountServiceTest {
         assertEquals("654321", accountService.getUserInfo(9).getPassword());
     }
 
+    public void updatePasswordErrorTest(){
+        ResponseVO responseVO = accountService.updatePassword(9, "123465", "654321");
+        assertEquals("密码错误", responseVO.getMessage());
+    }
+
     public void examineAuthenticationTest(){
         accountService.examineAuthentication(9, 1);
         assertEquals(UserType.DataProvider, accountService.getUserInfo(9).getRole());
@@ -74,7 +80,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void loginTest(){
+    public void loginErrorTest(){
         UserLoginForm userLoginForm = new UserLoginForm();
         userLoginForm.setEmail("826@qq.com");
         userLoginForm.setPassword("123456");
@@ -91,11 +97,6 @@ public class AccountServiceTest {
         userRegisterForm.setUsername("Hewenbing");
         ResponseVO responseVO = accountService.register(userRegisterForm);
         assertEquals(EMAIL_EXIST, responseVO.getMessage());
-    }
-
-    public void registerIdentityTest(){
-        accountService.registerIdentity(9, 6);
-        assertEquals(UserType.UnauthorizedCompany, accountService.getUserInfo(9).getRole());
     }
 
     public void getAllUsersTest(){
@@ -134,6 +135,31 @@ public class AccountServiceTest {
         }else{
             return false;
         }
+    }
+
+    @Test
+    public void AccountServiceTest2(){
+        registerTest();
+        registerIdentityTest();
+        rejectedTest();
+        deleteUserTest2();
+    }
+
+    public void registerIdentityTest(){
+        accountService.registerIdentity(10, 6);
+        assertEquals(UserType.UnauthorizedCompany, accountService.getUserInfo(10).getRole());
+        accountService.registerIdentity(10, 5);
+        assertEquals(UserType.UnauthorizedBank, accountService.getUserInfo(10).getRole());
+    }
+
+    public void rejectedTest(){
+        accountService.examineAuthentication(10, 0);
+        assertEquals(UserType.Rejected, accountService.getUserInfo(10).getRole());
+    }
+
+    public void deleteUserTest2(){
+        accountService.deleteUser(10);
+        assertEquals(null, accountService.getUserInfo(10));
     }
 
 }

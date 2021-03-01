@@ -10,6 +10,7 @@ import com.example.finclaw.vo.account.UserRegisterForm;
 import com.example.finclaw.vo.account.UserVO;
 import com.example.finclaw.vo.project.ProjectVO;
 import com.example.finclaw.vo.server.ServerInfoForm;
+import com.example.finclaw.vo.server.ServerInfoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,8 @@ public class AttendanceServiceTest {
         serverInfoForm.setServerName("wind");
         serverInfoForm.setServerPassword("123456");
         ResponseVO responseVO = attendService.updateServerInfo(serverInfoForm);
-        assertEquals(ResponseVO.buildSuccess().getSuccess(), responseVO.getSuccess());
+        ServerInfoVO serverInfoVO = attendService.getServerInfo(1, 9);
+        assertEquals("wind", serverInfoVO.getServerName());
     }
 
     @Test

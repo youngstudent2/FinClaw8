@@ -159,7 +159,6 @@
                     <includes>
                         <include>com/example/finclaw/blImpl/account/**</include>
                         <include>com/example/finclaw/blImpl/attendance/**</include>
-                        <include>com/example/finclaw/blImpl/file/**</include>
                         <include>com/example/finclaw/blImpl/lending/**</include>
                         <include>com/example/finclaw/blImpl/loan/**</include>
                         <include>com/example/finclaw/blImpl/monitor/**</include>
