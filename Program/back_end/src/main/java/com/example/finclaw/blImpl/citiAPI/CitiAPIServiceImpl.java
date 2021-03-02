@@ -184,7 +184,7 @@ public class CitiAPIServiceImpl implements CitiAPIService {
 
     /**
      * 返回已提交的申请的状态
-     * 官网中给的 controlFlowId 是不能用的，这个方法暂时没有办法调用
+     * controlFlowId 为第一次创建申请时的返回参数
      * @param citiRequestBody
      * @return
      */
