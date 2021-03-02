@@ -6,11 +6,11 @@
                        style="height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center">
                     <div style="display: flex; flex-direction: row">
                         <h4 style="padding-top: 5px">预测对象：</h4>
-                        <a-input v-model="predictName" placeholder="请输入需要预测的企业名" style="width: 200px; margin-bottom: 40px"></a-input>
+                        <a-input v-model="predictName" placeholder="请输入预测企业名" style="width: 150px; margin-bottom: 40px"></a-input>
                     </div>
                     <div style="display: flex; flex-direction: row">
                         <h4 style="padding-top: 5px">绑定模型：</h4>
-                        <a-button @click="doBind" style="width: 100px; margin-bottom: 50px">
+                        <a-button @click="doBind" style="width: 150px; margin-bottom: 50px">
                             绑定模型
                         </a-button>
                     </div>
@@ -26,9 +26,11 @@
                 </a-col>
                 <a-col :span="8" style="height: 500px; padding-top: 120px">
                     <h2><b>放贷方案推荐</b></h2>
-                    <h3 style="padding-top: 10px">信用评级：优</h3>
-                    <h3>贷款年利率：3.85%</h3>
-                    <h3>贷款比例：1</h3>
+                    <div style="text-align: left; padding-top: 10px">
+                        <h3 style=" padding-left: 150px;">信用评级：优</h3>
+                        <h3 style=" padding-left: 133px;">贷款年利率：3.85%</h3>
+                        <h3 style=" padding-left: 150px;">贷款比例：100%</h3>
+                    </div>
                 </a-col>
             </a-row>
         </dv-border-box13>

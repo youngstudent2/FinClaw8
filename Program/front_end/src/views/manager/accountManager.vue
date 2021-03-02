@@ -1,6 +1,6 @@
 <template>
     <a-table :columns="accountColumns" :data-source="AllUsers" :bordered=true>
-        <span slot="action" slot-scope="record">
+        <span slot="action" slot-scope="record" style="display: flex; justify-content: center">
             <a-button type="danger" @click="deleteUsers(record.userID)">删除用户</a-button>
         </span>
     </a-table>
