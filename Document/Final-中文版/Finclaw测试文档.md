@@ -411,6 +411,17 @@
 
 ### 3.总结
 
+Finclaw业务层和数据层测试用例共计60个，Failure共计1个，Errors共计2个，Skipped共计0个。通过jacoco自动化测试覆盖率统计，我们获得了如下测试数据。
 
-​                                                                                 
+同时，我们支持自动化获得测试报告，具体方法为：通过maven运行install，在target/site/jacoco目录下得到index.html（即为finclaw的测试覆盖率报告）。
+
+| Element    | Instructions Coverage | Branches Coverage | Method Coverage | Classes Coverage |
+| ---------- | --------------------- | ----------------- | --------------- | ---------------- |
+| account    | 75%                   | 63%               | 100%            | 100%             |
+| loan       | 82%                   | 83%               | 91.67%          | 100%             |
+| attendance | 78%                   | 100%              | 100%            | 100%             |
+| project    | 83%                   | 71%               | 100%            | 100%             |
+| lending    | 91%                   | 100%              | 100%            | 100%             |
+| monitor    | 100%                  | 100%              | 100%            | 100%             |
+| Total      | 83%(1032 of 1237)     | 75%               | 98.28%          | 100%             |
 
