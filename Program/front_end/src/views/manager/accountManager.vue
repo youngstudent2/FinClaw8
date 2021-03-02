@@ -37,6 +37,7 @@
             title: '操作',
             key: 'action',
             scopedSlots: {customRender: 'action'},
+            align: 'center'
         }
     ];
 export default {

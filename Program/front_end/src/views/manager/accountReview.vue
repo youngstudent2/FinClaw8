@@ -2,9 +2,9 @@
     <div>
         <a-table :columns="accountColumns" :data-source="unauthorizedUsers">
             <span slot="action" slot-scope="record">
-                <a-button type="primary" size="small" @click="showModal(record)">审核</a-button>
+                <a-button type="primary" size="small" @click="showModal(record)">同意申请</a-button>
                 <a-divider type="vertical"></a-divider>
-                <a-button type="danger" size="small" @click="reject(record)">拒绝</a-button>
+                <a-button type="danger" size="small" @click="reject(record)">拒绝申请</a-button>
             </span>
         </a-table>
     <AccountModal></AccountModal>

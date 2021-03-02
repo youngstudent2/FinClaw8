@@ -76,7 +76,7 @@
         <el-row type="flex" justify="center" style="margin-top: 5%">
           <el-col :span="20">
             <el-carousel :interval="4000" type="card" height="400px">
-              <el-carousel-item v-for="item in 6" :key="item">
+              <el-carousel-item v-for="(content,item) in carousel_content" :key="item" style="border-size:30px">
                 <el-row type="flex" justify="center" style="margin-top: 20px">
                   <el-col :span="5" style="text-align: center">
                     <el-image
@@ -98,7 +98,7 @@
                     style="text-align: center; font-size: 24px"
                   >
                     <div>
-                      FinClaw8的产品非常好用！是一款全新的，前所未有的智能风控平台，帮助我解决了客户标签不足，画像不全面的问题，还帮我解决了优化贷款策略的问题！非常赞！
+                      {{content}}
                     </div>
                   </el-col>
                 </el-row>
@@ -155,6 +155,14 @@ export default {
       colCount: 4,
       projects: [],
       shuffleTime : 0,
+      carousel_content:[
+        "FinClaw8的产品非常好用！是一款全新的，前所未有的智能风控平台，帮助我解决了客户标签不足，画像不全面的问题，还帮我解决了优化贷款策略的问题！非常赞！",
+        "不得不说，很多道听途说的信用贷款信息其实并不准确，眼睛看到的也不一定为实，那么到底如何才能主动掌握精准信息呢？\n其实不需要多复杂，你也不用请私家侦探，使用FinClaw8就能让你拥有火眼金睛，有了它一定能给你带来很大的帮助！",
+        "说句掏心窝子的话，在这个互联网信息杂乱的时代，我们很有必要拥有主动掌握准确信息的能力，否则一个错误的贷款决定可能会让企业陷入周转困境，银行陷入财务危机，也许在你做决定之前使用一下这个平台就能避免很多事情的发生！",
+        "FinClaw8的产品非常好用！是一款全新的，前所未有的智能风控平台，帮助我解决了客户标签不足，画像不全面的问题，还帮我解决了优化贷款策略的问题！非常赞！",
+        "不得不说，很多道听途说的信用贷款信息其实并不准确，眼睛看到的也不一定为实，那么到底如何才能主动掌握精准信息呢？\n其实不需要多复杂，你也不用请私家侦探，使用FinClaw8就能让你拥有火眼金睛，有了它一定能给你带来很大的帮助！",
+        "说句掏心窝子的话，在这个互联网信息杂乱的时代，我们很有必要拥有主动掌握准确信息的能力，否则一个错误的贷款决定可能会让企业陷入周转困境，银行陷入财务危机，也许在你做决定之前使用一下这个平台就能避免很多事情的发生！",
+      ]
     };
   },
   mounted() {
