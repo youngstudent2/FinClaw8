@@ -68,7 +68,7 @@ public class LoanServiceTest {
         ResponseVO responseVO = loanService.getUserLoanHistory(7);
         List<LoanApplicationVO> loanApplicationVOS = (List<LoanApplicationVO>) responseVO.getContent();
         assertTrue(responseVO.getSuccess());
-        assertEquals(1,loanApplicationVOS.size());
+        assertEquals(0,loanApplicationVOS.size());
     }
 
     @Test
