@@ -75,7 +75,7 @@
       <el-main style="height: 100%; margin-bottom: 3%">
         <el-row type="flex" justify="center" style="margin-top: 5%">
           <el-col :span="20">
-            <el-carousel :interval="4000" type="card" height="400px">
+            <el-carousel :interval="4000" type="card" height="420px">
               <el-carousel-item v-for="(content,item) in carousel_content" :key="item" style="border-size:30px">
                 <el-row type="flex" justify="center" style="margin-top: 20px">
                   <el-col :span="5" style="text-align: center">
@@ -91,7 +91,11 @@
                     FinClaw8
                   </el-col>
                 </el-row>
-
+                <el-row type="flex" justify="center" style="margin: 5px 0">
+                  <el-col :span="6" style="text-align: center">
+                    <el-rate value="5" disabled text-color="#ff9900"> </el-rate>
+                  </el-col>
+                </el-row>
                 <el-row type="flex" justify="center">
                   <el-col
                     :span="18"
@@ -103,11 +107,7 @@
                   </el-col>
                 </el-row>
 
-                <el-row type="flex" justify="center" style="margin-top: 20px">
-                  <el-col :span="4" style="text-align: center">
-                    <el-rate value="5" disabled text-color="#ff9900"> </el-rate>
-                  </el-col>
-                </el-row>
+                
               </el-carousel-item>
             </el-carousel>
           </el-col>
