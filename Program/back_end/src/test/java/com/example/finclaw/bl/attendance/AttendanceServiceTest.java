@@ -33,6 +33,7 @@ public class AttendanceServiceTest {
         attendProjectTest();
         setAttendInfoTest();
         quitProjectTest();
+        accountService.deleteUser(11);
     }
 
     public void register(){
@@ -46,17 +47,17 @@ public class AttendanceServiceTest {
     }
 
     public void attendProjectTest(){
-        attendService.attendProject(1, 9);
+        attendService.attendProject(1, 11);
         try{
-            assertEquals(false, attendService.getAttendanceInfo(1, 9).isChosen());
+            assertEquals(false, attendService.getAttendanceInfo(1, 11).isChosen());
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     public void setAttendInfoTest(){
-        attendService.setChosen(1, 9, true);
-        attendService.setReadyForProject(1, 9, true);
+        attendService.setChosen(1, 11, true);
+        attendService.setReadyForProject(1, 11, true);
         try {
             assertEquals(true, attendService.getAttendanceInfo(1, 9).isChosen());
             assertEquals(true, attendService.getAttendanceInfo(1, 9).isReady());
@@ -66,9 +67,9 @@ public class AttendanceServiceTest {
     }
 
     public void quitProjectTest(){
-        attendService.quitProject(1, 9);
+        attendService.quitProject(1, 11);
         try {
-            assertEquals(null, attendService.getAttendanceInfo(1, 9));
+            assertEquals(null, attendService.getAttendanceInfo(1, 11));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -77,14 +78,14 @@ public class AttendanceServiceTest {
     @Test
     public void updateServerInfoTest(){
         ServerInfoForm serverInfoForm = new ServerInfoForm();
-        serverInfoForm.setUserID(9);
+        serverInfoForm.setUserID(11);
         serverInfoForm.setProjectID(1);
         serverInfoForm.setFilePath("D:/finclaw8");
         serverInfoForm.setIpAddress("192.168.101.92");
         serverInfoForm.setServerName("wind");
         serverInfoForm.setServerPassword("123456");
         ResponseVO responseVO = attendService.updateServerInfo(serverInfoForm);
-        ServerInfoVO serverInfoVO = attendService.getServerInfo(1, 9);
+        ServerInfoVO serverInfoVO = attendService.getServerInfo(1, 11);
         assertEquals("wind", serverInfoVO.getServerName());
     }
 

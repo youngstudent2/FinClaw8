@@ -33,26 +33,26 @@ public class AttendMapperTest {
         setChosenTest();
         quitProjectTest();
 
-        accountMapper.deleteUser(9);
+        accountMapper.deleteUser(13);
     }
 
     public void attendProjectTest(){
-        attendMapper.attendProject(9, 1);
-        assertEquals(false, attendMapper.getAttendanceInfo(9, 1).isChosen());
+        attendMapper.attendProject(13, 1);
+        assertEquals(false, attendMapper.getAttendanceInfo(13, 1).isChosen());
     }
 
     public void setReadyForProjectTest(){
-        attendMapper.setReadyForProject(9, 1, true);
-        assertEquals(true, attendMapper.getAttendanceInfo(9, 1).isReady());
+        attendMapper.setReadyForProject(13, 1, true);
+        assertEquals(true, attendMapper.getAttendanceInfo(13, 1).isReady());
     }
 
     public void setChosenTest(){
-        attendMapper.setChosen(9, 1, true);
-        assertEquals(true, attendMapper.getAttendanceInfo(9, 1).isChosen());
+        attendMapper.setChosen(13, 1, true);
+        assertEquals(true, attendMapper.getAttendanceInfo(13, 1).isChosen());
     }
 
     public void quitProjectTest(){
-        attendMapper.quitProject(9, 1);
-        assertEquals(null,attendMapper.getAttendanceInfo(9, 1));
+        attendMapper.quitProject(13, 1);
+        assertEquals(null,attendMapper.getAttendanceInfo(13, 1));
     }
 }

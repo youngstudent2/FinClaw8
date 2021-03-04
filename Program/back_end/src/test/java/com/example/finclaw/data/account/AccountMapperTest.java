@@ -49,7 +49,7 @@ public class AccountMapperTest {
     }
 
     public void deleteUserTest(){
-        accountMapper.deleteUser(9);
+        accountMapper.deleteUser(12);
         assertEquals(null, accountMapper.getAccountByEmail("826947112@qq.com"));
     }
 

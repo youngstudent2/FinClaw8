@@ -17,14 +17,14 @@ public class ServerInfoMapperTest {
     @Test
     public void updateServerInfoTest(){
         ServerInfo serverInfo = new ServerInfo();
-        serverInfo.setUserID(9);
+        serverInfo.setUserID(10);
         serverInfo.setProjectID(1);
         serverInfo.setFilePath("D:/finclaw8");
         serverInfo.setIpAddress("192.168.101.92");
         serverInfo.setServerName("wind");
         serverInfo.setServerPassword("123456");
         serverInfoMapper.updateServerInfo(serverInfo);
-        assertEquals(Integer.valueOf(4), serverInfoMapper.getServerInfo(1, 9).getServerInfoID());
+        assertEquals(Integer.valueOf(5), serverInfoMapper.getServerInfo(1, 10).getServerInfoID());
     }
 
 }
